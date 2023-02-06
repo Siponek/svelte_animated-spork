@@ -10,4 +10,4 @@ services:
       - "${OUTER_PORT_FRONTEND}:${INNER_PORT_FRONTEND}"
     volumes:
       - ./../app/src/:/app/src/
-    command: npm run dev -- --host
+    command: pnpm dev
