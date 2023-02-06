@@ -35,6 +35,7 @@ server-build:
 
 .PHONY: dev
 dev:
+	set LOCAL_DEV=true
 	set NODE_ENV=development
 	set CLIENT_IP=127.0.0.1
 	set CLIENT_PORT=3000
