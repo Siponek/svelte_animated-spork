@@ -7,6 +7,7 @@ ENV_FILE := $(CURDIR)/env/docker.env
 DOCKER_FLAGS := --file $(DOCKER_COMPOSE_FILE) --env-file $(ENV_FILE)
 DOCKER_COMPOSE := docker compose $(DOCKER_FLAGS)
 NPX_PREFIX := npx --prefix $(CURDIR)/app
+# include $(CURDIR)/env/docker.env
 
 .PHONY: print
 print:
@@ -26,15 +27,25 @@ print:
 .PHONY: prepare
 prepare:
 	npm --prefix $(CURDIR)/app install pnpm
-	NPX_PREFIX pnpm add
+	$(NPX_PREFIX) pnpm install
 
 .PHONY: server-build
 server-build:
-	NPX_PREFIX pnpm build
+	$(NPX_PREFIX) pnpm build
 
 .PHONY: dev
 dev:
-	NPX_PREFIX pnpm dev
+	set NODE_ENV=development
+	set CLIENT_IP=127.0.0.1
+	set CLIENT_PORT=3000
+	set DOCKER_CLIENT_PORT_FORWARD=3501 
+	set OUTER_PORT_FRONTEND=80
+	set SERVER_IP=127.0.0.1
+	set SERVER_PORT=80 
+	set INNER_PORT_FRONTEND=3000
+	set DOCKER_SERVER_PORT_FORWARD=3500
+	cd $(CURDIR)/app && $(NPX_PREFIX) pnpm dev
+	
 
 #
 #? Docker
