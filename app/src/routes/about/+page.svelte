@@ -1,23 +1,25 @@
 <svelte:head>
-    <title>About</title>
-    <meta name="description" content="About this app" />
+	<title>About</title>
+	<meta name="description" content="About this app" />
 </svelte:head>
 
 <div class="text-column">
-    <h1>Wololo!!!!!</h1>
-    <p>IS THI IS WORKING???????</p>
+	<h1>Wololo!!!!!</h1>
+	<p>IS THI IS WORKING???????</p>
 
-    <pre>npm create svelte@latest</pre>
+	<pre>npm create svelte@latest</pre>
 
-    <p>
-        The page you're looking at is purely static HTML, with no client-side
-        interactivity needed. Because of that, we don't need to load any
-        JavaScript. Try viewing the page's source, or opening the devtools
-        network panel and reloading.
-    </p>
+	<p>
+		The page you're looking at is purely static HTML, with no client-side interactivity needed.
+		Because of that, we don't need to load any JavaScript. Try viewing the page's source, or
+		opening the devtools network panel and reloading.
+	</p>
 
-    <p>
+	<p>
+		Here would be usually like a <code>fetch</code> call to a REST API, but there is none!
+	</p>
+	<!-- <p>
         The <a href="/sverdle">Sverdle</a> page illustrates SvelteKit's data loading
         and form handling. Try using it with JavaScript disabled!
-    </p>
+    </p> -->
 </div>
