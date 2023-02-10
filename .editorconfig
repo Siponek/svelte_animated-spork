@@ -4,7 +4,7 @@ root = true
 [*]
 charset = utf-8
 indent_style = space
-indent_size = 10
+indent_size = 4
 insert_final_newline = true
 trim_trailing_whitespace = true
 end_of_line = lf
@@ -31,13 +31,15 @@ indent_size = 2
 indent_size = 2
 
 [*.yaml]
-indent_size = 6
+indent_size = 2
 
 [*.css]
 indent_size = 4
 
 [*.svelte]
-indent_size = 20
+indent_size = 4
 indent_style = space
+[.js]
+indent_size = 4
 
 
