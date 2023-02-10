@@ -10,4 +10,12 @@ services:
       - "${OUTER_PORT_FRONTEND}:${INNER_PORT_FRONTEND}"
     volumes:
       - ./../app/src/:/app/src/
-    command: npx pnpm dev
+    working_dir: /app
+    # NPX stands for npm execute, it is a tool that comes with npm and allows you to run npm packages without installing them globally.
+    # Pnpm is a package manager for JavaScript and Node.js. It is fast, disk space efficient, and reliable.
+    # PM2 is a production process manager for Node.js applications with a built-in load balancer.
+    # --watch: watch for file changes and restart the process
+    # --no-daemon: do not run the process as a daemon
+    # --name: name of the process
+    command: npx pnpm pm2 start ./node_build/index.js --name svelte-compose --watch --no-daemon
+    # command: npx pnpm dev

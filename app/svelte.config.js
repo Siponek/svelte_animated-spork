@@ -1,4 +1,7 @@
-import adapter from '@sveltejs/adapter-auto';
+import node_adapter from '@sveltejs/adapter-node';
+// import node from '@sveltejs/adapter-static';
+// import adapter from '@sveltejs/adapter-static';
+// import auto_adapter from '@sveltejs/adapter-auto';
 import { vitePreprocess } from '@sveltejs/kit/vite';
 
 /** @type {import('@sveltejs/kit').Config} */
@@ -8,8 +11,33 @@ const config = {
 	preprocess: vitePreprocess(),
 
 	kit: {
-		
-		adapter: adapter()
+		adapter: node_adapter({
+			out: 'node_build',
+			precompress: false,
+			envPrefix: ''
+		})
+		// adapter: static_adapter({
+		// 	out: 'node_build',
+		// 	precompress: false,
+		// 	envPrefix: ''
+		// })
+		// adapter: adapter({
+		// 	pages: 'build',
+		// 	assets: 'build',
+		// 	fallback: null,
+		// 	precompress: false,
+		// 	strict: true
+		// })
+	},
+	vitePlugin: {
+		experimental: {
+			inspector: {
+				toggleKeyCombo: 'meta-shift',
+				holdMode: true,
+				showToggleButton: 'always',
+				toggleButtonPos: 'bottom-right'
+			}
+		}
 	}
 };
 
