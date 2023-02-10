@@ -26,14 +26,6 @@ if (process.env.LOCAL_DEV) {
 		test: {
 			include: ['src/**/*.{test,spec}.{js,ts}']
 		},
-        build: {
-            outDir: '../dist',
-            emptyOutDir: true,
-                },
-		// server: {
-		// 	host: '0.0.0.0',
-		// 	port: +INNER_PORT
-		// }
 	};
 } else {
 	console.log('Using docker config');
@@ -52,10 +44,7 @@ if (process.env.LOCAL_DEV) {
 				usePolling: true
 			}
 		},
-                    build: {
-                              outDir: '../dist',
-                              emptyOutDir: true,
-                    }
+
 	};
 }
 
