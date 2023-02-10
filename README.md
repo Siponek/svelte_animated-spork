@@ -25,11 +25,14 @@ This is a Svelte kit app. It is configured for local and docker development via 
 
   ### Local development
 
-2A. Install the dependencies with `make prepare`
-3A. Start the development server with `make dev`
+- 2A. Install the dependencies with `make prepare`
+- 3A. Start the development server with `make dev`
 
-  ### Docker development
-  2B. Install the dependencies with `make prepare`
+### Docker development
+  - 2B. Install the dependencies with `make prepare`
+  - 3B. Start the development server with `make build` and `make up`
+    - Make sure to specify `DOCKER_PRODUCTION` to `false` in the `.env` file if you want to use the development server on docker.
+    Or you can set `DOCKER_PRODUCTION` to `true` to run the production server on docker.
 
 You can preview the production build with `npm run preview` inside the /app folder.
 > To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
