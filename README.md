@@ -1,38 +1,35 @@
-# create-svelte
+# Svelte kit app
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+[make_link]: https://www.gnu.org/software/make/
+[docker_link]: https://docs.docker.com/install/
+[chocolatey_link]: https://chocolatey.org/install
+[npm_link]: https://www.npmjs.com/get-npm
+[nodejs_link]: https://nodejs.org/en/download/
+[nvm_link]: https:// 
 
-## Creating a project
+This is a Svelte kit app. It is configured for local and docker development via Makefile and .env. Tested for Windows 11.
 
-If you're seeing this, you've probably already done this step. Congrats!
+## Requirements
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
+- [Docker][docker_link]
+- docker-compose (that should be included in the docker installation)
+- Make
+  - You can install [Make][make_link] with [Chocolatey][chocolatey_link] package mangaer on Windows.
+- [NodeJS][nodejs_link] version 19.0.0 or higher
+- [NPM][npm_link] version 7.0.0 or higher
+- (optional) [NVM][nvm_link] for managing NodeJS versions
 
-# create a new project in my-app
-npm create svelte@latest my-app
-```
+## Setup
 
-## Developing
+1. Clone the repository
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+  ### Local development
 
-```bash
-npm run dev
+2A. Install the dependencies with `make prepare`
+3A. Start the development server with `make dev`
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
+  ### Docker development
+  2B. Install the dependencies with `make prepare`
 
-## Building
-
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
+You can preview the production build with `npm run preview` inside the /app folder.
 > To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
