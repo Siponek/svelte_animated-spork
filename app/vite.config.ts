@@ -15,7 +15,6 @@ if (process.env.INNER_PORT_FRONTEND) {
 }
 console.log('Port for client browser_> OUTER_PORT', OUTER_PORT);
 console.log('Port exposed in Vite_> INNER_PORT', INNER_PORT);
-console.log(`You propably want to connect via http://localhost:${OUTER_PORT}/`);
 let config: UserConfig;
 if (process.env.LOCAL_DEV) {
 	console.log(
@@ -23,12 +22,16 @@ if (process.env.LOCAL_DEV) {
 	);
 	config = {
 		plugins: [sveltekit()],
+        server: {
+            port: +INNER_PORT,
+        },
 		test: {
 			include: ['src/**/*.{test,spec}.{js,ts}']
 		},
 	};
 } else {
 	console.log('Using docker config');
+    console.log(`You propably want to connect via http://localhost:${OUTER_PORT}/`);
 	config = {
 		plugins: [sveltekit()],
 		test: {

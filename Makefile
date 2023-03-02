@@ -29,8 +29,8 @@ prepare:
 	npm --prefix $(CURDIR)/app install pnpm
 	$(NPX_PREFIX) pnpm install
 
-.PHONY: server-build
-server-build:
+.PHONY: local-build
+local-build:
 	$(NPX_PREFIX) pnpm build
 
 .PHONY: dev
@@ -39,14 +39,14 @@ dev:
 	set NODE_ENV=development
 	set CLIENT_IP=127.0.0.1
 	set CLIENT_PORT=3000
-	set DOCKER_CLIENT_PORT_FORWARD=3501 
+	set DOCKER_CLIENT_PORT_FORWARD=3501
 	set OUTER_PORT_FRONTEND=80
 	set SERVER_IP=127.0.0.1
-	set SERVER_PORT=80 
+	set SERVER_PORT=80
 	set INNER_PORT_FRONTEND=3000
 	set DOCKER_SERVER_PORT_FORWARD=3500
 	cd $(CURDIR)/app && $(NPX_PREFIX) pnpm dev
-	
+
 
 #
 #? Docker

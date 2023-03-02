@@ -11,7 +11,7 @@
 </svelte:head>
 
 <header>
-	<App name={'Szymon'} />
+	<App name={'Manuele'} />
 </header>
 
 <main>
