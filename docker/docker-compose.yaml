@@ -10,8 +10,8 @@ services:
       - "${OUTER_PORT_FRONTEND}:${INNER_PORT_FRONTEND}"
     volumes:
       - ./../app/src/:/app/src/
+    entrypoint: ["/bin/bash","/app/entrypoint.sh"]
     working_dir: /app
-    entrypoint: ./entrypoint.sh
     # keep the container running
     # command:  tail -f /dev/null
 
