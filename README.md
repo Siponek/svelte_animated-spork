@@ -6,6 +6,7 @@
 [npm_link]: https://www.npmjs.com/get-npm
 [nodejs_link]: https://nodejs.org/en/download/
 [nvm_link]: https://github.com/coreybutler/nvm-windows#readme
+[svelte_add_link]: https://github.com/svelte-add/svelte-add
 
 This is a Svelte kit app. It is configured for local and docker development via Makefile and .env. Tested for Windows 11.
 
@@ -18,6 +19,11 @@ This is a Svelte kit app. It is configured for local and docker development via 
 - [NodeJS][nodejs_link] version 19.0.0 or higher
 - [NPM][npm_link] version 7.0.0 or higher
 - (optional) [NVM][nvm_link] for managing NodeJS versions
+- If you want to add some UI components, you can use [Svelte Add][svelte_add_link]
+  - Example:
+    - `pnpm add -D svelte-add@latest`
+  - and
+    - `pnpm svelte-add tailwindcss`
 
 ## Setup
 
