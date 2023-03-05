@@ -1,6 +1,6 @@
 <script>
-	// import Header from './Header.svelte';
-	// import './styles.css';
+	import '../app.postcss';
+	import '../app.css';
 </script>
 
 <div class="app">
@@ -9,17 +9,22 @@
 	<main>
 		<slot />
 	</main>
-
+	<form method="POST" action="/login">
+		<!-- content -->
+	</form>
 	<footer>
 		<p>
-			visit <a href="https://kit.svelte.dev"
-				>kit.svelte.dev</a
-			> to learn SvelteKit
+			visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to learn SvelteKit
 		</p>
 	</footer>
 </div>
-<!-- 
+
 <style>
+	* {
+		padding: 0;
+		margin: 0;
+		box-sizing: border-box;
+	}
 	.app {
 		display: flex;
 		flex-direction: column;
@@ -54,4 +59,4 @@
 			padding: 12px 0;
 		}
 	}
-</style> -->
+</style>
