@@ -2,7 +2,7 @@
 // Prefix tw- for all tailwind classes
 config = {
 	content: ['./src/**/*.{html,js,svelte,ts}'],
-	prefix: 'tw-',
+	// prefix: 'tw-',
 	theme: {
 		extend: {}
 	},

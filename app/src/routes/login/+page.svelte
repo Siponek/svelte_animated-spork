@@ -7,10 +7,9 @@
 	export let form: any;
 </script>
 
-<Styles />
-
 <svelte:head>
 	<title>ETS - Login</title>
+	<Styles />
 </svelte:head>
 
 <!-- <Container>

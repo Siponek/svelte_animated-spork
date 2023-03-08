@@ -2,13 +2,15 @@
 	import { enhance } from '$app/forms';
 	import ListErrors from '$lib/ListErrors.svelte';
 	/** @type {import('./$types').ActionData} */
+	import { Styles, Container, Col, Row } from 'sveltestrap';
+
 	export let form;
 </script>
 
 <svelte:head>
 	<title>Sign up • Conduit</title>
+	<Styles />
 </svelte:head>
-
 <div class="auth-page">
 	<div class="container page">
 		<div class="row">
@@ -45,7 +47,7 @@
 							name="username"
 							type="text"
 							required
-							placeholder="Your User name"
+							placeholder="Your User Name"
 						/>
 					</fieldset>
 					<fieldset class="form-group">

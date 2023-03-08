@@ -1,11 +1,17 @@
 <script>
 	import '../app.postcss';
 	import '../app.css';
+	import Navbar from '$lib/Navbar.svelte';
+	// These are bootstrap components
+	// import { Styles, Container, Col, Row } from 'sveltestrap';
 </script>
 
 <div class="app">
-	<!-- <Header /> -->
+	<!-- These are bootstrap styles -->
+	<!-- <Styles /> -->
 
+	<!-- <Header /> -->
+	<Navbar />
 	<main>
 		<slot />
 	</main>
