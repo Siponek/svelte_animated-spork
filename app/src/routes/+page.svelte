@@ -1,5 +1,4 @@
 <script>
-    import Counter from "./Counter.svelte";
     import welcome from "$lib/images/svelte-welcome.webp";
     import welcome_fallback from "$lib/images/svelte-welcome.png";
 </script>
@@ -18,12 +17,10 @@
             </picture>
         </span>
 
-        to your new<br />REACT app
     </h1>
 
-    <h2>try editing I AM EDITING FOR CHIRST SAKE</h2>
+    <h2>Welcome to index</h2>
 
-    <Counter />
 </section>
 
 <style>

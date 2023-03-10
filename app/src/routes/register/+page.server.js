@@ -1,5 +1,6 @@
 import { fail, redirect } from '@sveltejs/kit';
-import * as api from '$lib/api.js';
+import * as api from '$lib/Api';
+import { status } from '$lib/store';
 
 /** @type {import('./$types').PageServerLoad} */
 export async function load({ parent }) {
@@ -9,16 +10,18 @@ export async function load({ parent }) {
 
 /** @type {import('./$types').Actions} */
 export const actions = {
-	default: async ({ cookies, request }) => {
+	register: async ({ cookies, request }) => {
 		const data = await request.formData();
-
-		const user = {
+		const form_data = {
 			username: data.get('username'),
 			email: data.get('email'),
-			password: data.get('password')
+			password: data.get('password'),
+			first_name: data.get('first_name'),
+			last_name: data.get('last_name')
 		};
-
-		const body = await api.post('users', { user });
+		const json_payload = form_data;
+		console.log('action register called, calling api.js');
+		const body = await api.post('auth/api/register', json_payload);
 
 		if (body.errors) {
 			return fail(401, body);
@@ -27,34 +30,6 @@ export const actions = {
 		const value = btoa(JSON.stringify(body.user));
 		cookies.set('jwt', value, { path: '/' });
 
-		throw redirect(307, '/');
-	},
-	register: async (event) => {
-		const data = await event.request.formData();
-		const user_register = {
-			// {
-			//     "email": "test@test.it",
-			//     "username": "test",
-			//     "password": "lazypasssword",
-			//     "first_name": "Mario",
-			//     "last_name": "Rossi"
-			// }
-			username: data.get('username'),
-			email: data.get('email'),
-			password: data.get('password'),
-			first_name: data.get('first_name'),
-			last_name: data.get('last_name')
-		};
-		const body = await api.post('users', { user_register });
-		if (body.errors) {
-			return fail(401, body);
-		}
-		// return {
-		//     status: 200,
-		//     body: body
-		// };
-		const value = btoa(JSON.stringify(body.user));
-		cookies.set('jwt', value, { path: '/mirets_ui' });
-		throw redirect(307, '/mirets_ui');
+		throw redirect(307, '/map_page');
 	}
 };

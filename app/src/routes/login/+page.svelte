@@ -28,7 +28,7 @@
 
 				<ListErrors errors={form?.errors} />
 
-				<form use:enhance method="POST">
+				<form use:enhance method="POST" action="?/login">
 					<fieldset class="form-group">
 						<input
 							class="form-control form-control-lg"
@@ -36,6 +36,7 @@
 							type="email"
 							required
 							placeholder="Email"
+							value="asdf_test1@wololo.com"
 						/>
 					</fieldset>
 					<fieldset class="form-group">
@@ -45,11 +46,13 @@
 							type="password"
 							required
 							placeholder="Password"
+							value="asdf_test1"
 						/>
 					</fieldset>
 					<button class="btn btn-lg btn-primary pull-xs-right" type="submit"
 						>Sign in
 					</button>
+					<!-- <a class="btn" href="/signup">Sign Up</a> -->
 				</form>
 			</div>
 		</div>

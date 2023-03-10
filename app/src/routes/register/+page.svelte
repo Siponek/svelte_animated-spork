@@ -1,12 +1,48 @@
-<script>
+<script lang="js">
 	import { enhance } from '$app/forms';
 	import ListErrors from '$lib/ListErrors.svelte';
 	/** @type {import('./$types').ActionData} */
 	import { Styles, Container, Col, Row } from 'sveltestrap';
+	import { status } from '$lib/store';
+	let count_value;
 
+	status.subscribe((value) => {
+		count_value = value;
+	});
+	// import type { PageData, ActionData } from './$types';
+
+	// export let data: PageData;
+	export let data;
+
+	// export let form: ActionData;
 	export let form;
+
+	// import * as db from '$lib/server/database.js';
+
+	// export function load({ cookies }) {
+	// 	const id = cookies.get('userid');
+
+	// 	if (!id) {
+	// 		cookies.set('userid', crypto.randomUUID(), { path: '/' });
+	// 	}
+
+	// 	return {
+	// 		todos: db.getTodos(id) ?? []
+	// 	};
+	// }
+	// export const actions = {
+	// 	default: async ({ cookies, request }) => {
+	// 		const data = await request.formData();
+	// 		db.createTodo(cookies.get('userid'), data.get('description'));
+	// 	}
+	// };
 </script>
 
+{#if form?.success}
+	<!-- this message is ephemeral; it exists because the page was rendered in
+         response to a form submission. it will vanish if the user reloads -->
+	<p>Successfully registered in! Welcome back, {data.user.name}</p>
+{/if}
 <svelte:head>
 	<title>Sign up • Conduit</title>
 	<Styles />
@@ -19,26 +55,27 @@
 				<p class="text-xs-center">
 					<a href="/login">Have an account?</a>
 				</p>
-
 				<ListErrors errors={form?.errors} />
-
-				<form use:enhance method="POST" action="register">
+				<!-- <form use:enhance method="POST"> -->
+				<form use:enhance method="POST" action="?/register">
 					<fieldset class="form-group">
 						<input
 							class="form-control form-control-lg"
-							name="firstName"
+							name="first_name"
 							type="text"
 							required
 							placeholder="Your First Name"
+							value="asdf_test1"
 						/>
 					</fieldset>
 					<fieldset class="form-group">
 						<input
 							class="form-control form-control-lg"
-							name="lastName"
+							name="last_name"
 							type="text"
 							required
 							placeholder="Your Last Name"
+							value="asdf_test1"
 						/>
 					</fieldset>
 					<fieldset class="form-group">
@@ -48,6 +85,7 @@
 							type="text"
 							required
 							placeholder="Your User Name"
+							value="asdf_test1"
 						/>
 					</fieldset>
 					<fieldset class="form-group">
@@ -57,6 +95,7 @@
 							type="email"
 							required
 							placeholder="Email"
+							value="asdf_test1@wololo.com"
 						/>
 					</fieldset>
 					<fieldset class="form-group">
@@ -66,10 +105,14 @@
 							type="password"
 							required
 							placeholder="Password"
+							value="asdf_test1"
 						/>
 					</fieldset>
-					<button class="btn btn-lg btn-primary pull-xs-right">Sign up</button>
+					<button class="btn btn-lg btn-primary pull-xs-right" type="submit"
+						>Sign up</button
+					>
 				</form>
+				<p>{count_value} status</p>
 			</div>
 		</div>
 	</div>

@@ -40,16 +40,16 @@ export async function load({ locals }) {
 
 /** @type {import('./$types').Actions} */
 export const actions = {
-	default: async ({ cookies, request }) => {
+	login: async ({ cookies, request }) => {
 		const data = await request.formData();
-
-		const body = await api.post('users/login', {
-			user: {
-				email: data.get('email'),
-				password: data.get('password')
-			}
-		});
-
+		const form_data = {
+			email: data.get('email'),
+			password: data.get('password')
+		};
+		const json_payload = form_data;
+		console.log('action register called, calling api.js');
+		const body = await api.post('auth/api/login', json_payload);
+		console.log('api.js returned');
 		if (body.errors) {
 			return fail(401, body);
 		}
@@ -57,6 +57,6 @@ export const actions = {
 		const value = btoa(JSON.stringify(body.user));
 		cookies.set('jwt', value, { path: '/' });
 
-		throw redirect(307, '/');
+		throw redirect(307, '/map_page');
 	}
 };
