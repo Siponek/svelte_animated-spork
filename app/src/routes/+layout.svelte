@@ -1,7 +1,6 @@
 <script>
 	import '../app.postcss';
 	import '../app.css';
-	import Navbar from '$lib/Navbar.svelte';
 	// These are bootstrap components
 	// import { Styles, Container, Col, Row } from 'sveltestrap';
 </script>
@@ -11,14 +10,12 @@
 	<!-- <Styles /> -->
 
 	<!-- <Header /> -->
-	<Navbar />
 	<main>
 		<slot />
 	</main>
 	<form method="POST" action="/login">
 		<!-- content -->
 	</form>
-	<footer />
 </div>
 
 <style>
@@ -26,6 +23,7 @@
 		padding: 0;
 		margin: 0;
 		box-sizing: border-box;
+		font-family: roboto;
 	}
 	.app {
 		display: flex;
@@ -33,32 +31,26 @@
 		min-height: 100vh;
 	}
 
-	main {
-		flex: 1;
-		display: flex;
-		flex-direction: column;
-		/* padding: 0; */
-		width: 100%;
-		/* max-width: 64rem; */
-		/* margin: 0 auto; */
-		box-sizing: border-box;
-	}
-
-	footer {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		padding: 12px;
-	}
-
-	footer a {
-		font-weight: bold;
-	}
-
-	@media (min-width: 480px) {
+	/* @media (min-width: 480px) {
 		footer {
 			padding: 12px 0;
 		}
-	}
+	} */
+	/* @import '@fontsource/fira-mono'; */
+
+	/* :root {
+		--font-body: Arial, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
+			Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+		--font-mono: 'Fira Mono', monospace;
+		--color-bg-0: rgb(202, 216, 228);
+		--color-bg-1: hsl(209, 36%, 86%);
+		--color-bg-2: hsl(224, 44%, 95%);
+		--color-theme-1: #ff3e00;
+		--color-theme-2: #4075a6;
+		--color-text: rgba(0, 0, 0, 0.7);
+		--column-width: 42rem;
+		--column-margin-top: 4rem;
+		font-family: var(--font-body);
+		color: var(--color-text);
+	} */
 </style>
