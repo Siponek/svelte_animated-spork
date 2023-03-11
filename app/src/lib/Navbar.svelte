@@ -14,6 +14,7 @@
 
 	<Menu />
 </header>
+
 <!-- <div class="grid auto-cols-auto grid-cols-3 text-teal-200">
 	<div class="bg-slate-400 py-3 text-center">
 		<p><a href="/login">DEV Login</a></p>
@@ -25,3 +26,9 @@
 		<p><a href="/map_page">DEV Map page</a></p>
 	</div>
 </div> -->
+<style>
+	header {
+		padding: 0;
+		border: 0;
+	}
+</style>
