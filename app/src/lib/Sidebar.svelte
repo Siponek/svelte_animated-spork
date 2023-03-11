@@ -2,7 +2,7 @@
 	export let open = false;
 </script>
 
-<aside class="absolute w-14 h-full bg-ets-grey border-r-2 shadow-lg" class:open>
+<aside class="absolute w-16 h-screen bg-ets-grey border-r-2 shadow-lg" class:open>
 	<nav class="px-1 py-20 text-xl">
 		<a class="block" href="#about">Icon placeholder</a>
 		<a class="block" href="#contact">Icon placeholder</a>
@@ -18,6 +18,7 @@
 	aside {
 		left: -100%;
 		transition: left 0.3s ease-in-out;
+		border: 0;
 	}
 
 	.open {
