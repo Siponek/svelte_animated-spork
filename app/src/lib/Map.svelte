@@ -1,38 +1,60 @@
 <script>
-	import { colors, district, geography } from '$lib/store.js';
+	import { colors, district, geographyData } from '$lib/store.js';
 	// import gl from
 	import { onMount } from 'svelte';
 	// import {get} from "svelte/store";
 	import gl from 'maplibre-gl';
 
+	const stops = [];
+	$colors.forEach((color, index) => {
+		stops.push([index + 1, color]);
+	});
 	const map_style = {
 		version: 8,
 		sources: {
-			mapbox: {
-				type: 'vector',
-				url: 'mapbox://mapbox.mapbox-streets-v8'
+			geography: {
+				// type: 'geojson',
+				// data: $geographyData
+				type: 'geojson',
+				data: $geographyData
 			}
+			// mapbox: {
+			// 	type: 'vector',
+			// 	url: 'mapbox://mapbox.mapbox-streets-v8'
+			// }
 		},
-		layers: {
-			id: 'background',
-			type: 'background',
-			paint: {
-				'background-color': 'red'
+		layers: [
+			{
+				id: 'background',
+				type: 'background',
+				paint: {
+					'background-color': 'rgba(53, 20, 144, 150)'
+				}
+			},
+			{
+				id: 'geography',
+				source: 'geography',
+				type: 'fill',
+				paint: {
+					'fill-color': 'rgba(200, 0, 0, 150)'
+					// 'fill-outline-color': 'rgba(200, 0, 0, 1)'
+				}
 			}
-		}
+		]
 	};
 
 	const map_options = {
 		container: 'map',
 		style: map_style,
 		attributionControl: false,
-		center: [-122.4194, 37.7749],
-		maxBounds: [
-			[-122.5, 37.7], // Southwest coordinates
-			[-122.3, 37.9] // Northeast coordinates
-		],
-		zoom: 9.3,
-		minZoom: 8,
+		// center: [42.698586, 12.194958],
+		center: [17.868856652837803, 40.26852264597055],
+		// maxBounds: [
+		// 	[42.6, 12.19], // Southwest coordinates
+		// 	[42.8, 12.21] // Northeast coordinates
+		// ],
+		zoom: 11,
+		minZoom: 2,
 		maxZoom: 12
 	};
 
