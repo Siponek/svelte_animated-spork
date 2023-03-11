@@ -12,3 +12,4 @@ app/node_**
 .output
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
+TEMPLATES
