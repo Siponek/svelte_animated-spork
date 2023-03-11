@@ -9,7 +9,7 @@
 		if (browser) {
 			const leaflet = await import('leaflet');
 
-			map = leaflet.map(mapElement).setView([51.505, -0.09], 13);
+			map = leaflet.map(mapElement).setView([42.698586, 12.194958], 13);
 
 			leaflet
 				.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -19,9 +19,9 @@
 				.addTo(map);
 
 			leaflet
-				.marker([51.5, -0.09])
+				.marker([42.698586, 12.194958])
 				.addTo(map)
-				.bindPopup('A pretty CSS3 popup.<br> Easily customizable.')
+				.bindPopup('Centre of italy.')
 				.openPopup();
 		}
 	});
@@ -41,6 +41,6 @@
 <style>
 	@import 'leaflet/dist/leaflet.css';
 	main div {
-		height: 800px;
+		height: 400px;
 	}
 </style>
