@@ -12,9 +12,6 @@ config = {
 		},
 		// Here you can add your own colors, settings etc to tailwind theme
 		extend: {
-			container: {
-				padding: '2rem'
-			},
 			spacing: {
 				128: '32rem',
 				144: '36rem'
