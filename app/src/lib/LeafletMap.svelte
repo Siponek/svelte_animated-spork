@@ -9,7 +9,7 @@
 		if (browser) {
 			const leaflet = await import('leaflet');
 
-			map = leaflet.map(mapElement).setView([42.698586, 12.194958], 13);
+			map = leaflet.map(mapElement).setView([42.698586, 12.194958], 7);
 
 			leaflet
 				.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -35,12 +35,21 @@
 </script>
 
 <main>
-	<div bind:this={mapElement} />
+	<div bind:this={mapElement} class="w-fit" />
+	<!-- <div class="h-screen v-screen" bind:this={mapElement} /> -->
 </main>
 
 <style>
 	@import 'leaflet/dist/leaflet.css';
-	main div {
-		height: 400px;
+	main {
+		z-index: 0;
+		flex: 0 0 56px;
+		overflow: hidden;
+		height: 60vh; /* <-- map height */
+		width: 60vw;
+	}
+	main > div {
+		height: 60vh; /* <-- map height */
+		width: 60vw;
 	}
 </style>

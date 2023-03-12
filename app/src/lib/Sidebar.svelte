@@ -2,12 +2,12 @@
 	export let open = false;
 </script>
 
-<aside class="absolute w-16 h-screen bg-ets-grey border-r-2 shadow-lg" class:open>
-	<nav class="px-1 py-20 text-xl">
+<aside class="absolute w-48 min-h-screen max-h-full bg-ets-grey  shadow-lg rounded-r-lg" class:open>
+	<nav class="p-12 text-xl">
 		<a class="block" href="#about">Icon placeholder</a>
 		<a class="block" href="#contact">Icon placeholder</a>
 
-		<div class="absolute inset-x-0 bottom-0   ">
+		<div class=" inset-x-0 bottom-0   ">
 			<a class="block" href="#about">Icon placeholder</a>
 			<a class="block" href="#contact">Icon placeholder</a>
 		</div>
