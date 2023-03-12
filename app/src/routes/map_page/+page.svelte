@@ -2,7 +2,8 @@
 	import Navbar from '$lib/Navbar.svelte';
 	import Main from '$lib/Main.svelte';
 	import Sidebar from '$lib/Sidebar.svelte';
-
+	import StaticSidebar from '$lib/StaticSidebar.svelte';
+	import LeafletMap from '$lib/LeafletMap.svelte';
 	let open = false;
 </script>
 
@@ -14,12 +15,12 @@
 		<Sidebar bind:open />
 	</div>
 </div>
-<div class="container mx-auto ">
+<div class=" mx-auto ">
 	<div class="text-center text-3xl front-boild">
 		<!-- <div class="grid  md:grid-cols-4"> -->
-		<div class="grid grid-cols-[max-content_1fr] h-fit w-fit  grid-flow-col auto-cols-max">
-			<div class="col-start-auto w-30">static sidebar placeholder</div>
-			<div class="col-start-auto  h-fit w-fit"><Main /></div>
+		<div class="grid grid-cols-12 ">
+			<div class=" col-span-1"><StaticSidebar /></div>
+			<div class=" col-span-11"><LeafletMap /></div>
 			<!-- <div>map column</div> -->
 			<!-- <div>map column</div> -->
 		</div>
@@ -45,6 +46,7 @@
 	.container {
 		background-color: green;
 		padding: 0;
-		border-right: 0;
+		border: 0;
+		margin: 0;
 	}
 </style>

@@ -19,6 +19,7 @@
 		left: -100%;
 		transition: left 0.3s ease-in-out;
 		border: 0;
+		/* z-index: 20; */
 	}
 
 	.open {

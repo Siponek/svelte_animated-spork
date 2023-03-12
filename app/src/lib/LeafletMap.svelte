@@ -34,22 +34,14 @@
 	});
 </script>
 
-<main>
-	<div bind:this={mapElement} class="w-fit" />
-	<!-- <div class="h-screen v-screen" bind:this={mapElement} /> -->
-</main>
+<div bind:this={mapElement} class="w-fit" />
 
+<!-- <div class="h-screen v-screen" bind:this={mapElement} /> -->
 <style>
 	@import 'leaflet/dist/leaflet.css';
-	main {
-		z-index: 0;
-		flex: 0 0 56px;
-		overflow: hidden;
-		height: 60vh; /* <-- map height */
-		width: 60vw;
-	}
-	main > div {
-		height: 60vh; /* <-- map height */
-		width: 60vw;
+	div {
+		height: 87vh;
+		width: 100%;
+		z-index: -10;
 	}
 </style>
