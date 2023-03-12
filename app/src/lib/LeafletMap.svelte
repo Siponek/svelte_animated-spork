@@ -40,8 +40,8 @@
 <style>
 	@import 'leaflet/dist/leaflet.css';
 	div {
-		height: 87vh;
+		height: 86.9999vh;
 		width: 100%;
-		z-index: -10;
+		z-index: 10;
 	}
 </style>
