@@ -7,22 +7,21 @@
 	let open = false;
 </script>
 
+<!-- ICONS TI IMPORT FROM
+https://svelte-icons-explorer.vercel.app/
+ -->
 <Sidebar bind:open />
 <div class="grid">
 	<div class="grid md:grid-cols-1">
 		<Navbar bind:sidebar={open} />
-		<!-- <Main /> -->
 		<Sidebar bind:open />
 	</div>
 </div>
 <div class=" mx-auto ">
 	<div class="text-center text-3xl front-boild">
-		<!-- <div class="grid  md:grid-cols-4"> -->
-		<div class="grid grid-cols-12 ">
-			<div class=" col-span-1"><StaticSidebar /></div>
-			<div class=" col-span-11"><LeafletMap /></div>
-			<!-- <div>map column</div> -->
-			<!-- <div>map column</div> -->
+		<div class="flex flex-row  ">
+			<div class=" basis-2 "><StaticSidebar /></div>
+			<div class=" basis-auto w-full"><LeafletMap /></div>
 		</div>
 	</div>
 </div>

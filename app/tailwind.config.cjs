@@ -29,8 +29,8 @@ config = {
 				// 'gray-dark': '#273444',
 				// gray: '#8492a6',
 				// 'gray-light': '#d3dce6',
-				'ets-blue': '#1fb6ff',
-				'ets-grey': '#505050'
+				'ets-blue': 'rgb(20, 106, 181)',
+				'ets-grey': 'rgb(80, 80, 80)'
 			}
 		}
 	}
