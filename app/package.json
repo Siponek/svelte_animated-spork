@@ -30,7 +30,6 @@
 		"eslint-config-prettier": "^8.5.0",
 		"eslint-plugin-svelte3": "^4.0.0",
 		"leaflet": "^1.9.3",
-		"maplibre-gl": "^2.4.0",
 		"pm2": "^5.2.2",
 		"postcss": "^8.4.14",
 		"postcss-load-config": "^4.0.1",
