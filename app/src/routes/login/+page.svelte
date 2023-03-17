@@ -1,6 +1,6 @@
 <script lang="ts">
 	// import 'bootstrap/dist/css/bootstrap.min.css';
-	import { Styles, Container, Col, Row } from 'sveltestrap';
+	// import { Styles, Container, Col, Row } from 'sveltestrap';
 	import { enhance } from '$app/forms';
 	import ListErrors from '$lib/ListErrors.svelte';
 	// /** @type {import('./$types').ActionData} */
@@ -9,19 +9,15 @@
 
 <svelte:head>
 	<title>ETS - Login</title>
-	<Styles />
+	<!-- <Styles /> -->
 </svelte:head>
 
-<!-- <Container>
-	<Row>
-		<Col>.col</Col>
-	</Row>
-</Container> -->
+<ListErrors errors={form?.errors} />
 <div class="auth-page">
-	<div class="container page">
+	<div class="container py-10 px-10 mx-0 min-w-full flex flex-auto  justify-center items-center">
 		<div class="row">
-			<div class="col-md-6 offset-md-3 col-xs-12">
-				<h1 class="text-xs-center">Sign In</h1>
+			<div class="">
+				<h1 class="text-lg">Sign In form</h1>
 				<p class="text-xs-center">
 					<a href="/register">Need an account?</a>
 				</p>
@@ -49,7 +45,9 @@
 							value="asdf_test1"
 						/>
 					</fieldset>
-					<button class="btn btn-lg btn-primary pull-xs-right" type="submit"
+					<button
+						class="w-full max-w-xs bg-slate-500 hover:bg-slate-300 hover:ease-in hover:duration-300  text-white font-bold py-2 px-4 rounded"
+						type="submit"
 						>Sign in
 					</button>
 					<!-- <a class="btn" href="/signup">Sign Up</a> -->
