@@ -8,34 +8,7 @@
 	export let map;
 	export let test_layer;
 
-	const map_style = {
-		version: 8,
-		sources: {
-			geography: {
-				type: 'geojson',
-				data: $geographyData
-			}
-		},
-		layers: [
-			{
-				id: 'background',
-				type: 'background',
-				paint: {
-					'background-color': 'rgb(230,230,230)'
-				}
-			},
-			{
-				id: 'geography',
-				source: 'geography',
-				type: 'fill',
-				paint: {
-					'fill-color': 'rgb(20,106,181 )',
-					'fill-opacity': 0.8,
-					'fill-outline-color': 'rgb(100, 100, 100 )'
-				}
-			}
-		]
-	};
+    // Subscribe to the store
 	const unsub_icon_layer = icon_layer_status.subscribe((value) => {
 		console.log('LeaftletMap: icon_layer_status.subscribe: ', value);
 	});
@@ -47,7 +20,7 @@
 			const leaflet = await import('leaflet');
 
 			map = leaflet.map(mapElement).setView([42.0, 12.194958], 6);
-
+            map.setMinZoom(6).setMaxZoom(9).setZoom(6);
 			leaflet
 				.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 					attribution:

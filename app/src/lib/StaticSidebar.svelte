@@ -22,7 +22,7 @@
     }
     }  />
 	<RegionButton class ="p-1 icon fill-ets-blue  {btn_status[1] ? 'selected' : ''}" on:click={() => {
-        toggle_store_layer(icon_layer_status);
+        toggle_store_layer(region_layer_status);
         btn_status[1] = !btn_status[1];
     }
     }  />
@@ -47,6 +47,7 @@
 		background-color: azure;
 		border-radius: 45%;
 		transition: 0.3s ease-in-out;
+        color: rgb(80, 80, 80);
 	}
     :global(buttonicon:target) {
         color: rgb(80, 80, 80);
