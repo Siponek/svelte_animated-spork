@@ -21,9 +21,7 @@
 				<p class="text-xs-center">
 					<a href="/register">Need an account?</a>
 				</p>
-
 				<ListErrors errors={form?.errors} />
-
 				<form use:enhance method="POST" action="?/login">
 					<fieldset class="form-group">
 						<input

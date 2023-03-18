@@ -3,39 +3,9 @@
 	import ListErrors from '$lib/ListErrors.svelte';
 	/** @type {import('./$types').ActionData} */
 	import { Styles, Container, Col, Row } from 'sveltestrap';
-	import { status } from '$lib/store';
-	let count_value;
-
-	status.subscribe((value) => {
-		count_value = value;
-	});
-	// import type { PageData, ActionData } from './$types';
-
-	// export let data: PageData;
 	export let data;
-
-	// export let form: ActionData;
 	export let form;
 
-	// import * as db from '$lib/server/database.js';
-
-	// export function load({ cookies }) {
-	// 	const id = cookies.get('userid');
-
-	// 	if (!id) {
-	// 		cookies.set('userid', crypto.randomUUID(), { path: '/' });
-	// 	}
-
-	// 	return {
-	// 		todos: db.getTodos(id) ?? []
-	// 	};
-	// }
-	// export const actions = {
-	// 	default: async ({ cookies, request }) => {
-	// 		const data = await request.formData();
-	// 		db.createTodo(cookies.get('userid'), data.get('description'));
-	// 	}
-	// };
 </script>
 
 {#if form?.success}
@@ -112,7 +82,6 @@
 						>Sign up</button
 					>
 				</form>
-				<p>{count_value} status</p>
 			</div>
 		</div>
 	</div>
