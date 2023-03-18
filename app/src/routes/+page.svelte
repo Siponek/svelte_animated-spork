@@ -1,10 +1,10 @@
 <svelte:head>
 	<title>ETS - Index</title>
 </svelte:head>
-<div class="page-wrapper bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-gray-400 via-gray-600 to-blue-800">
+<div class="page-wrapper bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-gray-500 via-ets-grey to-ets-blue">
 	<div class="p-5 h-screen items-center">
 		<div class=" text-gray-100">
-			<h1 class="text-3xl">Hello, welcome to index</h1>
+			<h1 class="text-3xl">Hello, welcome to ETS index</h1>
 			<p class="">You propably want to go to
             </p>
             <p class=" px-5 py-2 hover:text-indigo-300 underline hover:ease-in-out duration-300" >
