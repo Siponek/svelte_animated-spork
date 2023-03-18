@@ -22,18 +22,6 @@ const config = {
 			precompress: false,
 			envPrefix: ''
 		})
-		// adapter: static_adapter({
-		// 	out: 'node_build',
-		// 	precompress: false,
-		// 	envPrefix: ''
-		// })
-		// adapter: adapter({
-		// 	pages: 'build',
-		// 	assets: 'build',
-		// 	fallback: null,
-		// 	precompress: false,
-		// 	strict: true
-		// })
 	},
 	vitePlugin: {
 		experimental: {
