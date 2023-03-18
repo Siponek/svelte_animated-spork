@@ -2,8 +2,7 @@
 	import { onMount, onDestroy } from 'svelte';
 	import { browser } from '$app/environment';
 	import { colors, district, geographyData } from '$lib/store.js';
-	import { icon_layer_status } from '$lib/store.js';
-	// import leaflet from 'leaflet';
+	import { icon_layer_status, region_layer_status } from '$lib/store.js';
 
 	let mapElement;
 	export let map;
@@ -40,7 +39,9 @@
 	const unsub_icon_layer = icon_layer_status.subscribe((value) => {
 		console.log('LeaftletMap: icon_layer_status.subscribe: ', value);
 	});
+	let region_borders;
 
+	// On mount, when the component is created
 	onMount(async () => {
 		if (browser) {
 			const leaflet = await import('leaflet');
@@ -60,7 +61,7 @@
 				.openPopup();
 			const millan = leaflet.marker([45.4642, 9.1895]).bindPopup('Milan').openPopup();
 			const rome = leaflet.marker([41.9028, 12.4964]).bindPopup('Rome').openPopup();
-			const region_borders = leaflet.geoJSON($geographyData, {
+			region_borders = leaflet.geoJSON($geographyData, {
 				style: function (feature) {
 					return {
 						color: 'blue',
@@ -74,8 +75,6 @@
 			// add markers to layer
 			test_layer = leaflet.layerGroup([center_italy, millan, rome]);
 
-			// Add the GeoJSON data to the map
-			region_borders.addTo(map);
 			// Might good to add a click event to the region_borders layer
 			region_borders.on('click', function (e) {
 				console.log('LeafletMap: region_borders.on: ', e);
@@ -88,11 +87,6 @@
 			}
 		};
 	});
-	// $: if ($icon_layer_status) {
-	// 	test_layer.addTo(map);
-	// } else {
-	// 	map.removeLayer(test_layer);
-	// }
 	$: if (test_layer && map) {
 		if ($icon_layer_status) {
 			test_layer.addTo(map);
@@ -100,16 +94,32 @@
 			test_layer.remove();
 		}
 	}
+	// Add the GeoJSON data to the map
+	$: if (region_borders && map) {
+		if ($region_layer_status) {
+			region_borders.addTo(map);
+		} else {
+			region_borders.remove();
+		}
+	}
+	// Might be redundant
+	onDestroy(() => {
+		unsub_icon_layer();
+	});
 </script>
 
-<div bind:this={mapElement} class="w-fit" />
-
-<!-- <div class="h-screen v-screen" bind:this={mapElement} /> -->
+<div bind:this={mapElement} class=""  />
 <style>
 	@import 'leaflet/dist/leaflet.css';
 	div {
-		height: 86.9999vh;
+		height: 90vh;
 		width: 100%;
 		z-index: 10;
 	}
+	div {
+		min-height: 91vh;
+        display: grid;
+        grid-template-rows: 1fr auto;
+	}
+
 </style>
