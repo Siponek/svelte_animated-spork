@@ -3,10 +3,12 @@
 	export let padding = 'p-36 ';
 	export let color_fill = 'red';
 	export let class_name = '';
+    let clazz ;
+    export { clazz as class }
 </script>
 
 <!-- <button class={color_fill}> -->
-<button on:click class="{class_name} {padding} {color_fill}">
+<button on:click class={` ${clazz || ''}`}>
 	<MdLayers />
 </button>
 
@@ -27,7 +29,5 @@
 		border-radius: 45%;
 		transition: 0.3s ease-in-out;
 	}
-	.user-icon {
-		bottom: -70vh;
-	}
+
 </style>

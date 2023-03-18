@@ -10,6 +10,7 @@ export let district = writable(1);
 export const colors = readable(['#7ca6b4', '#a1d6e2', '#d5e5e5', '#6b7f8c', '#4e4e4e', '#1DB6F2']);
 
 export let icon_layer_status = writable(true);
+export let region_layer_status = writable(true);
 
 // export const status = writable('idle');
 
