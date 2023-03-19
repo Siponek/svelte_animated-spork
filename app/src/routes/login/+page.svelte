@@ -12,18 +12,19 @@
 	<!-- <Styles /> -->
 </svelte:head>
 
-<ListErrors errors={form?.errors} />
-<div class="auth-page">
-	<div class="container py-10 px-10 mx-0 min-w-full flex flex-auto  justify-center items-center">
+<div class="auth-page container mx-auto place-items-center bg-slate-500">
+	<div class=" p-10 flex justify-center  h-screen ">
 		<div class="row">
 			<div class="">
 				<h1 class="text-lg">Sign In form</h1>
-				<p class="text-xs-center">
+				<p
+					class="text-xs-center  hover:bg-sky-700 hover:rounded hover:text-blue-100 duration-150"
+				>
 					<a href="/register">Need an account?</a>
 				</p>
 				<ListErrors errors={form?.errors} />
-				<form use:enhance method="POST" action="?/login">
-					<fieldset class="form-group">
+				<form use:enhance method="POST" action="?/login" class="text-slate-900">
+					<fieldset class="form-group py-1">
 						<input
 							class="form-control form-control-lg"
 							name="email"
@@ -33,7 +34,7 @@
 							value="asdf_test1@wololo.com"
 						/>
 					</fieldset>
-					<fieldset class="form-group">
+					<fieldset class="form-group py-1">
 						<input
 							class="form-control form-control-lg"
 							name="password"
@@ -44,7 +45,7 @@
 						/>
 					</fieldset>
 					<button
-						class="w-full max-w-xs bg-slate-500 hover:bg-slate-300 hover:ease-in hover:duration-300  text-white font-bold py-2 px-4 rounded"
+						class="w-full max-w-xs bg-slate-500  hover:bg-sky-700 hover:ease-in-out hover:duration-300 hover:text-blue-100  text-white font-bold py-2 px-4 rounded"
 						type="submit"
 						>Sign in
 					</button>
