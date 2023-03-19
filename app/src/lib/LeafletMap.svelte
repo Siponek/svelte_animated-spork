@@ -33,29 +33,10 @@
 			})
 				.bindPopup('Liguria, 3 readings available')
 				.openPopup();
-
-			// leaflet_map.on('zoomend', (e) => {
-			// 	console.log('This is the current zoom', leaflet_map.getZoom());
-			// 	if (leaflet_map.getZoom() <= 8) {
-			// 		liguria_region_marker.addTo(leaflet_map);
-			// 	} else {
-			// 		liguria_region_marker.remove();
-			// 	}
-			// });
 			const genova_1 = Leaflet.marker([44.0, 8.5]).bindPopup('Genoa test1').openPopup();
 			const genova_2 = Leaflet.marker([44.3, 8]).bindPopup('Genoa test2').openPopup();
 			web_layer = new LeafletMC.MarkerClusterGroup({
 				maxClusterRadius: 40
-				// iconCreateFunction: (cluster) => {
-				// 	let markers = cluster.getAllChildMarkers();
-				// 	let n = 0;
-				// 	for (let i = 0; i < markers.length; i++) {
-				// 		n += markers[i].number;
-				// 	}
-				// 	return new Leaflet.DivIcon({
-				// 		iconSize: Leaflet.point(40, 40)
-				// 	});
-				// }
 			});
 			web_layer.addLayer(genova_1);
 			web_layer.addLayer(genova_2);
@@ -128,13 +109,8 @@
 	@import 'leaflet.markercluster/dist/MarkerCluster.css';
 	@import 'leaflet.markercluster/dist/MarkerCluster.Default.css';
 	div {
-		height: 90vh;
+		height: calc(100vh - 80px);
 		width: 100%;
 		z-index: 10;
 	}
-	/* div {
-		min-height: 91vh;
-		display: grid;
-		grid-template-rows: 1fr auto;
-	} */
 </style>

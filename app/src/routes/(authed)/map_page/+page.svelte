@@ -22,13 +22,14 @@ https://svelte-icons-explorer.vercel.app/
 		<div id="" class=" basis-auto w-full"><LeafletMap /></div>
 	</div>
 </div>
-<footer class="px-4 py-2 rounded-tl-full  shadow  dark:bg-gray-800 ">
+<footer class="px-4 py-2  rounded-tl-full  shadow  dark:bg-gray-800 ">
 	<p>Footer placeholder</p>
 </footer>
 
 <style lang="postcss">
 	footer {
 		margin-top: auto;
+		height: 40px;
 	}
 	:global(body) {
 		background-color: theme('colors.ets-grey');
