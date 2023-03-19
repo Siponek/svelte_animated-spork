@@ -4,11 +4,12 @@
 	import { colors, district, geographyData } from '$lib/store.js';
 	import { icon_layer_status, region_layer_status } from '$lib/store.js';
 
+	let leaflet_map;
+	let test_layer;
+	let web_layer;
 	let mapElement;
-	export let map;
-	export let test_layer;
 
-    // Subscribe to the store
+	// Subscribe to the store
 	const unsub_icon_layer = icon_layer_status.subscribe((value) => {
 		console.log('LeaftletMap: icon_layer_status.subscribe: ', value);
 	});
@@ -17,24 +18,56 @@
 	// On mount, when the component is created
 	onMount(async () => {
 		if (browser) {
-			const leaflet = await import('leaflet');
-
-			map = leaflet.map(mapElement).setView([42.0, 12.194958], 6);
-            map.setMinZoom(6).setMaxZoom(9).setZoom(6);
-			leaflet
-				.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-					attribution:
-						'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-				})
-				.addTo(map);
-
-			const center_italy = leaflet
-				.marker([42.698586, 12.194958])
+			const Leaflet = await import('leaflet');
+			const LeafletMC = await import('leaflet.markercluster');
+			const center_italy = Leaflet.marker([42.698586, 12.194958])
 				.bindPopup('Centre of italy.')
 				.openPopup();
-			const millan = leaflet.marker([45.4642, 9.1895]).bindPopup('Milan').openPopup();
-			const rome = leaflet.marker([41.9028, 12.4964]).bindPopup('Rome').openPopup();
-			region_borders = leaflet.geoJSON($geographyData, {
+			const millan = Leaflet.marker([45.4642, 9.1895]).bindPopup('Milan').openPopup();
+			const rome = Leaflet.marker([41.9028, 12.4964]).bindPopup('Rome').openPopup();
+			leaflet_map = Leaflet.map(mapElement).setView([42.0, 12.194958], 6);
+			leaflet_map.setMinZoom(6).setMaxZoom(9).setZoom(6);
+			const liguria_region_marker = Leaflet.marker([44.5, 8.8333], {
+				draggable: true,
+				title: 'title'
+			})
+				.bindPopup('Liguria, 3 readings available')
+				.openPopup();
+
+			// leaflet_map.on('zoomend', (e) => {
+			// 	console.log('This is the current zoom', leaflet_map.getZoom());
+			// 	if (leaflet_map.getZoom() <= 8) {
+			// 		liguria_region_marker.addTo(leaflet_map);
+			// 	} else {
+			// 		liguria_region_marker.remove();
+			// 	}
+			// });
+			const genova_1 = Leaflet.marker([44.0, 8.5]).bindPopup('Genoa test1').openPopup();
+			const genova_2 = Leaflet.marker([44.3, 8]).bindPopup('Genoa test2').openPopup();
+			web_layer = new LeafletMC.MarkerClusterGroup({
+				maxClusterRadius: 40
+				// iconCreateFunction: (cluster) => {
+				// 	let markers = cluster.getAllChildMarkers();
+				// 	let n = 0;
+				// 	for (let i = 0; i < markers.length; i++) {
+				// 		n += markers[i].number;
+				// 	}
+				// 	return new Leaflet.DivIcon({
+				// 		iconSize: Leaflet.point(40, 40)
+				// 	});
+				// }
+			});
+			web_layer.addLayer(genova_1);
+			web_layer.addLayer(genova_2);
+			web_layer.addLayer(liguria_region_marker);
+
+			// Adding street map
+			Leaflet.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+				attribution:
+					'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+			}).addTo(leaflet_map);
+
+			region_borders = Leaflet.geoJSON($geographyData, {
 				style: function (feature) {
 					return {
 						color: 'blue',
@@ -46,31 +79,38 @@
 				}
 			});
 			// add markers to layer
-			test_layer = leaflet.layerGroup([center_italy, millan, rome]);
+			test_layer = Leaflet.layerGroup([center_italy, millan, rome]);
 
+			test_layer.on('click', function (a) {
+				console.log('marker ' + a.layer);
+			});
 			// Might good to add a click event to the region_borders layer
 			region_borders.on('click', function (e) {
 				console.log('LeafletMap: region_borders.on: ', e);
 			});
 		}
 		return () => {
-			if (map) {
+			if (leaflet_map) {
 				console.log('Unloading Leaflet map.');
 				map.remove();
 			}
 		};
 	});
-	$: if (test_layer && map) {
+	$: if (test_layer && leaflet_map) {
 		if ($icon_layer_status) {
-			test_layer.addTo(map);
+			test_layer.addTo(leaflet_map);
+			web_layer.addTo(leaflet_map);
+			// leaflet_map.addLayer(web_layer);
 		} else {
 			test_layer.remove();
+			web_layer.remove();
+			// leaflet_map.addLayer(web_layer);
 		}
 	}
-	// Add the GeoJSON data to the map
-	$: if (region_borders && map) {
+	// Add the GeoJSON data to the leaflet_map
+	$: if (region_borders && leaflet_map) {
 		if ($region_layer_status) {
-			region_borders.addTo(map);
+			region_borders.addTo(leaflet_map);
 		} else {
 			region_borders.remove();
 		}
@@ -81,18 +121,20 @@
 	});
 </script>
 
-<div bind:this={mapElement} class=""  />
+<div bind:this={mapElement} class="" />
+
 <style>
-	@import 'leaflet/dist/leaflet.css';
+	@import 'Leaflet/dist/Leaflet.css';
+	@import 'leaflet.markercluster/dist/MarkerCluster.css';
+	@import 'leaflet.markercluster/dist/MarkerCluster.Default.css';
 	div {
 		height: 90vh;
 		width: 100%;
 		z-index: 10;
 	}
-	div {
+	/* div {
 		min-height: 91vh;
-        display: grid;
-        grid-template-rows: 1fr auto;
-	}
-
+		display: grid;
+		grid-template-rows: 1fr auto;
+	} */
 </style>
