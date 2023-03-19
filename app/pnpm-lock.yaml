@@ -18,6 +18,7 @@ specifiers:
   eslint-config-prettier: ^8.5.0
   eslint-plugin-svelte3: ^4.0.0
   leaflet: ^1.9.3
+  leaflet.markercluster: ^1.5.3
   pm2: ^5.2.2
   pnpm: ^7.27.0
   postcss: ^8.4.14
@@ -27,6 +28,7 @@ specifiers:
   svelte: ^3.54.0
   svelte-add: 2022.12.0-9.0
   svelte-check: ^3.0.1
+  svelte-icons: ^2.1.0
   svelte-leafletjs: ^0.10.0
   svelte-preprocess: ^4.10.7
   sveltestrap: ^5.10.0
@@ -58,6 +60,7 @@ devDependencies:
   eslint-config-prettier: 8.6.0_eslint@8.35.0
   eslint-plugin-svelte3: 4.0.0_n4ieifq2d7jq3sqoe474cgqlim
   leaflet: 1.9.3
+  leaflet.markercluster: 1.5.3_leaflet@1.9.3
   pm2: 5.2.2
   postcss: 8.4.21
   postcss-load-config: 4.0.1_postcss@8.4.21
@@ -66,6 +69,7 @@ devDependencies:
   svelte: 3.55.1
   svelte-add: 2022.12.0-9.0
   svelte-check: 3.0.4_gqx7lw3sljhsd4bstor5m2aa2u
+  svelte-icons: 2.1.0
   svelte-leafletjs: 0.10.0
   svelte-preprocess: 4.10.7_b25a55hc532q56kmuqlrolam2i
   sveltestrap: 5.10.0_svelte@3.55.1
@@ -2027,6 +2031,14 @@ packages:
     engines: {node: '>=0.2.0'}
     dev: true
 
+  /leaflet.markercluster/1.5.3_leaflet@1.9.3:
+    resolution: {integrity: sha512-vPTw/Bndq7eQHjLBVlWpnGeLa3t+3zGiuM7fJwCkiMFq+nmRuG3RI3f7f4N4TDX7T4NpbAXpR2+NTRSEGfCSeA==}
+    peerDependencies:
+      leaflet: ^1.3.1
+    dependencies:
+      leaflet: 1.9.3
+    dev: true
+
   /leaflet/1.9.3:
     resolution: {integrity: sha512-iB2cR9vAkDOu5l3HAay2obcUHZ7xwUBBjph8+PGtmW/2lYhbLizWtG7nTeYht36WfOslixQF9D/uSIzhZgGMfQ==}
     dev: true
@@ -3069,6 +3081,10 @@ packages:
       svelte: '>=3.19.0'
     dependencies:
       svelte: 3.55.1
+    dev: true
+
+  /svelte-icons/2.1.0:
+    resolution: {integrity: sha512-rHPQjweEc9fGSnvM0/4gA3pDHwyZyYsC5KhttCZRhSMJfLttJST5Uq0B16Czhw+HQ+HbSOk8kLigMlPs7gZtfg==}
     dev: true
 
   /svelte-leafletjs/0.10.0:
