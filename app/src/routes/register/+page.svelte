@@ -2,7 +2,7 @@
 	import { enhance } from '$app/forms';
 	import ListErrors from '$lib/ListErrors.svelte';
 	/** @type {import('./$types').ActionData} */
-	import { Styles, Container, Col, Row } from 'sveltestrap';
+	// import { Styles, Container, Col, Row } from 'sveltestrap';
 	export let data;
 	export let form;
 
@@ -15,7 +15,7 @@
 {/if}
 <svelte:head>
 	<title>Sign up • Conduit</title>
-	<Styles />
+	<!-- <Styles /> -->
 </svelte:head>
 <div class="auth-page">
 	<div class="container page">
