@@ -18,9 +18,10 @@ const config = {
 
 	kit: {
 		adapter: node_adapter({
-			out: 'node_build',
+			out: 'build',
 			precompress: false,
-			envPrefix: ''
+			envPrefix: '',
+			polyfill: false
 		})
 	},
 	vitePlugin: {
