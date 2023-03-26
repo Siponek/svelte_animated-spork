@@ -13,7 +13,6 @@ specifiers:
   '@typescript-eslint/eslint-plugin': ^5.45.0
   '@typescript-eslint/parser': ^5.45.0
   autoprefixer: ^10.4.7
-  bootstrap: 5.3.0-alpha1
   eslint: ^8.28.0
   eslint-config-prettier: ^8.5.0
   eslint-plugin-svelte3: ^4.0.0
@@ -31,7 +30,6 @@ specifiers:
   svelte-icons: ^2.1.0
   svelte-leafletjs: ^0.10.0
   svelte-preprocess: ^4.10.7
-  sveltestrap: ^5.10.0
   tailwindcss: ^3.1.5
   tiny-glob: ^0.2.9
   tslib: ^2.4.1
@@ -55,7 +53,6 @@ devDependencies:
   '@typescript-eslint/eslint-plugin': 5.54.0_6mj2wypvdnknez7kws2nfdgupi
   '@typescript-eslint/parser': 5.54.0_ycpbpc6yetojsgtrx3mwntkhsu
   autoprefixer: 10.4.13_postcss@8.4.21
-  bootstrap: 5.3.0-alpha1_@popperjs+core@2.11.6
   eslint: 8.35.0
   eslint-config-prettier: 8.6.0_eslint@8.35.0
   eslint-plugin-svelte3: 4.0.0_n4ieifq2d7jq3sqoe474cgqlim
@@ -72,7 +69,6 @@ devDependencies:
   svelte-icons: 2.1.0
   svelte-leafletjs: 0.10.0
   svelte-preprocess: 4.10.7_b25a55hc532q56kmuqlrolam2i
-  sveltestrap: 5.10.0_svelte@3.55.1
   tailwindcss: 3.2.7_postcss@8.4.21
   tiny-glob: 0.2.9
   tslib: 2.5.0
@@ -986,14 +982,6 @@ packages:
 
   /bodec/0.1.0:
     resolution: {integrity: sha512-Ylo+MAo5BDUq1KA3f3R/MFhh+g8cnHmo8bz3YPGhI1znrMaf77ol1sfvYJzsw3nTE+Y2GryfDxBaR+AqpAkEHQ==}
-    dev: true
-
-  /bootstrap/5.3.0-alpha1_@popperjs+core@2.11.6:
-    resolution: {integrity: sha512-ABZpKK4ObS3kKlIqH+ZVDqoy5t/bhFG0oHTAzByUdon7YIom0lpCeTqRniDzJmbtcWkNe800VVPBiJgxSYTYew==}
-    peerDependencies:
-      '@popperjs/core': ^2.11.6
-    dependencies:
-      '@popperjs/core': 2.11.6
     dev: true
 
   /brace-expansion/1.1.11:
@@ -3199,15 +3187,6 @@ packages:
   /svelte/3.55.1:
     resolution: {integrity: sha512-S+87/P0Ve67HxKkEV23iCdAh/SX1xiSfjF1HOglno/YTbSTW7RniICMCofWGdJJbdjw3S+0PfFb1JtGfTXE0oQ==}
     engines: {node: '>= 8'}
-    dev: true
-
-  /sveltestrap/5.10.0_svelte@3.55.1:
-    resolution: {integrity: sha512-k6Ob+6G2AMYvBidXHBKM9W28fJqFHbmosqCe/NC8pv6TV7K+v47Yw+zmnLWkjqCzzmjkSLkL48SrHZrlWc9mYQ==}
-    peerDependencies:
-      svelte: ^3.29.0
-    dependencies:
-      '@popperjs/core': 2.11.6
-      svelte: 3.55.1
     dev: true
 
   /systeminformation/5.17.12:
