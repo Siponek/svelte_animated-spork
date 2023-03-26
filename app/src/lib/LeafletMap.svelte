@@ -49,7 +49,7 @@
 			}).addTo(leaflet_map);
 
 			region_borders = Leaflet.geoJSON($geographyData, {
-				style: function (feature) {
+				style: (feature) => {
 					return {
 						color: 'blue',
 						weight: 2,
