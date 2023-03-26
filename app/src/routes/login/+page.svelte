@@ -42,7 +42,7 @@
 						/>
 					</fieldset>
 					<button
-						class="w-full max-w-xs bg-slate-500  hover:bg-sky-700 hover:ease-in-out hover:duration-300 hover:text-blue-100  text-white font-bold py-2 px-4 rounded"
+						class="w-full max-w-xs bg-slate-800  hover:bg-sky-700 hover:ease-in-out hover:duration-300 hover:text-blue-100  text-white font-bold py-2 px-4 rounded"
 						type="submit"
 						>Sign in
 					</button>

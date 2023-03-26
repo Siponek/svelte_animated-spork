@@ -9,7 +9,6 @@ async function send({ method, path, data, token }) {
 
 	if (data) {
 		opts.headers['Content-Type'] = 'application/json';
-		// credentials: "same-origin"
 		opts.credentials = 'same-origin';
 		opts.body = JSON.stringify(data);
 	}
@@ -17,14 +16,11 @@ async function send({ method, path, data, token }) {
 	if (token) {
 		opts.headers['Authorization'] = `Token ${token}`;
 	}
-	console.log('sending opts:');
-	console.log(opts);
-	console.log(`fetching ${base}/${path}`);
 	const res = await fetch(`${base}/${path}`, opts);
-	console.log('fetching done');
 	if (res.ok || res.status === 422) {
 		const text = await res.text();
-		return text ? JSON.parse(text) : {};
+		const response_obj = { headers: res.headers, body: JSON.parse(text) };
+		return text ? response_obj : {};
 	}
 	console.log('error in api.js');
 	throw error(res.status, res.statusText, res.text);

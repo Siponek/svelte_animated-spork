@@ -1,7 +1,7 @@
 <script>
 	import { onMount, onDestroy } from 'svelte';
 	import { browser } from '$app/environment';
-	import { colors, district, geographyData } from '$lib/store.js';
+	import {  district, geographyData } from '$lib/store.js';
 	import { icon_layer_status, region_layer_status } from '$lib/store.js';
 
 	let leaflet_map;
