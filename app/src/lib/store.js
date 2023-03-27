@@ -13,6 +13,7 @@ export const colors = readable(['#7ca6b4', '#a1d6e2', '#d5e5e5', '#6b7f8c', '#4e
 export let icon_layer_status = writable(false);
 export let region_layer_status = writable(false);
 
+export let user_status = writable(false);
 // export const status = writable('idle');
 
 console.log('store.js loaded');

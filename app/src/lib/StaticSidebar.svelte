@@ -3,7 +3,7 @@
 	import LayerButton from '$lib/LayerToggleIcon.svelte';
     import RegionButton from '$lib/RegionToggleIcon.svelte';
     import UserButton from '$lib/UserIcon.svelte';
-	import { icon_layer_status, region_layer_status } from '$lib/store.js';
+	import { icon_layer_status, region_layer_status, user_status } from '$lib/store.js';
 
     function toggle_store_layer(store_layer)
     {
@@ -27,9 +27,10 @@
     }
     }  />
     <UserButton class ="p-1 icon user-icon text-green-600  {btn_status[2] ? 'selected' : ''}" on:click={() => {
-        btn_status[2] = !btn_status[2];
-    }
-    }  />
+    toggle_store_layer(user_status)
+    btn_status[2] = !btn_status[2];
+}
+}  />
 </aside>
 
 

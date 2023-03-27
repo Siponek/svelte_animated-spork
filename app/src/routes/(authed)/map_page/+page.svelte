@@ -18,7 +18,7 @@ https://svelte-icons-explorer.vercel.app/
 </div>
 <div class=" mx-auto ">
 	<div class="flex flex-row  ">
-		<div class=" basis-2 "><StaticSidebar /></div>
+        <div class=" basis-2 "><StaticSidebar /></div>
 		<div id="" class=" basis-auto w-full"><LeafletMap /></div>
 	</div>
 </div>
