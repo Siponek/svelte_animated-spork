@@ -22,7 +22,7 @@ https://svelte-icons-explorer.vercel.app/
 
 <div class="grid">
 	<div class="grid md:grid-cols-1">
-		<Navbar bind:sidebar={open} />
+		<!-- <Navbar bind:sidebar={open} /> -->
 		<Sidebar bind:open />
 	</div>
 </div>

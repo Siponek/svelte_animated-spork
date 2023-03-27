@@ -3,6 +3,7 @@
 	import LayerButton from '$lib/LayerToggleIcon.svelte';
     import RegionButton from '$lib/RegionToggleIcon.svelte';
     import UserButton from '$lib/UserIcon.svelte';
+    import Menu from '$lib/Menu.svelte'
 	import { icon_layer_status, region_layer_status, user_status } from '$lib/store.js';
 
     function toggle_store_layer(store_layer)
@@ -13,28 +14,33 @@
     let btn_status = new Array (2).fill(false);
 </script>
 
-<aside class=" rounded-r-lg content-center relative object-none ">
-	<LayerButton class ="p-1 icon fill-ets-blue {btn_status[0] ? 'selected' : ''}"  on:click={() => {
-        toggle_store_layer(icon_layer_status);
-        btn_status[0] = !btn_status[0];
+<aside class=" rounded-r-lg content-center relative object-none staticSidebar">
+    <div class="logoSection">
+        <Menu/>
+    </div>
+        <LayerButton class ="p-1 icon fill-ets-blue {btn_status[0] ? 'selected' : ''}"  on:click={() => {
+            toggle_store_layer(icon_layer_status);
+            btn_status[0] = !btn_status[0];
+        }
+        }  />
+        <RegionButton class ="p-1 icon fill-ets-blue  {btn_status[1] ? 'selected' : ''}" on:click={() => {
+            toggle_store_layer(region_layer_status);
+            btn_status[1] = !btn_status[1];
+        }
+        }  />
+        <UserButton class ="p-1 icon user-icon text-green-600  {btn_status[2] ? 'selected' : ''}" on:click={() => {
+        toggle_store_layer(user_status)
+        btn_status[2] = !btn_status[2];
     }
     }  />
-	<RegionButton class ="p-1 icon fill-ets-blue  {btn_status[1] ? 'selected' : ''}" on:click={() => {
-        toggle_store_layer(region_layer_status);
-        btn_status[1] = !btn_status[1];
-    }
-    }  />
-    <UserButton class ="p-1 icon user-icon text-green-600  {btn_status[2] ? 'selected' : ''}" on:click={() => {
-    toggle_store_layer(user_status)
-    btn_status[2] = !btn_status[2];
-}
-}  />
 </aside>
 
 
 <style>
+
 	:global(button.icon) {
-		width: 2.5rem;
+		/*width: 2.5rem;*/
+        width:95px;
 		height: 2.5rem;
 		display: flex;
 		align-items: center;

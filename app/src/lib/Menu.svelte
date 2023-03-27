@@ -9,6 +9,5 @@
 <style>
 .logo{
     width:95px;
-    height: 40px;
 }
 </style>
