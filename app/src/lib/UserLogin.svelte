@@ -8,7 +8,6 @@
     background-color:rgb(127, 205, 205);
     color:black;
     text-align:center;
-    border:2px solid green;
     display: flex;
     flex-flow:column;
     justify-content: center;

@@ -30,7 +30,6 @@ https://svelte-icons-explorer.vercel.app/
 	<div class="flex flex-row ">
         <div class=" basis-2 "><StaticSidebar />
         </div>
-
         {#if user === true}
         <div class="alignLoginMenu">
         <UserLogin/>
@@ -51,11 +50,9 @@ https://svelte-icons-explorer.vercel.app/
 		height: 40px;
 	}
     .alignLoginMenu{
-
     display: flex;
     justify-content: center;
     align-content: center;
-    border:1px solid red;
 }
 	:global(body) {
 		background-color: theme('colors.ets-grey');

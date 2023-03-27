@@ -6,6 +6,20 @@ import * as api from '$lib/Api.js';
 export async function load({ locals }) {
 	if (locals.user) throw redirect(307, '/');
 }
+const customResponse = (status, success, message, data) => {
+	if (success) {
+		return {
+			success: success,
+			message: message,
+			info: data
+		};
+	}
+	return invalid(status, {
+		success: success,
+		message: message,
+		info: data
+	});
+};
 
 /** @type {import('./$types').Actions} */
 export const actions = {
@@ -30,4 +44,24 @@ export const actions = {
 		throw redirect(307, request.searchParams.get('redirectTo') ?? '/');
 		// throw redirect(307, '/map_page');
 	}
+
+	/*
+	login: async ({ cookies, request }) => {
+		const loginData = await request.formData();
+		const email = loginData.get('email');
+		const password = loginData.get('password');
+		if (!email || !password) {
+			return customResponse(400, false, 'Email and Password are required');
+		}
+		if (typeof email !== 'string' || typeof password !== 'string') {
+			return customResponse(400, false, 'Enter a valid email and password.');
+		}
+		cookies.set('jwt', {
+			path: '/',
+			httpOnly: true,
+			sameSite: 'strict'
+		});
+		throw redirect(307, '/map_page');
+	}
+    */
 };
