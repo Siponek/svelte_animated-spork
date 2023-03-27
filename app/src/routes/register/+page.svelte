@@ -27,7 +27,7 @@
 				</p>
 				<ListErrors errors={form?.errors} />
 				<!-- <form use:enhance method="POST"> -->
-				<form use:enhance method="POST" action="?/register">
+				<form use:enhance method="POST" action="?/register" class="form">
 					<fieldset class="form-group">
 						<input
 							class="form-control form-control-lg"
@@ -35,7 +35,7 @@
 							type="text"
 							required
 							placeholder="Your First Name"
-							value="asdf_test1"
+                            value="asdf_test1"
 						/>
 					</fieldset>
 					<fieldset class="form-group">
@@ -86,3 +86,8 @@
 		</div>
 	</div>
 </div>
+
+<style>
+
+
+</style>
