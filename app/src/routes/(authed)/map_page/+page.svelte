@@ -4,24 +4,43 @@
 	import Sidebar from '$lib/Sidebar.svelte';
 	import StaticSidebar from '$lib/StaticSidebar.svelte';
 	import LeafletMap from '$lib/LeafletMap.svelte';
+    import {  user_status } from '$lib/store.js';
+    import UserLogin from '$lib/UserLogin.svelte';
+    let user = false
 	let open = false;
+    $: if($user_status) {
+         user = true
+       // console.log(user_status, 'user-status is set to true')
+    }else{
+        user = false
+    }
 </script>
 
 <!-- ICONS TI IMPORT FROM
 https://svelte-icons-explorer.vercel.app/
  -->
+
 <div class="grid">
 	<div class="grid md:grid-cols-1">
 		<Navbar bind:sidebar={open} />
 		<Sidebar bind:open />
 	</div>
 </div>
-<div class=" mx-auto ">
-	<div class="flex flex-row  ">
-        <div class=" basis-2 "><StaticSidebar /></div>
-		<div id="" class=" basis-auto w-full"><LeafletMap /></div>
+<div class="mx-auto ">
+	<div class="flex flex-row ">
+        <div class=" basis-2 "><StaticSidebar />
+        </div>
+
+        {#if user === true}
+        <div class="alignLoginMenu">
+        <UserLogin/>
+        </div>
+        {/if}
+		<div id="" class=" basis-auto w-full"><LeafletMap />
+        </div>
 	</div>
 </div>
+
 <footer class="px-4 py-2  rounded-tl-full  shadow  dark:bg-gray-800 ">
 	<p>Footer placeholder</p>
 </footer>
@@ -31,6 +50,13 @@ https://svelte-icons-explorer.vercel.app/
 		margin-top: auto;
 		height: 40px;
 	}
+    .alignLoginMenu{
+
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    border:1px solid red;
+}
 	:global(body) {
 		background-color: theme('colors.ets-grey');
 		color: azure;

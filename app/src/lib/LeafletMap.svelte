@@ -2,8 +2,8 @@
 	import { onMount, onDestroy } from 'svelte';
 	import { browser } from '$app/environment';
 	import { colors, district, geographyData } from '$lib/store.js';
-	import { icon_layer_status, region_layer_status, user_status } from '$lib/store.js';
-    import UserLogin from './UserLogin.svelte';
+	import { icon_layer_status, region_layer_status } from '$lib/store.js';
+
 	let leaflet_map;
 	let test_layer;
 	let web_layer;
@@ -15,7 +15,6 @@
 	});
 	let region_borders;
 
-    let user = false
 	// On mount, when the component is created
 	onMount(async () => {
 		if (browser) {
@@ -97,12 +96,6 @@
 			region_borders.remove();
 		}
 	}
-    $: if($user_status) {
-         user = true
-       // console.log(user_status, 'user-status is set to true')
-    }else{
-        user = false
-    }
 	// Might be redundant
 	onDestroy(() => {
 		unsub_icon_layer();
@@ -110,7 +103,6 @@
 </script>
 
 <div bind:this={mapElement} class="" />
-
 
 <style>
 	@import 'leaflet/dist/leaflet.css';
@@ -121,5 +113,4 @@
 		width: 100%;
 		z-index: 10;
 	}
-
 </style>
