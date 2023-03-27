@@ -1,6 +1,5 @@
 import { fail, redirect } from '@sveltejs/kit';
 import * as api from '$lib/Api';
-import { status } from '$lib/store';
 
 /** @type {import('./$types').PageServerLoad} */
 export async function load({ parent }) {

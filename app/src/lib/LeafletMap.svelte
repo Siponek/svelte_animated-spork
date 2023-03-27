@@ -105,7 +105,7 @@
 <div bind:this={mapElement} class="" />
 
 <style>
-	@import 'Leaflet/dist/Leaflet.css';
+	@import 'leaflet/dist/leaflet.css';
 	@import 'leaflet.markercluster/dist/MarkerCluster.css';
 	@import 'leaflet.markercluster/dist/MarkerCluster.Default.css';
 	div {

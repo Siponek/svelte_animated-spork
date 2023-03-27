@@ -11,7 +11,7 @@
 <div class=" text-center">
 	<h1>Hello, this is the error page</h1>
 	<p>Error: {$page.error.message}</p>
-	<p>Got to index <a href="/">here</a></p>
+	<p>Go to index <a href="/">here</a></p>
 </div>
 
 <style>
