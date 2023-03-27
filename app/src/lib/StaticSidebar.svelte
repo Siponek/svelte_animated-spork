@@ -10,9 +10,7 @@
         console.log('Sidebad button: toggling store layer');
         store_layer.update((n) => !n);
     }
-
     let btn_status = new Array (2).fill(false);
-
 </script>
 
 <aside class=" rounded-r-lg content-center relative object-none ">
