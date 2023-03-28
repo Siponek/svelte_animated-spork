@@ -61,8 +61,14 @@
 			});
             //add basin shapefile data
 
-            const showBasinShapefileData = async (obj)=>{
-                const data = await api.get(`/restapi/${obj}`)
+            const showBasinShapefileData = async ()=>{
+                //retrieving the data from be api
+                const data = await api.get('/restapi/survey')
+                //selecting only the required data from the one we retrieved earlier
+
+                //adding coordinates and relative markers
+
+                //adding selected data into pop up related to the markers
             }
 			// add markers to layer
 			test_layer = Leaflet.layerGroup([center_italy, millan, rome]);
