@@ -15,9 +15,7 @@
 </script>
 
 <aside class=" rounded-r-lg content-center relative object-none staticSidebar">
-    <div class="logoSection">
         <Menu/>
-    </div>
         <LayerButton class ="p-1 icon fill-ets-blue {btn_status[0] ? 'selected' : ''}"  on:click={() => {
             toggle_store_layer(icon_layer_status);
             btn_status[0] = !btn_status[0];
