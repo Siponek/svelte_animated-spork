@@ -6,22 +6,23 @@ import * as api from '$lib/Api.js';
 export async function load({ locals }) {
 	if (locals.user) throw redirect(307, '/');
 }
-const customResponse = (status, success, message, data) => {
-	if (success) {
-		return {
-			success: success,
-			message: message,
-			info: data
-		};
-	}
-	return invalid(status, {
-		success: success,
-		message: message,
-		info: data
-	});
-};
+// const customResponse = (status, success, message, data) => {
+// 	if (success) {
+// 		return {
+// 			success: success,
+// 			message: message,
+// 			info: data
+// 		};
+// 	}
+// 	return invalid(status, {
+// 		success: success,
+// 		message: message,
+// 		info: data
+// 	});
+// };
 
 /** @type {import('./$types').Actions} */
+
 export const actions = {
 	login: async ({ cookies, request }) => {
 		const data = await request.formData();
@@ -46,6 +47,7 @@ export const actions = {
 	}
 
 	/*
+export const actions = {
 	login: async ({ cookies, request }) => {
 		const loginData = await request.formData();
 		const email = loginData.get('email');

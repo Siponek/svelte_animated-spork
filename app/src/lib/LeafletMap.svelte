@@ -14,7 +14,7 @@
 		console.log('LeaftletMap: icon_layer_status.subscribe: ', value);
 	});
 	let region_borders;
-
+    let basiGeomCoordinates = [];
 	// On mount, when the component is created
 	onMount(async () => {
 		if (browser) {
@@ -61,16 +61,49 @@
 			});
             //add basin shapefile data
 
-            const showBasinShapefileData = async ()=>{
+            const showBasinShapeFileData = async ()=>{
+                try {
                 //retrieving the data from be api
-                const data = await api.get('/restapi/survey')
-                //selecting only the required data from the one we retrieved earlier
-
-                //adding coordinates and relative markers
-
+                const data = await api.get('restapi/survey');
+                 //adding coordinates and relative markers
+                 const itemsData = Object.entries(data);
+                 console.log(itemsData);
+                 itemsData.map(items =>{
+                    const name = items.name
+                    const description = items.description
+                    //--verify wether to put other data as well--
+                 })
                 //adding selected data into pop up related to the markers
+                } catch (error) {
+                    console.error(error.message)
+                }
+
             }
-			// add markers to layer
+
+            //add basin shapefile coordinates
+            const showBasinShapeFileCoordinates = async ()=>{
+                try {
+                 //retrieving the coordinates from our api
+                const coordinatesObj = await api.get('pointclouds');
+                const coordinates = Object.entries(coordinatesObj);
+                console.log(coordinates);
+                coordinates.map(geom =>{
+                    const features = geom.features;
+                    const geometries = features.geometry;
+                    for (cord in geometries){
+                        const cord4Markers = cord.coordinates
+                         //adding our markers
+                    }
+                    //--verify wether to put other data as well--
+                })
+                } catch (error) {
+                    console.error(error.message)
+                }
+
+            }
+            console.log('basin data', showBasinShapeFileData());
+            console.log('basin coordinates', showBasinShapeFileCoordinates());
+
 			test_layer = Leaflet.layerGroup([center_italy, millan, rome]);
 
 			test_layer.on('click', function (a) {
