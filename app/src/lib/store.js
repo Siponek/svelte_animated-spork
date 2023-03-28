@@ -14,6 +14,7 @@ export let icon_layer_status = writable(false);
 export let region_layer_status = writable(false);
 
 export let user_status = writable(false);
+export let user_register_status = writable(false);
 // export const status = writable('idle');
 
 console.log('store.js loaded');

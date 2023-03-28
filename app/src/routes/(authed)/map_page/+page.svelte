@@ -6,6 +6,7 @@
 	import LeafletMap from '$lib/LeafletMap.svelte';
     import {  user_status } from '$lib/store.js';
     import UserLogin from '$lib/UserLogin.svelte';
+	import UserRegister from '$lib/UserRegister.svelte';
     let user = false
 	let open = false;
     $: if($user_status) {
@@ -13,6 +14,12 @@
        // console.log(user_status, 'user-status is set to true')
     }else{
         user = false
+    }
+    let userRegisterStatus = false
+    $: if(user_register_status){
+        userRegisterStatus = true
+    }else{
+        userRegisterStatus = false
     }
 </script>
 
@@ -30,6 +37,11 @@ https://svelte-icons-explorer.vercel.app/
 	<div class="flex flex-row ">
         <div class=" basis-2 "><StaticSidebar />
         </div>
+        <!-- {#if userRegisterStatus === true}
+        <div class="alignLogoMenu">
+        <UserRegister/>
+        </div>
+        {/if} -->
         {#if user === true}
         <div class="alignLoginMenu">
         <UserLogin/>

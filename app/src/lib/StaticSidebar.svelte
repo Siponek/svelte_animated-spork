@@ -4,13 +4,15 @@
     import RegionButton from '$lib/RegionToggleIcon.svelte';
     import UserButton from '$lib/UserIcon.svelte';
     import Menu from '$lib/Menu.svelte'
-	import { icon_layer_status, region_layer_status, user_status } from '$lib/store.js';
+	import { icon_layer_status, region_layer_status, user_status, user_register_status } from '$lib/store.js';
+	import UserRegisterIcon from './UserRegisterIcon.svelte';
     function toggle_store_layer(store_layer)
     {
         console.log('Sidebad button: toggling store layer');
         store_layer.update((n) => !n);
     }
-    let btn_status = new Array (2).fill(false);
+    let btn_status = new Array (3).fill(false);
+
 </script>
 
 <aside class=" rounded-r-lg content-center relative object-none staticSidebar">
@@ -30,8 +32,10 @@
         btn_status[2] = !btn_status[2];
     }
     }  />
-
-
+    <UserRegisterIcon class ="p-1 icon user-register-icon text-green-600  {btn_status[3] ? 'selected' : ''}" on:click={() => {
+        toggle_store_layer(user_register_status)
+        btn_status[3] = !btn_status[3];
+    } }/>
 </aside>
 
 
