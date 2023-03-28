@@ -14,6 +14,7 @@
 	});
 	let region_borders;
     let basiGeomCoordinates = [];
+    let geomCoord = []
 	// On mount, when the component is created
 	onMount(async () => {
 		if (browser) {
@@ -89,6 +90,7 @@
 
             //add basin shapefile coordinates
             const showBasinShapeFileCoordinates = async ()=>{
+                let geomCoord = []
                 try {
                  //retrieving the coordinates from our api
                 const coordinatesObj = await api.get('pointclouds');
@@ -99,7 +101,7 @@
                     const results = coord.result
                     const features = results.features
                     const geomCord = features.geometry
-
+                    geomCoord.push(geomCord)
                 })
                 } catch (error) {
                     console.error(error.message)
