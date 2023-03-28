@@ -8,7 +8,6 @@
 	let test_layer;
 	let web_layer;
 	let mapElement;
-
 	// Subscribe to the store
 	const unsub_icon_layer = icon_layer_status.subscribe((value) => {
 		console.log('LeaftletMap: icon_layer_status.subscribe: ', value);
@@ -62,18 +61,26 @@
             //add basin shapefile data
 
             const showBasinShapeFileData = async ()=>{
+                let geomData = []
                 try {
                 //retrieving the data from be api
                 const data = await api.get('restapi/survey');
-                 //adding coordinates and relative markers
-                 const itemsData = Object.entries(data);
+                const jsondata = await data.json()
+                console.log(jsondata)
+                //looping through the data to select our required info
+                 const itemsData = Object.entries(jsondata);
                  console.log(itemsData);
                  itemsData.map(items =>{
-                    const name = items.name
-                    const description = items.description
+                    const itemsData = items.items
+                    const description = itemsData.description
+                    const name = itemsData.name
+                    geomData.push(description, name)
+
                     //--verify wether to put other data as well--
                  })
-                //adding selected data into pop up related to the markers
+                 basiGeomCoordinates = geomData
+                 //console.log('geomData',geomData)
+                 console.log('basinGeom', basiGeomCoordinates)
                 } catch (error) {
                     console.error(error.message)
                 }
@@ -85,16 +92,14 @@
                 try {
                  //retrieving the coordinates from our api
                 const coordinatesObj = await api.get('pointclouds');
-                const coordinates = Object.entries(coordinatesObj);
-                console.log(coordinates);
-                coordinates.map(geom =>{
-                    const features = geom.features;
-                    const geometries = features.geometry;
-                    for (cord in geometries){
-                        const cord4Markers = cord.coordinates
-                         //adding our markers
-                    }
-                    //--verify wether to put other data as well--
+                const data = await coordinatesObj.json()
+                console.log(data)
+                const objData = Object.entries(data)
+                objData.map(coord =>{
+                    const results = coord.result
+                    const features = results.features
+                    const geomCord = features.geometry
+
                 })
                 } catch (error) {
                     console.error(error.message)
