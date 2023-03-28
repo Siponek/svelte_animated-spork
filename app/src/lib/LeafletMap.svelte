@@ -3,7 +3,7 @@
 	import { browser } from '$app/environment';
 	import { colors, district, geographyData } from '$lib/store.js';
 	import { icon_layer_status, region_layer_status } from '$lib/store.js';
-
+    import * as api from '$lib/Api';
 	let leaflet_map;
 	let test_layer;
 	let web_layer;
@@ -59,6 +59,11 @@
 					};
 				}
 			});
+            //add basin shapefile data
+
+            const showBasinShapefileData = async (obj)=>{
+                const data = await api.get(`/restapi/${obj}`)
+            }
 			// add markers to layer
 			test_layer = Leaflet.layerGroup([center_italy, millan, rome]);
 

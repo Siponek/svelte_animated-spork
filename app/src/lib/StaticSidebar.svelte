@@ -5,7 +5,6 @@
     import UserButton from '$lib/UserIcon.svelte';
     import Menu from '$lib/Menu.svelte'
 	import { icon_layer_status, region_layer_status, user_status } from '$lib/store.js';
-
     function toggle_store_layer(store_layer)
     {
         console.log('Sidebad button: toggling store layer');
@@ -31,13 +30,14 @@
         btn_status[2] = !btn_status[2];
     }
     }  />
+
+
 </aside>
 
 
 <style>
 
 	:global(button.icon) {
-		/*width: 2.5rem;*/
         width:95px;
 		height: 2.5rem;
 		display: flex;

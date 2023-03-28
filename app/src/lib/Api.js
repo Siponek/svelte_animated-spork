@@ -1,7 +1,8 @@
 import { error } from '@sveltejs/kit';
 import { loadEnv } from 'vite';
 
-const base = 'http://127.0.0.1:8000/app_ets';
+//const base = 'http://127.0.0.1:8000/app_ets';
+const base = '135.181.209.141:8000/app_ets';
 // get that from env
 
 async function send({ method, path, data, token }) {
