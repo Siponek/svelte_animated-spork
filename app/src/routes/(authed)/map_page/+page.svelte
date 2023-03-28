@@ -4,10 +4,11 @@
 	import Sidebar from '$lib/Sidebar.svelte';
 	import StaticSidebar from '$lib/StaticSidebar.svelte';
 	import LeafletMap from '$lib/LeafletMap.svelte';
-    import {  user_status } from '$lib/store.js';
+    import {  user_status, user_register_status } from '$lib/store.js';
     import UserLogin from '$lib/UserLogin.svelte';
 	import UserRegister from '$lib/UserRegister.svelte';
     let user = false
+    let userRegister = false
 	let open = false;
     $: if($user_status) {
          user = true
@@ -15,11 +16,11 @@
     }else{
         user = false
     }
-    let userRegisterStatus = false
-    $: if(user_register_status){
-        userRegisterStatus = true
+    $: if($user_register_status){
+        userRegister = true
+        console.log(user_register_status, 'user_register_status')
     }else{
-        userRegisterStatus = false
+        userRegister = false
     }
 </script>
 
@@ -37,11 +38,11 @@ https://svelte-icons-explorer.vercel.app/
 	<div class="flex flex-row ">
         <div class=" basis-2 "><StaticSidebar />
         </div>
-        <!-- {#if userRegisterStatus === true}
-        <div class="alignLogoMenu">
+         {#if userRegister === true}
+         <div class="alignLoginMenu">
         <UserRegister/>
         </div>
-        {/if} -->
+        {/if}
         {#if user === true}
         <div class="alignLoginMenu">
         <UserLogin/>
