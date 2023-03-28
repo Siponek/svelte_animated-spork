@@ -14,7 +14,7 @@
 	});
 	let region_borders;
     let basiGeomCoordinates = [];
-    let geomCoord = []
+    let basinGeomCoord = []
 	// On mount, when the component is created
 	onMount(async () => {
 		if (browser) {
@@ -103,6 +103,7 @@
                     const geomCord = features.geometry
                     geomCoord.push(geomCord)
                 })
+                basinGeomCoord = geomCoord
                 } catch (error) {
                     console.error(error.message)
                 }
