@@ -95,7 +95,6 @@ const login = async () =>{
 //retrieving data from basinShapFile
 
 const showBasinShapeFileData = async (geomDataP)=>{
- let geomData = []
     const data = await fetch('http://135.181.209.141:8000/app_ets/restapi/survey')
  if(data.ok){
         const jsondata = await data.json()
@@ -122,8 +121,7 @@ const showBasinShapeFileData = async (geomDataP)=>{
 
         showBasinShapeFileData(basinGeomCoordData)
   	console.log('basinGeomCoordData',basinGeomCoordData)
-    const showBasinShapeFileCoordinates = async ()=>{
-        let coordData = []
+    const showBasinShapeFileCoordinates = async (coordDataP)=>{
         const data = await fetch('http://135.181.209.141:8000/app_ets/pointclouds')
         if(data.ok){
             const jsondata = data.json()
