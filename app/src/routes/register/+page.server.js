@@ -21,10 +21,10 @@ export const actions = {
 		}
 
 		// const value = btoa(JSON.stringify(body.user));
-        if (cookies) {
-            // cookies.set('app_ets_session', body.token);
-            cookies.set(headers.get('Set-Cookie'));
-
+		if (cookies) {
+			// cookies.set('app_ets_session', body.token);
+			cookies.set(headers.get('Set-Cookie'));
+		}
 		throw redirect(307, '/map_page');
 	}
 };
