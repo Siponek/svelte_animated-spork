@@ -1,6 +1,6 @@
 import { error } from '@sveltejs/kit';
 import { apiConfig } from '../apiConfig';
-import { loadEnv } from 'vite';
+// import fetch from 'node-fetch'; // Import the node-fetch library
 
 // TODO get that from env
 const base = apiConfig.base;
