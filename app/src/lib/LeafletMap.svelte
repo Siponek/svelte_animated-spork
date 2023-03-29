@@ -92,6 +92,7 @@ const login = async () =>{
         console.log('there is an error')
 }
 
+//-end of LOGIN -//
 
 //retrieving data from basinShapFile
 const showBasinShapeFileData = async ()=>{
@@ -103,10 +104,19 @@ const showBasinShapeFileData = async ()=>{
         const convArr = Object.entries(jsondata)
          console.log('convarr',convArr)
         const items = convArr[3]
-        //console.log('items', items)
-        items.map(itemsData =>{
-            console.log('itemsData', itemsData)
-        })
+        const rItems = items[1]
+        console.log('rItems', rItems)
+        rItems.map((itemsData) =>{
+            let basinNames = []
+            let basinDescriptions = []
+           console.log('itemsData',itemsData)
+           const names = itemsData.name
+           const descriptions = itemsData.description
+           basinNames.push(names)
+           basinDescriptions.push(descriptions)
+         geomData.push(basinNames, basinDescriptions)
+           console.log('ge', geomData)
+     })
     }
   }
         showBasinShapeFileData()
