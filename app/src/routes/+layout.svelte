@@ -6,7 +6,7 @@
 <div class="app">
 	<!-- <Header /> -->
         <!-- This is where the acutual page goes -->
-		<slot />
+        <slot />
 </div>
 
 <style>

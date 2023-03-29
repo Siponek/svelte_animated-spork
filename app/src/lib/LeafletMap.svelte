@@ -13,8 +13,9 @@
 		console.log('LeaftletMap: icon_layer_status.subscribe: ', value);
 	});
 	let region_borders;
-    let basiGeomCoordinates = [];
-    let basinGeomCoord = []
+    let basinGeomCoordinates;
+    let basinGeomCoordData;
+
 	// On mount, when the component is created
 	onMount(async () => {
 		if (browser) {
@@ -59,59 +60,6 @@
 					};
 				}
 			});
-            //add basin shapefile data
-
-            const showBasinShapeFileData = async ()=>{
-                let geomData = []
-                try {
-                //retrieving the data from be api
-                const data = await api.get('restapi/survey');
-                const jsondata = await data.json()
-                console.log(jsondata)
-                //looping through the data to select our required info
-                 const itemsData = Object.entries(jsondata);
-                 console.log(itemsData);
-                 itemsData.map(items =>{
-                    const itemsData = items.items
-                    const description = itemsData.description
-                    const name = itemsData.name
-                    geomData.push(description, name)
-
-                    //--verify wether to put other data as well--
-                 })
-                 basiGeomCoordinates = geomData
-                 //console.log('geomData',geomData)
-                 console.log('basinGeom', basiGeomCoordinates)
-                } catch (error) {
-                    console.error(error.message)
-                }
-
-            }
-
-            //add basin shapefile coordinates
-            const showBasinShapeFileCoordinates = async ()=>{
-                let geomCoord = []
-                try {
-                 //retrieving the coordinates from our api
-                const coordinatesObj = await api.get('pointclouds');
-                const data = await coordinatesObj.json()
-                console.log(data)
-                const objData = Object.entries(data)
-                objData.map(coord =>{
-                    const results = coord.result
-                    const features = results.features
-                    const geomCord = features.geometry
-                    geomCoord.push(geomCord)
-                })
-                basinGeomCoord = geomCoord
-                } catch (error) {
-                    console.error(error.message)
-                }
-
-            }
-            console.log('basin data', showBasinShapeFileData());
-            console.log('basin coordinates', showBasinShapeFileCoordinates());
-
 			test_layer = Leaflet.layerGroup([center_italy, millan, rome]);
 
 			test_layer.on('click', function (a) {
@@ -122,6 +70,81 @@
 				console.log('LeafletMap: region_borders.on: ', e);
 			});
 		}
+         //add basin shapefile data
+
+         const showBasinShapeFileData = async ()=>{
+                let geomData = []
+
+                try {
+                    //retrieving the data from be api
+                //     const data2 = await fetch('https://jsonplaceholder.typicode.com/posts', {
+                //        method:'GET',
+                //          headers:{
+                //       'Content-Type':'application/json'
+                //        }
+                //    })
+                //     const jsonData2 = await data2.json()
+                //     geomData.push(jsonData2)
+                //    console.log('geomdata', geomData)
+                 //console.log('jsondata2',jsonData2)
+
+               const data = await api.get('restapi/survey');
+                const jsondata = await data.json()
+                console.log('jsondata', jsondata)
+                //looping through the data to select our required info
+                 const itemsData = Object.entries(jsondata);
+                 console.log(itemsData);
+                 itemsData.map(itemsd =>{
+                    const items = itemsd.items
+                    items.map(data =>{
+                    const description = data.description
+                    const name = data.name
+                    geomData.push(description, name)
+                    console.log('geomData', geomData)
+                    })
+                    //--verify wether to put other data as well--
+                 })
+                } catch (error) {
+                   console.error(error.message)
+                }
+
+            }
+            //add basin shapefile coordinates
+            const showBasinShapeFileCoordinates = async ()=>{
+                try {
+                let geomCoord = []
+                 //retrieving the coordinates from our api
+                const coordinatesObj = await api.get('pointclouds');
+                const data = await coordinatesObj.json()
+                console.log(data)
+                /*
+                    //loop to retrieve the required data //
+
+                    //push the required data in geomCoord variable//
+                */
+                } catch (error) {
+                    console.error(error.message)
+                }
+            }
+            console.log('basin data', showBasinShapeFileData());
+            console.log('basin coordinates', showBasinShapeFileCoordinates());
+
+            //-- function to retrieve the data to put in the popup
+                //-- and attach the popup to the markers I set
+                // in their related coordinate--//
+
+
+                //--//
+
+         //--function to launch the marker, only when map is set on a specific zoom--//
+                /*
+              map.on('zoomstart', function(e){
+                if(map.getZoom()> --- && map.getZomm()< ----){
+                    //--show markers with related popup --//
+                }
+              })
+              */
+            //--//
 		return () => {
 			if (leaflet_map) {
 				console.log('Unloading Leaflet map.');

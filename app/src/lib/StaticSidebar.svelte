@@ -6,6 +6,7 @@
     import Menu from '$lib/Menu.svelte'
 	import { icon_layer_status, region_layer_status, user_status, user_register_status } from '$lib/store.js';
 	import UserRegisterIcon from './UserRegisterIcon.svelte';
+
     function toggle_store_layer(store_layer)
     {
         console.log('Sidebad button: toggling store layer');
@@ -16,6 +17,7 @@
 </script>
 
 <aside class=" rounded-r-lg content-center relative object-none staticSidebar">
+
         <Menu/>
         <LayerButton class ="p-1 icon fill-ets-blue {btn_status[0] ? 'selected' : ''}"  on:click={() => {
             toggle_store_layer(icon_layer_status);
