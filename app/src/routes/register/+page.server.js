@@ -10,14 +10,8 @@ export async function load({ parent }) {
 /** @type {import('./$types').Actions} */
 export const actions = {
 	register: async ({ cookies, request }) => {
-		const data = await request.formData();
-		const form_data = {
-			username: data.get('username'),
-			email: data.get('email'),
-			password: data.get('password'),
-			first_name: data.get('first_name'),
-			last_name: data.get('last_name')
-		};
+		// const data = await request.formData();
+		const form_data = Object.fromEntries(await request.formData());
 		const json_payload = form_data;
 		console.log('action register called, calling api.js');
 		const body = await api.post('auth/api/register', json_payload);
@@ -26,9 +20,12 @@ export const actions = {
 			return fail(401, body);
 		}
 
-		const value = btoa(JSON.stringify(body.user));
-		cookies.set('jwt', value, { path: '/' });
+		// const value = btoa(JSON.stringify(body.user));
+		if (cookies) {
+			// cookies.set('app_ets_session', body.token);
+			cookies.set(headers.get('Set-Cookie'));
 
-		throw redirect(307, '/map_page');
+			throw redirect(307, '/map_page');
+		}
 	}
 };

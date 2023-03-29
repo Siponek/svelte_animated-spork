@@ -1,6 +1,4 @@
 <script lang="ts">
-	// import 'bootstrap/dist/css/bootstrap.min.css';
-	// import { Styles, Container, Col, Row } from 'sveltestrap';
 	import { enhance } from '$app/forms';
 	import ListErrors from '$lib/ListErrors.svelte';
 	// /** @type {import('./$types').ActionData} */
@@ -9,7 +7,6 @@
 
 <svelte:head>
 	<title>ETS - Login</title>
-	<!-- <Styles /> -->
 </svelte:head>
 
 <div class="auth-page container mx-auto place-items-center bg-slate-500">
@@ -31,7 +28,7 @@
 							type="email"
 							required
 							placeholder="Email"
-							value="asdf_test1@wololo.com"
+							value="test@mercedes.it"
 						/>
 					</fieldset>
 					<fieldset class="form-group py-1">
@@ -41,11 +38,11 @@
 							type="password"
 							required
 							placeholder="Password"
-							value="asdf_test1"
+							value="lazypasssword"
 						/>
 					</fieldset>
 					<button
-						class="w-full max-w-xs bg-slate-500  hover:bg-sky-700 hover:ease-in-out hover:duration-300 hover:text-blue-100  text-white font-bold py-2 px-4 rounded"
+						class="w-full max-w-xs bg-slate-800  hover:bg-sky-700 hover:ease-in-out hover:duration-300 hover:text-blue-100  text-white font-bold py-2 px-4 rounded"
 						type="submit"
 						>Sign in
 					</button>
