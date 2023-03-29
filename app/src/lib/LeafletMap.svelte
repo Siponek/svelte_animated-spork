@@ -121,6 +121,19 @@ const showBasinShapeFileData = async ()=>{
   }
         showBasinShapeFileData()
 
+    const showBasinShapeFileCoordinates = async ()=>{
+        const data = await fetch('http://135.181.209.141:8000/app_ets/pointclouds')
+        if(data.ok){
+            const jsondata = data.json()
+            console.log('coordJsondata', jsondata)
+            for(let i = 0; i<jsondata.length;i++){
+                console.log('eachCordData',jsondata[i])
+                const features = jsondata[3]
+                console.log('features', features)
+            }
+        }
+    }
+        showBasinShapeFileCoordinates()
 /*
 
             //-- function to retrieve the data to put in the popup
