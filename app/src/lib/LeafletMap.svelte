@@ -3,7 +3,6 @@
 	import { browser } from '$app/environment';
 	import {  district, geographyData } from '$lib/store.js';
 	import { icon_layer_status, region_layer_status } from '$lib/store.js';
-
 	let leaflet_map;
 	let test_layer;
 	let web_layer;
@@ -95,6 +94,7 @@ const login = async () =>{
 //-end of LOGIN -//
 
 //retrieving data from basinShapFile
+
 const showBasinShapeFileData = async ()=>{
  let geomData = []
     const data = await fetch('http://135.181.209.141:8000/app_ets/restapi/survey')
@@ -122,14 +122,15 @@ const showBasinShapeFileData = async ()=>{
         showBasinShapeFileData()
 
     const showBasinShapeFileCoordinates = async ()=>{
+        let coordData = []
         const data = await fetch('http://135.181.209.141:8000/app_ets/pointclouds')
         if(data.ok){
             const jsondata = data.json()
             console.log('coordJsondata', jsondata)
             for(let i = 0; i<jsondata.length;i++){
                 console.log('eachCordData',jsondata[i])
-                const features = jsondata[3]
-                console.log('features', features)
+                const results = jsondata[3]
+                console.log('results', results)
             }
         }
     }

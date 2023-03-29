@@ -3,12 +3,12 @@ import { apiConfig } from '../apiConfig';
 import { loadEnv } from 'vite';
 
 //const base = 'http://127.0.0.1:8000/app_ets';
-const base = 'http://135.181.209.141:8000/app_ets';
+const baseD = 'http://135.181.209.141:8000/app_ets';
 
 // get that from env
 
 // TODO get that from env
-const baseC = apiConfig.base;
+const base = apiConfig.base;
 
 async function send({ method, path, data, token }) {
 	const opts = { method, headers: {} };
