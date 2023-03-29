@@ -13,8 +13,7 @@
 	});
 	let region_borders;
     let basinGeomCoordinates;
-    let basinGeomCoordData;
-
+    let basinGeomCoordData = []
 	// On mount, when the component is created
 	onMount(async () => {
 		if (browser) {
@@ -95,7 +94,7 @@ const login = async () =>{
 
 //retrieving data from basinShapFile
 
-const showBasinShapeFileData = async ()=>{
+const showBasinShapeFileData = async (geomDataP)=>{
  let geomData = []
     const data = await fetch('http://135.181.209.141:8000/app_ets/restapi/survey')
  if(data.ok){
@@ -114,13 +113,15 @@ const showBasinShapeFileData = async ()=>{
            const descriptions = itemsData.description
            basinNames.push(names)
            basinDescriptions.push(descriptions)
-         geomData.push(basinNames, basinDescriptions)
-           console.log('ge', geomData)
+        // geomData.push(basinNames, basinDescriptions)
+		geomDataP.push(basinNames,basinDescriptions)
+           console.log('ge', geomDataP)
      })
     }
   }
-        showBasinShapeFileData()
 
+        showBasinShapeFileData(basinGeomCoordData)
+  	console.log('basinGeomCoordData',basinGeomCoordData)
     const showBasinShapeFileCoordinates = async ()=>{
         let coordData = []
         const data = await fetch('http://135.181.209.141:8000/app_ets/pointclouds')
