@@ -3,7 +3,7 @@
 	import { browser } from '$app/environment';
 	import { colors, district, geographyData } from '$lib/store.js';
 	import { icon_layer_status, region_layer_status } from '$lib/store.js';
-    import * as api from '$lib/Api';
+
 	let leaflet_map;
 	let test_layer;
 	let web_layer;
@@ -70,64 +70,48 @@
 				console.log('LeafletMap: region_borders.on: ', e);
 			});
 		}
-         //add basin shapefile data
+/* LOGIN*/
 
-         const showBasinShapeFileData = async ()=>{
-                let geomData = []
+const login = async () =>{
+    const userLogin = {
+             "email": "mario@ets.it",
+             "password": "lazypasssword" }
+    const settings = {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Cookie':'a39e72ee-ce1c-11ed-978e-0242ac130003'
+        },
+        body: JSON.stringify(userLogin)
+    }
+        const login = await fetch('http://135.181.209.141:8000/app_ets/auth/api/login', settings)
+        if(login.ok){
+            return login.json()
+        }
+        console.log('there is an error')
+}
 
-                try {
-                    //retrieving the data from be api
-                //     const data2 = await fetch('https://jsonplaceholder.typicode.com/posts', {
-                //        method:'GET',
-                //          headers:{
-                //       'Content-Type':'application/json'
-                //        }
-                //    })
-                //     const jsonData2 = await data2.json()
-                //     geomData.push(jsonData2)
-                //    console.log('geomdata', geomData)
-                 //console.log('jsondata2',jsonData2)
 
-               const data = await api.get('restapi/survey');
-                const jsondata = await data.json()
-                console.log('jsondata', jsondata)
-                //looping through the data to select our required info
-                 const itemsData = Object.entries(jsondata);
-                 console.log(itemsData);
-                 itemsData.map(itemsd =>{
-                    const items = itemsd.items
-                    items.map(data =>{
-                    const description = data.description
-                    const name = data.name
-                    geomData.push(description, name)
-                    console.log('geomData', geomData)
-                    })
-                    //--verify wether to put other data as well--
-                 })
-                } catch (error) {
-                   console.error(error.message)
-                }
+//retrieving data from basinShapFile
+const showBasinShapeFileData = async ()=>{
+ let geomData = []
+    const data = await fetch('http://135.181.209.141:8000/app_ets/restapi/survey')
+ if(data.ok){
+        const jsondata = await data.json()
+        console.log('jsondata', jsondata)
+        const convArr = Object.entries(jsondata)
+         console.log('convarr',convArr)
+        const items = convArr[3]
+        //console.log('items', items)
+        items.map(itemsData =>{
+            console.log('itemsData', itemsData)
+        })
+    }
+  }
+        showBasinShapeFileData()
 
-            }
-            //add basin shapefile coordinates
-            const showBasinShapeFileCoordinates = async ()=>{
-                try {
-                let geomCoord = []
-                 //retrieving the coordinates from our api
-                const coordinatesObj = await api.get('pointclouds');
-                const data = await coordinatesObj.json()
-                console.log(data)
-                /*
-                    //loop to retrieve the required data //
-
-                    //push the required data in geomCoord variable//
-                */
-                } catch (error) {
-                    console.error(error.message)
-                }
-            }
-            console.log('basin data', showBasinShapeFileData());
-            console.log('basin coordinates', showBasinShapeFileCoordinates());
+/*
 
             //-- function to retrieve the data to put in the popup
                 //-- and attach the popup to the markers I set
