@@ -1,10 +1,13 @@
-# Editor configuration, see https://editorconfig.org
 [*]
-charset = utf-8
-indent_style = space
-indent_size = 4
-trim_trailing_whitespace = true
 end_of_line = lf
+tab_width = 4
+indent_size = 4
+indent_style = space
+charset = utf-8
+insert_final_newline = false
+trim_trailing_whitespace = true
+# Editor configuration, see https://editorconfig.org
+root = true
 
 [Makefile]
 indent_style = tab
@@ -12,12 +15,9 @@ indent_style = tab
 [*.sh]
 end_of_line = lf
 
-[*.ts]
+[*.{js,ts}]
 quote_type = single
-
-[.js]
 indent_size = 4
-quote_type = single
 
 [*.py]
 indent_style = space
@@ -31,10 +31,7 @@ indent_size = 2
 [*.json]
 indent_size = 2
 
-[*.yml]
-indent_size = 2
-
-[*.yaml]
+[*.{yaml,yml}]
 indent_size = 2
 
 [*.css]
@@ -44,5 +41,11 @@ indent_size = 4
 quote_type = single
 indent_size = 4
 indent_style = space
+
+[*.html]
+indent_size = 4
+indent_style = tab
+
+
 
 
