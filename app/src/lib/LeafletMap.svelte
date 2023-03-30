@@ -12,7 +12,7 @@
 		console.log('LeaftletMap: icon_layer_status.subscribe: ', value);
 	});
 	let region_borders;
-    let basinGeomCoordinates;
+    let basinGeomCoordinates =[]
     let basinGeomCoordData = []
 	// On mount, when the component is created
 	onMount(async () => {
@@ -119,21 +119,42 @@ const showBasinShapeFileData = async (geomDataP)=>{
     }
   }
 
-        showBasinShapeFileData(basinGeomCoordData)
+     showBasinShapeFileData(basinGeomCoordData)
   	console.log('basinGeomCoordData',basinGeomCoordData)
     const showBasinShapeFileCoordinates = async (coordDataP)=>{
-        const data = await fetch('http://135.181.209.141:8000/app_ets/pointclouds')
-        if(data.ok){
-            const jsondata = data.json()
-            console.log('coordJsondata', jsondata)
-            for(let i = 0; i<jsondata.length;i++){
-                console.log('eachCordData',jsondata[i])
-                const results = jsondata[3]
-                console.log('results', results)
+        const data = await fetch('http://135.181.209.141:8000/app_ets/pointclouds', {
+            method:'GET',
+            headers:{
+                'Content-Type':'application/json'
             }
+        })
+        if(data.ok){
+            const jsondata = await data.json()
+            console.log('coordJsondata', jsondata)
+         const obJsonData = Object.entries(jsondata)
+         console.log('obj', obJsonData)
+        const result = obJsonData[2]
+        //console.log('result', result)
+        const geom = result[1]
+       // console.log('geom', geom)
+        const arrGeom = Object.entries(geom)
+        //console.log('arrGeom', arrGeom)
+        const geomArr = arrGeom[0]
+        //console.log('geomArr', geomArr)
+        const fGeom = geomArr[1]
+        //console.log('fGeom', fGeom)
+        fGeom.map(coord =>{
+            //console.log('cord', coord)
+            const geomC = coord.geometry
+            const fCoordinates = geomC.coordinates
+            //console.log('geomC', geomC)
+            console.log('fCoord', fCoordinates)
+            coordDataP.push(fCoordinates)
+        })
         }
     }
-        showBasinShapeFileCoordinates()
+        showBasinShapeFileCoordinates(basinGeomCoordinates)
+        console.log('basinShapeFileCoordinates', basinGeomCoordinates)
 /*
 
             //-- function to retrieve the data to put in the popup

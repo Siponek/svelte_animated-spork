@@ -6,6 +6,7 @@
     import Menu from '$lib/Menu.svelte'
 	import { icon_layer_status, region_layer_status, user_status, user_register_status } from '$lib/store.js';
 	import UserRegisterIcon from './UserRegisterIcon.svelte';
+   // import UserPopup from '$lib/userNotifications/userPopup.svelte';
 /*
     function toggle_store_layer(store_layer)
     {
@@ -16,7 +17,7 @@
 
 	import RegionButton from '$lib/RegionToggleIcon.svelte';
 	import UserButton from '$lib/UserIcon.svelte';
-	import UserPopup from '$lib/userNotifications/userPopup.svelte';
+
 	import { icon_layer_status, region_layer_status } from '$lib/store.js';
 */
 	function toggle_store_layer(store_boolean) {
@@ -24,7 +25,7 @@
 		store_boolean.update((n) => !n);
 	}
 
-	const btn_status = new Array(2).fill(false);
+	const btn_status = new Array(4).fill(false);
 	let userPopupStatus = false;
 </script>
 
@@ -50,6 +51,7 @@
         toggle_store_layer(user_register_status)
         btn_status[3] = !btn_status[3];
     } }/>
+
 <!--
 <aside class=" rounded-r-lg content-center relative object-none ">
 	<LayerButton
@@ -66,11 +68,12 @@
 			btn_status[1] = !btn_status[1];
 		}}
 	/>
-	<div>
+
+<div>
 		<UserButton
 			class="p-1 icon user-icon  {btn_status[2] ? 'selected' : ''}"
 			on:click={() => {
-				btn_status[2] = !btn_status[2];
+				btn_status[4] = !btn_status[4];
 			}}
 			bind:popupVisible={userPopupStatus}
 		/>
