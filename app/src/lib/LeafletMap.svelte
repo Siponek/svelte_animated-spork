@@ -89,10 +89,10 @@ const login = async () =>{
         }
         console.log('there is an error')
 }
-
+login()
 //-end of LOGIN -//
 
-//retrieving data from basinShapFile
+//function to retrieve data to be put in markers popup from survey api
 
 const showBasinShapeFileData = async (geomDataP)=>{
     const data = await fetch('http://135.181.209.141:8000/app_ets/restapi/survey')
@@ -118,11 +118,13 @@ const showBasinShapeFileData = async (geomDataP)=>{
      })
     }
   }
-
      showBasinShapeFileData(basinGeomCoordData)
   	console.log('basinGeomCoordData',basinGeomCoordData)
+
+    //function to retrieve coordinates data from pointclouds api
     const showBasinShapeFileCoordinates = async (coordDataP)=>{
-        const data = await fetch('http://135.181.209.141:8000/app_ets/pointclouds', {
+        //const data = await fetch('http://135.181.209.141:8000/app_ets/pointclouds', {
+            const data = await fetch('http://135.181.209.141:8000/app_ets/survey/as/point', {
             method:'GET',
             headers:{
                 'Content-Type':'application/json'
@@ -131,8 +133,8 @@ const showBasinShapeFileData = async (geomDataP)=>{
         if(data.ok){
             const jsondata = await data.json()
             console.log('coordJsondata', jsondata)
-         const obJsonData = Object.entries(jsondata)
-         console.log('obj', obJsonData)
+        const obJsonData = Object.entries(jsondata)
+        console.log('obj', obJsonData)
         const result = obJsonData[2]
         //console.log('result', result)
         const geom = result[1]
@@ -155,24 +157,26 @@ const showBasinShapeFileData = async (geomDataP)=>{
     }
         showBasinShapeFileCoordinates(basinGeomCoordinates)
         console.log('basinShapeFileCoordinates', basinGeomCoordinates)
-/*
 
-            //-- function to retrieve the data to put in the popup
-                //-- and attach the popup to the markers I set
-                // in their related coordinate--//
+        //MARKERS FOR FIRST LEVEL
+for(let i=0;i<basinGeomCoordinates.length;i++){
+    let coord1 = basinGeomCoordinates[0]
+    let coord2 = basinGeomCoordinates[1]
+//....other coordinates
+    for(let x =0;x<basinGeomCoordData.length;x++){
+        let name = basinGeomCoordData[0]
+        let des = basinGeomCoordData[1]
+        //---other data to put in popup
+        /*let clusterMarkers = new LeafletMC.MarkerClusterGroup({
+				maxClusterRadius: 40
+			});*/
+        //let 1stMarkers = Leaflet.marker(coord1).setMinZoom().setMaxZoom().bindPopup(name, des).openPopup()
+        //--other markers to add later in the cluster group
+        //1stMarkers.addLayer(name);
+        //---add other layers in our cluster group
+    }
 
-
-                //--//
-
-         //--function to launch the marker, only when map is set on a specific zoom--//
-                /*
-              map.on('zoomstart', function(e){
-                if(map.getZoom()> --- && map.getZomm()< ----){
-                    //--show markers with related popup --//
-                }
-              })
-              */
-            //--//
+}
 		return () => {
 			if (leaflet_map) {
 				console.log('Unloading Leaflet map.');
