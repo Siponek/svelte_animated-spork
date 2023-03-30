@@ -12,7 +12,6 @@
 		console.log('LeaftletMap: icon_layer_status.subscribe: ', value);
 	});
 	let region_borders;
-    let basinGeomCoordinates =[]
 	// On mount, when the component is created
 	onMount(async () => {
 		if (browser) {
@@ -168,9 +167,9 @@ login()
 //-end of LOGIN -//
 
 
-    //function to retrieve coordinates data from pointclouds api
-    const showBasinShapeFileCoordinates = async (coordDataP)=>{
-        //const data = await fetch('http://135.181.209.141:8000/app_ets/pointclouds', {
+    //function to retrieve api data ( coord, and data for popup)
+    //which i'll insert properly
+    const showBasinShapeFileData = async ()=>{
             const data = await fetch('http://135.181.209.141:8000/app_ets/survey/as/point', {
             method:'GET',
             headers:{
@@ -180,37 +179,9 @@ login()
         if(data.ok){
             const jsondata = await data.json()
             console.log('coordJsondata', jsondata)
-        const obJsonData = Object.entries(jsondata)
-        console.log('obj', obJsonData)
-        const result = obJsonData[2]
-        //console.log('result', result)
-        const geom = result[1]
-       // console.log('geom', geom)
-        const arrGeom = Object.entries(geom)
-        //console.log('arrGeom', arrGeom)
-        const geomArr = arrGeom[0]
-        //console.log('geomArr', geomArr)
-        const fGeom = geomArr[1]
-        //console.log('fGeom', fGeom)
-        fGeom.map(coord =>{
-            //console.log('cord', coord)
-            const geomC = coord.geometry
-            const fCoordinates = geomC.coordinates
-            const fCoord1 = fCoordinates[0]
-            const fCoord2 = fCoordinates[1]
-            //console.log('geomC', geomC)
-            console.log('fCoord', fCoordinates)
-            coordDataP.push( fCoord1, fCoord2)
-        })
-        }
     }
-        showBasinShapeFileCoordinates(basinGeomCoordinates)
-        console.log('basinShapeFileCoordinates', basinGeomCoordinates)
-
- const copyGeomCoords = basinGeomCoordinates
-console.log('copy', copyGeomCoords)
-
-
+}
+showBasinShapeFileData()
 		return () => {
 			if (leaflet_map) {
 				console.log('Unloading Leaflet map.');
