@@ -1,8 +1,12 @@
+<script>
+	import UserLogin from "$lib/UserLogin.svelte";
+</script>
 <svelte:head>
 	<title>ETS - Index</title>
 </svelte:head>
 <div class="page-wrapper bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-gray-500 via-ets-grey to-ets-blue">
-	<div class="p-5 h-screen items-center">
+<UserLogin />
+    <!-- <div class="p-5 h-screen items-center">
 		<div class=" text-gray-100">
 			<h1 class="text-3xl">Hello, welcome to ETS index</h1>
 			<p class="">You propably want to go to
@@ -19,5 +23,5 @@
                 <a href="register"> register</a>
             </p>
 		</div>
-	</div>
+	</div> -->
 </div>

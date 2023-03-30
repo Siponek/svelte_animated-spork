@@ -3,6 +3,7 @@
 	import { browser } from '$app/environment';
 	import {  district, geographyData } from '$lib/store.js';
 	import { icon_layer_status, region_layer_status } from '$lib/store.js';
+	import { assign } from 'svelte/internal';
 	let leaflet_map;
 	let test_layer;
 	let web_layer;
@@ -149,34 +150,37 @@ const showBasinShapeFileData = async (geomDataP)=>{
             //console.log('cord', coord)
             const geomC = coord.geometry
             const fCoordinates = geomC.coordinates
+            const fCoord1 = fCoordinates[0]
+            const fCoord2 = fCoordinates[1]
             //console.log('geomC', geomC)
             console.log('fCoord', fCoordinates)
-            coordDataP.push(fCoordinates)
+            coordDataP.push( fCoord1, fCoord2)
         })
         }
     }
         showBasinShapeFileCoordinates(basinGeomCoordinates)
         console.log('basinShapeFileCoordinates', basinGeomCoordinates)
 
-        //MARKERS FOR FIRST LEVEL
-for(let i=0;i<basinGeomCoordinates.length;i++){
-    let coord1 = basinGeomCoordinates[0]
-    let coord2 = basinGeomCoordinates[1]
-//....other coordinates
-    for(let x =0;x<basinGeomCoordData.length;x++){
-        let name = basinGeomCoordData[0]
-        let des = basinGeomCoordData[1]
-        //---other data to put in popup
-        /*let clusterMarkers = new LeafletMC.MarkerClusterGroup({
-				maxClusterRadius: 40
-			});*/
-        //let 1stMarkers = Leaflet.marker(coord1).setMinZoom().setMaxZoom().bindPopup(name, des).openPopup()
-        //--other markers to add later in the cluster group
-        //1stMarkers.addLayer(name);
-        //---add other layers in our cluster group
-    }
-
+const copyGeomCoords = basinGeomCoordinates
+console.log('copy', copyGeomCoords)
+/*
+const assignMarkers = ()=>{
+ for(let i = 0; i < copyGeomCoords.length; i++) {
+  console.log(copyGeomCoords[i]);
+  const coord1 =copyGeomCoords[0]
+  //---
+  for (let x=0;x<basinGeomCoordData.length;x++){
+    const data = basinGeomCoordData[0]
+//---
+//--aggiunta markers  e popup ----
+  //  const mark1 = Leaflet.marker().setMinZoom().setMaxZoom().bindPopup().openPopup()
+  }
 }
+}
+
+*/
+
+
 		return () => {
 			if (leaflet_map) {
 				console.log('Unloading Leaflet map.');
