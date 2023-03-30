@@ -24,8 +24,7 @@ export const actions = {
 		if (cookies) {
 			// cookies.set('app_ets_session', body.token);
 			cookies.set(headers.get('Set-Cookie'));
-
-			throw redirect(307, '/map_page');
 		}
+		throw redirect(307, '/map_page');
 	}
 };

@@ -1,6 +1,6 @@
 import { fail, redirect } from '@sveltejs/kit';
 // import { cookies_store, current_user } from '$lib/store.js';
-import { getMyCustomStore } from '$lib/store.js';
+// import { getMyCustomStore } from '$lib/store.js';
 
 // @ts-ignore
 import * as api from '$lib/Api.js';
@@ -9,9 +9,9 @@ import * as api from '$lib/Api.js';
 export async function load({ locals }) {
 	if (locals.user) throw redirect(302, '/map_page');
 }
-
 const cookies_store_server = getMyCustomStore('cookies_store');
 const user_store_server = getMyCustomStore('current_user');
+
 /** @type {import('./$types').Actions} */
 
 export const actions = {
@@ -26,7 +26,7 @@ export const actions = {
 		// cookies_store_server.set(headers.get('Set-Cookie'));
 		cookies.set(headers.get('Set-Cookie'));
 
-		throw redirect(302, '/map_page');
+		throw redirect(303, '/map_page');
 	}
 
 	/*
