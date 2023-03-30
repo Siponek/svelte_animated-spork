@@ -48,7 +48,7 @@
 
 			region_borders = Leaflet.geoJSON($geographyData, {
                 style: (feature) => {
-					switch (feature){
+					switch (feature.features){
                         case 'DISTRETTO APPENNINO CENTRALE':
                             return {
                         color: 'blue',
@@ -118,7 +118,7 @@
 						weight: 2,
 						opacity: 0.5,
 						fillOpacity: 0.3,
-						fillColor: 'yellow'
+						fillColor: 'red'
                         }
                     }
 				/*
