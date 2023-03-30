@@ -3,7 +3,6 @@
 	import { browser } from '$app/environment';
 	import {  district, geographyData } from '$lib/store.js';
 	import { icon_layer_status, region_layer_status } from '$lib/store.js';
-	import { assign } from 'svelte/internal';
 	let leaflet_map;
 	let test_layer;
 	let web_layer;
@@ -14,7 +13,6 @@
 	});
 	let region_borders;
     let basinGeomCoordinates =[]
-    let basinGeomCoordData = []
 	// On mount, when the component is created
 	onMount(async () => {
 		if (browser) {
@@ -49,7 +47,83 @@
 			}).addTo(leaflet_map);
 
 			region_borders = Leaflet.geoJSON($geographyData, {
-				style: (feature) => {
+                style: (feature) => {
+					let style;
+					switch (feature){
+                        case 'DISTRETTO APPENNINO CENTRALE':
+                            style ={
+                        color: 'blue',
+						weight: 2,
+						opacity: 0.5,
+						fillOpacity: 0.3,
+						fillColor: 'green'
+                            };
+                        break;
+                        case 'DISTRETTO ALPI ORIENTALI':
+                            style ={
+                         color: 'green',
+						weight: 2,
+						opacity: 0.5,
+						fillOpacity: 0.3,
+						fillColor: 'red'
+                            };
+                        break;
+                        case 'DISTRETTO APPENNINO SETTENTRIONALE':
+                            style ={
+                         color: 'black',
+						weight: 2,
+						opacity: 0.5,
+						fillOpacity: 0.3,
+						fillColor: 'orange'
+                            };
+                        break;
+                        case 'DISTRETTO FIUME PO':
+                            style ={
+                         color: 'black',
+						weight: 2,
+						opacity: 0.5,
+						fillOpacity: 0.3,
+						fillColor: 'purple'
+                            };
+                        break;
+                        case 'DISTRETTO SICILIA':
+                            style ={
+                         color: 'black',
+						weight: 2,
+						opacity: 0.5,
+						fillOpacity: 0.3,
+						fillColor: 'beige'
+                            };
+                        break;
+                        case 'DISTRETTO SARDEGNA':
+                            style ={
+                         color: 'black',
+						weight: 2,
+						opacity: 0.5,
+						fillOpacity: 0.3,
+						fillColor: 'brown'
+                            };
+                        break;
+                        case 'DISTRETTO APPENNINO MERIDIONALE':
+                            style ={
+                         color: 'black',
+						weight: 2,
+						opacity: 0.5,
+						fillOpacity: 0.3,
+						fillColor: 'yellow'
+                            };
+                        break;
+                        default:
+                                style ={
+                        color: 'violet',
+						weight: 2,
+						opacity: 0.5,
+						fillOpacity: 0.3,
+						fillColor: 'yellow'
+                        }
+                    }
+				/*
+                style: (feature) => {
 					return {
 						color: 'blue',
 						weight: 2,
@@ -57,6 +131,7 @@
 						fillOpacity: 0.3,
 						fillColor: 'green'
 					};
+                    */
 				}
 			});
 			test_layer = Leaflet.layerGroup([center_italy, millan, rome]);
@@ -93,34 +168,6 @@ const login = async () =>{
 login()
 //-end of LOGIN -//
 
-//function to retrieve data to be put in markers popup from survey api
-
-const showBasinShapeFileData = async (geomDataP)=>{
-    const data = await fetch('http://135.181.209.141:8000/app_ets/restapi/survey')
- if(data.ok){
-        const jsondata = await data.json()
-        console.log('jsondata', jsondata)
-        const convArr = Object.entries(jsondata)
-         console.log('convarr',convArr)
-        const items = convArr[3]
-        const rItems = items[1]
-        console.log('rItems', rItems)
-        rItems.map((itemsData) =>{
-            let basinNames = []
-            let basinDescriptions = []
-           console.log('itemsData',itemsData)
-           const names = itemsData.name
-           const descriptions = itemsData.description
-           basinNames.push(names)
-           basinDescriptions.push(descriptions)
-        // geomData.push(basinNames, basinDescriptions)
-		geomDataP.push(basinNames,basinDescriptions)
-           console.log('ge', geomDataP)
-     })
-    }
-  }
-     showBasinShapeFileData(basinGeomCoordData)
-  	console.log('basinGeomCoordData',basinGeomCoordData)
 
     //function to retrieve coordinates data from pointclouds api
     const showBasinShapeFileCoordinates = async (coordDataP)=>{
@@ -161,24 +208,8 @@ const showBasinShapeFileData = async (geomDataP)=>{
         showBasinShapeFileCoordinates(basinGeomCoordinates)
         console.log('basinShapeFileCoordinates', basinGeomCoordinates)
 
-const copyGeomCoords = basinGeomCoordinates
+ const copyGeomCoords = basinGeomCoordinates
 console.log('copy', copyGeomCoords)
-/*
-const assignMarkers = ()=>{
- for(let i = 0; i < copyGeomCoords.length; i++) {
-  console.log(copyGeomCoords[i]);
-  const coord1 =copyGeomCoords[0]
-  //---
-  for (let x=0;x<basinGeomCoordData.length;x++){
-    const data = basinGeomCoordData[0]
-//---
-//--aggiunta markers  e popup ----
-  //  const mark1 = Leaflet.marker().setMinZoom().setMaxZoom().bindPopup().openPopup()
-  }
-}
-}
-
-*/
 
 
 		return () => {
