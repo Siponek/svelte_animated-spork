@@ -193,8 +193,13 @@ let coordinates = coord
 let names = popupNames
 let descriptionsF = descriptions
 console.log('coordtest', coordinates, 'namestest', names, 'descriptionstest', descriptionsF)
+
+
 //--adding our markers in our cluster group, with our retrieved data
-            //let firstLevelMarkersCluster = new LeafletMC.MarkerClusterGroup();
+            let firstLevelMarkersCluster = new LeafletMC.MarkerClusterGroup();
+                let mark1 = Leaflet.marker(coordinates[0]).bindPopup(names[0], descriptionsF[0]).openPopup();
+                let mark2 = Leaflet.marker(coordinates[1]).bindPopup(names[1], descriptionsF[1]).openPopup();
+                let mark3 = Leaflet.marker(coordinates[2]).bindPopup(names[2], descriptionsF[2]).openPopup();
 //--all of my markers to be added in the clusters
 		return () => {
 			if (leaflet_map) {
