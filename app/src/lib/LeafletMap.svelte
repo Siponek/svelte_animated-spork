@@ -47,80 +47,82 @@
 
 			region_borders = Leaflet.geoJSON($geographyData, {
                 style: (feature) => {
-					switch (feature.features){
+                    switch (feature.features){
                         case 'DISTRETTO APPENNINO CENTRALE':
                             return {
                         color: 'blue',
-						weight: 2,
-						opacity: 0.5,
-						fillOpacity: 0.3,
-						fillColor: 'green'
+                        weight: 2,
+                        opacity: 0.5,
+                        fillOpacity: 0.3,
+                        fillColor: 'green'
                             };
 
                         case 'DISTRETTO ALPI ORIENTALI':
                            return {
                          color: 'green',
-						weight: 2,
-						opacity: 0.5,
-						fillOpacity: 0.3,
-						fillColor: 'red'
+                        weight: 2,
+                        opacity: 0.5,
+                        fillOpacity: 0.3,
+                        fillColor: 'red'
                             };
 
                         case 'DISTRETTO APPENNINO SETTENTRIONALE':
                          return {
                          color: 'black',
-						weight: 2,
-						opacity: 0.5,
-						fillOpacity: 0.3,
-						fillColor: 'orange'
+                        weight: 2,
+                        opacity: 0.5,
+                        fillOpacity: 0.3,
+                        fillColor: 'orange'
                             };
 
                         case 'DISTRETTO FIUME PO':
                         return {
                          color: 'black',
-						weight: 2,
-						opacity: 0.5,
-						fillOpacity: 0.3,
-						fillColor: 'purple'
+                        weight: 2,
+                        opacity: 0.5,
+                        fillOpacity: 0.3,
+                        fillColor: 'purple'
                             };
 
                         case 'DISTRETTO SICILIA':
                        return {
                          color: 'black',
-						weight: 2,
-						opacity: 0.5,
-						fillOpacity: 0.3,
-						fillColor: 'beige'
+                        weight: 2,
+                        opacity: 0.5,
+                        fillOpacity: 0.3,
+                        fillColor: 'beige'
                             };
 
                         case 'DISTRETTO SARDEGNA':
                            return {
                          color: 'black',
-						weight: 2,
-						opacity: 0.5,
-						fillOpacity: 0.3,
-						fillColor: 'brown'
+                        weight: 2,
+                        opacity: 0.5,
+                        fillOpacity: 0.3,
+                        fillColor: 'brown'
                             };
 
                         case 'DISTRETTO APPENNINO MERIDIONALE':
                          return {
                          color: 'black',
-						weight: 2,
-						opacity: 0.5,
-						fillOpacity: 0.3,
-						fillColor: 'yellow'
+                        weight: 2,
+                        opacity: 0.5,
+                        fillOpacity: 0.3,
+                        fillColor: 'yellow'
                             };
 
                         default:
                          return {
                         color: 'violet',
-						weight: 2,
-						opacity: 0.5,
-						fillOpacity: 0.3,
-						fillColor: 'red'
+                        weight: 2,
+                        opacity: 0.5,
+                        fillOpacity: 0.3,
+                        fillColor: 'red'
                         }
                     }
+
 				/*
+
                 style: (feature) => {
 					return {
 						color: 'blue',
@@ -130,8 +132,7 @@
 						fillColor: 'green'
 					};
                     */
-				}
-			});
+			}});
 			test_layer = Leaflet.layerGroup([center_italy, millan, rome]);
 
 			test_layer.on('click', function (a) {
@@ -169,7 +170,11 @@ login()
 
     //function to retrieve api data ( coord, and data for popup)
     //which i'll insert properly
+
     const showBasinShapeFileData = async ()=>{
+        let coord = []
+        let popupNames = []
+        let descriptions = []
             const data = await fetch('http://135.181.209.141:8000/app_ets/survey/as/point', {
             method:'GET',
             headers:{
@@ -178,10 +183,30 @@ login()
         })
         if(data.ok){
             const jsondata = await data.json()
-            console.log('coordJsondata', jsondata)
+            //console.log('coordJsondata', jsondata)
+        const features = jsondata.result.features
+        console.log('features', features)
+        features.map(data =>{
+            console.log('data', data)
+            let coordinates = data.geometry.coordinates
+            //--retrieving coordinates data - and stored 'em into a variable
+            //console.log('coordinates', coordinates)
+            coord.push(coordinates)
+            //--retrieving data for markers popup - and stored 'em into a variable
+            let names = data.properties.name
+            //console.log('name', names)
+            popupNames.push(names)
+
+            let des = data.properties.description
+            console.log('desc', des)
+            descriptions.push(des)
+        })
     }
+
 }
+
 showBasinShapeFileData()
+
 		return () => {
 			if (leaflet_map) {
 				console.log('Unloading Leaflet map.');
