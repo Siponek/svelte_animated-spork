@@ -195,7 +195,7 @@ let descriptionsF = descriptions
 console.log('coordtest', coordinates, 'namestest', names, 'descriptionstest', descriptionsF)
 
 
-//--adding our markers in our cluster group, with our retrieved data
+//--creating the cluster group and all of the markers
         let firstLevelMarkersCluster = new LeafletMC.MarkerClusterGroup();
                 let mark1 = Leaflet.marker(coordinates[0]).bindPopup(names[0], descriptionsF[0]).openPopup();
                 let mark2 = Leaflet.marker(coordinates[1]).bindPopup(names[1], descriptionsF[1]).openPopup();
@@ -236,8 +236,9 @@ console.log('coordtest', coordinates, 'namestest', names, 'descriptionstest', de
 	});
 	$: if (test_layer && leaflet_map) {
 		if ($icon_layer_status) {
-			test_layer.addTo(leaflet_map);
-			web_layer.addTo(leaflet_map);
+			//test_layer.addTo(leaflet_map);
+			//web_layer.addTo(leaflet_map);
+            firstLevelMarkersCluster.addTo(leaflet_map)
 			// leaflet_map.addLayer(web_layer);
 		} else {
 			test_layer.remove();
