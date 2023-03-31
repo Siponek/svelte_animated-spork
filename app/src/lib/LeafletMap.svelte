@@ -198,6 +198,7 @@ console.log('coordtest', coordinates, 'namestest', names, 'descriptionstest', de
 
 //--creating the cluster group and all of the markers
         let firstLevelMarkersCluster = new LeafletMC.MarkerClusterGroup();
+               // let test1 = Leaflet.marker([8.19934, 44.026175]).bindPopup('ciao').openPopup()
                 let mark1 = Leaflet.marker(coordinates[0]).bindPopup(names[0], descriptionsF[0]).openPopup();
                 let mark2 = Leaflet.marker(coordinates[1]).bindPopup(names[1], descriptionsF[1]).openPopup();
                 let mark3 = Leaflet.marker(coordinates[2]).bindPopup(names[2], descriptionsF[2]).openPopup();
@@ -214,6 +215,7 @@ console.log('coordtest', coordinates, 'namestest', names, 'descriptionstest', de
 
 
                 //--adding the markers layer into my cluster
+                  //web_layer.addLayer(test1)
     firstLevelMarkersCluster.addLayer(mark1)
     firstLevelMarkersCluster.addLayer(mark2)
     firstLevelMarkersCluster.addLayer(mark3)
