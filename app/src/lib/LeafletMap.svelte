@@ -179,21 +179,22 @@ login()
             let names = data.properties.name
             //console.log('name', names)
             popupNames.push(names)
-
+            // adding descriptions data
             let des = data.properties.description
             console.log('desc', des)
             descriptions.push(des)
         })
-    }
-    //--adding marker cluster in which we put our markers with our retrieved data----
-    firstLevelMarkerCluster = new LeafletMC.MarkerClusterGroup({
+
+  //--adding marker cluster in which we put our markers with our retrieved data----
+  const Leaflet = await import('leaflet');
+    const LeafletMC = await import('leaflet.markercluster');
+  const firstLevelMarkerCluster = new LeafletMC.MarkerClusterGroup({
 				maxClusterRadius: 40
 			});
-
-
-}
+}}
 
 showBasinShapeFileData()
+
 
 		return () => {
 			if (leaflet_map) {
