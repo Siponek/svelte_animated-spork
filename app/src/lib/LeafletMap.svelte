@@ -190,6 +190,11 @@ login()
 showBasinShapeFileData(coord, popupNames, descriptions)
 console.log('markersData','coord', coord, 'popupnames', popupNames, 'desc',descriptions)
 
+//--adding our markers in our cluster group, with our retrieved data
+let firstLevelMarkersCluster = new LeafletMC.MarkerClusterGroup({
+				maxClusterRadius: 40
+			});
+//--all of my markers to be added in the clusters
 		return () => {
 			if (leaflet_map) {
 				console.log('Unloading Leaflet map.');
