@@ -46,7 +46,7 @@
 			}).addTo(leaflet_map);
 
 			region_borders = Leaflet.geoJSON($geographyData, {
-                style: (feature) => {
+                style: function (feature) {
                     let features = $geographyData.features
                     console.log('features', features)
                     for(let i=0;i<features.length;i++){
@@ -55,7 +55,7 @@
                         console.log('distretF', distretti)
                         switch (feature.distretti){
                         case 'DISTRETTO APPENNINO CENTRALE':
-                            return {
+                            return{
                         color: 'blue',
                         weight: 2,
                         opacity: 0.5,
@@ -64,7 +64,7 @@
                             };
 
                         case 'DISTRETTO ALPI ORIENTALI':
-                           return {
+                          return{
                          color: 'green',
                         weight: 2,
                         opacity: 0.5,
@@ -198,6 +198,8 @@ login()
             descriptions.push(des)
         })
     }
+    //--adding marker cluster in which we put our markers with our retrieved data----
+
 
 }
 

@@ -7,19 +7,7 @@
 	import { icon_layer_status, region_layer_status, user_status, user_register_status } from '$lib/store.js';
 	import UserRegisterIcon from './UserRegisterIcon.svelte';
    // import UserPopup from '$lib/userNotifications/userPopup.svelte';
-/*
-    function toggle_store_layer(store_layer)
-    {
-        console.log('Sidebad button: toggling store layer');
-        store_layer.update((n) => !n);
-    }
-    let btn_status = new Array (3).fill(false);
 
-	import RegionButton from '$lib/RegionToggleIcon.svelte';
-	import UserButton from '$lib/UserIcon.svelte';
-
-	import { icon_layer_status, region_layer_status } from '$lib/store.js';
-*/
 	function toggle_store_layer(store_boolean) {
 		console.log('Sidebad button: toggling store layer');
 		store_boolean.update((n) => !n);
@@ -29,10 +17,9 @@
 	let userPopupStatus = false;
 </script>
 
-<aside class=" rounded-r-lg content-center relative object-none staticSidebar">
-
-        <Menu/>
-        <LayerButton class ="p-1 icon fill-ets-blue {btn_status[0] ? 'selected' : ''}"  on:click={() => {
+ <aside class=" rounded-r-lg content-center relative object-none staticSidebar">
+    <Menu/>
+         <LayerButton class ="p-1 icon fill-ets-blue {btn_status[0] ? 'selected' : ''}"  on:click={() => {
             toggle_store_layer(icon_layer_status);
             btn_status[0] = !btn_status[0];
         }
@@ -68,6 +55,7 @@
 			btn_status[1] = !btn_status[1];
 		}}
 	/>
+    <Menu/>
 
 <div>
 		<UserButton
