@@ -152,11 +152,11 @@ login()
 
     //function to retrieve api data ( coord, and data for popup)
     //which i'll insert properly
-
-    const showBasinShapeFileData = async ()=>{
         let coord = []
         let popupNames = []
         let descriptions = []
+    const showBasinShapeFileData = async (coord, popupNames, descriptions)=>{
+
 
             const data = await fetch('http://135.181.209.141:8000/app_ets/survey/as/point', {
             method:'GET',
@@ -185,15 +185,10 @@ login()
             descriptions.push(des)
         })
 
-  //--adding marker cluster in which we put our markers with our retrieved data----
-  const Leaflet = await import('leaflet');
-    const LeafletMC = await import('leaflet.markercluster');
-  const firstLevelMarkerCluster = new LeafletMC.MarkerClusterGroup({
-				maxClusterRadius: 40
-			});
 }}
 
-showBasinShapeFileData()
+showBasinShapeFileData(coord, popupNames, descriptions)
+console.log('markersData','coord', coord, 'popupnames', popupNames, 'desc',descriptions)
 
 
 		return () => {
