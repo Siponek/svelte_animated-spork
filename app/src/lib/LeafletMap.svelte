@@ -35,6 +35,7 @@
 			web_layer = new LeafletMC.MarkerClusterGroup({
 				maxClusterRadius: 40
 			});
+
 			web_layer.addLayer(genova_1);
 			web_layer.addLayer(genova_2);
 			web_layer.addLayer(liguria_region_marker);
@@ -237,12 +238,13 @@ console.log('coordtest', coordinates, 'namestest', names, 'descriptionstest', de
 	$: if (test_layer && leaflet_map) {
 		if ($icon_layer_status) {
 			//test_layer.addTo(leaflet_map);
-			//web_layer.addTo(leaflet_map);
-            firstLevelMarkersCluster.addTo(leaflet_map)
-			// leaflet_map.addLayer(web_layer);
+			web_layer.addTo(leaflet_map);
+            //firstLevelMarkersCluster.addTo(leaflet_map)
+			//leaflet_map.addLayer(web_layer);
 		} else {
-			test_layer.remove();
+			//test_layer.remove();
 			web_layer.remove();
+            //firstLevelMarkersCluster.remove()
 			// leaflet_map.addLayer(web_layer);
 		}
 	}
