@@ -47,101 +47,73 @@
 
 			region_borders = Leaflet.geoJSON($geographyData, {
                 style: function (feature) {
-                    let features = $geographyData.features
-                    //console.log('featuresT', features)
-                    let fetObj = Object.assign({}, features)
-                    for (let data in fetObj){
-                       let value = fetObj[data]
-                       //console.log('value', value)
-                       let districts = value.properties.distretti
-                       console.log('distretti', districts)
-                       let color;
-                        switch(districts){
-                            case 'DISTRETTO APPENNINO CENTRALE':
-                            color ={
+                    switch(feature.properties.distretti){
+                        case 'DISTRETTO APPENNINO CENTRALE':
+                            return {
                                 color: 'blue',
                                 weight: 2,
                                 opacity: 0.5,
                                 fillOpacity: 0.3,
                                 fillColor: 'green'
                             };
-                            break;
-                            case 'DISTRETTO APPENNINO CENTRALE':
-                            color ={
+                         case 'DISTRETTO ALPI ORIENTALI':
+                         return {
                                 color: 'blue',
                                 weight: 2,
                                 opacity: 0.5,
                                 fillOpacity: 0.3,
                                 fillColor: 'blue'
                             };
-                            break;
-                            case 'DISTRETTO ALPI ORIENTALI':
-                            color ={
+                            case 'DISTRETTO APPENNINO SETTENTRIONALE':
+                         return {
                                 color: 'blue',
                                 weight: 2,
                                 opacity: 0.5,
                                 fillOpacity: 0.3,
                                 fillColor: 'red'
                             };
-                            break;
-                            case 'DISTRETTO APPENNINO SETTENTRIONALE':
-                            color ={
-                                color: 'blue',
-                                weight: 2,
-                                opacity: 0.5,
-                                fillOpacity: 0.3,
-                                fillColor: 'violet'
-                            };
-                            break;
                             case 'DISTRETTO FIUME PO':
-                            color ={
+                         return {
                                 color: 'blue',
                                 weight: 2,
                                 opacity: 0.5,
                                 fillOpacity: 0.3,
                                 fillColor: 'orange'
                             };
-                            break;
                             case 'DISTRETTO SICILIA':
-                            color ={
-                                color: 'blue',
-                                weight: 2,
-                                opacity: 0.5,
-                                fillOpacity: 0.3,
-                                fillColor: 'yellow'
-                            };
-                            break;
-                            case 'DISTRETTO SARDEGNA':
-                            color ={
+                         return {
                                 color: 'blue',
                                 weight: 2,
                                 opacity: 0.5,
                                 fillOpacity: 0.3,
                                 fillColor: 'brown'
                             };
-                            break;
+                            case 'DISTRETTO SARDEGNA':
+                         return {
+                                color: 'blue',
+                                weight: 2,
+                                opacity: 0.5,
+                                fillOpacity: 0.3,
+                                fillColor: 'yellow'
+                            };
                             case 'DISTRETTO APPENNINO MERIDIONALE':
-                            color ={
+                         return {
                                 color: 'blue',
                                 weight: 2,
                                 opacity: 0.5,
                                 fillOpacity: 0.3,
                                 fillColor: 'purple'
                             };
-                            break;
-                            default:
-                            color ={
+                        default:
+                            return{
                                 color: 'blue',
                                 weight: 2,
                                 opacity: 0.5,
                                 fillOpacity: 0.3,
-                                fillColor: 'blue'
-                            };
-                        }
-                        return color;
+                                fillColor: 'red'
+                            }
                     }
-                 }
-        });
+        }});
 
 			test_layer = Leaflet.layerGroup([center_italy, millan, rome]);
 
