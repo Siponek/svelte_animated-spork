@@ -32,6 +32,7 @@
 				.openPopup();
 			const genova_1 = Leaflet.marker([44.0, 8.5]).bindPopup('Genoa test1').openPopup();
 			const genova_2 = Leaflet.marker([44.3, 8]).bindPopup('Genoa test2').openPopup();
+
 			web_layer = new LeafletMC.MarkerClusterGroup({
 				maxClusterRadius: 40
 			});
@@ -39,6 +40,7 @@
 			web_layer.addLayer(genova_1);
 			web_layer.addLayer(genova_2);
 			web_layer.addLayer(liguria_region_marker);
+
 
 			// Adding street map
 			Leaflet.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
