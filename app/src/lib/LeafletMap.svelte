@@ -196,11 +196,37 @@ console.log('coordtest', coordinates, 'namestest', names, 'descriptionstest', de
 
 
 //--adding our markers in our cluster group, with our retrieved data
-            let firstLevelMarkersCluster = new LeafletMC.MarkerClusterGroup();
+        let firstLevelMarkersCluster = new LeafletMC.MarkerClusterGroup();
                 let mark1 = Leaflet.marker(coordinates[0]).bindPopup(names[0], descriptionsF[0]).openPopup();
                 let mark2 = Leaflet.marker(coordinates[1]).bindPopup(names[1], descriptionsF[1]).openPopup();
                 let mark3 = Leaflet.marker(coordinates[2]).bindPopup(names[2], descriptionsF[2]).openPopup();
-//--all of my markers to be added in the clusters
+                let mark4 = Leaflet.marker(coordinates[3]).bindPopup(names[3], descriptionsF[3]).openPopup();
+                let mark5 = Leaflet.marker(coordinates[4]).bindPopup(names[4], descriptionsF[4]).openPopup();
+                let mark6 = Leaflet.marker(coordinates[5]).bindPopup(names[5], descriptionsF[5]).openPopup();
+                let mark7 = Leaflet.marker(coordinates[6]).bindPopup(names[6], descriptionsF[6]).openPopup();
+                let mark8 = Leaflet.marker(coordinates[7]).bindPopup(names[7], descriptionsF[7]).openPopup();
+                let mark9 = Leaflet.marker(coordinates[8]).bindPopup(names[8], descriptionsF[8]).openPopup();
+                let mark10 = Leaflet.marker(coordinates[9]).bindPopup(names[9], descriptionsF[9]).openPopup();
+                let mark11 = Leaflet.marker(coordinates[10]).bindPopup(names[10], descriptionsF[10]).openPopup();
+                let mark12 = Leaflet.marker(coordinates[11]).bindPopup(names[11], descriptionsF[11]).openPopup();
+                let mark13 = Leaflet.marker(coordinates[12]).bindPopup(names[12], descriptionsF[12]).openPopup();
+
+
+                //--adding the markers layer into my cluster
+    firstLevelMarkersCluster.addLayer(mark1)
+    firstLevelMarkersCluster.addLayer(mark2)
+    firstLevelMarkersCluster.addLayer(mark3)
+    firstLevelMarkersCluster.addLayer(mark4)
+    firstLevelMarkersCluster.addLayer(mark5)
+    firstLevelMarkersCluster.addLayer(mark6)
+    firstLevelMarkersCluster.addLayer(mark7)
+    firstLevelMarkersCluster.addLayer(mark8)
+    firstLevelMarkersCluster.addLayer(mark9)
+    firstLevelMarkersCluster.addLayer(mark10)
+    firstLevelMarkersCluster.addLayer(mark11)
+    firstLevelMarkersCluster.addLayer(mark12)
+    firstLevelMarkersCluster.addLayer(mark13)
+
 		return () => {
 			if (leaflet_map) {
 				console.log('Unloading Leaflet map.');
