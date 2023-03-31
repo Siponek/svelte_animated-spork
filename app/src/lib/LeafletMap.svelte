@@ -47,7 +47,13 @@
 
 			region_borders = Leaflet.geoJSON($geographyData, {
                 style: (feature) => {
-                    switch (feature.features){
+                    let features = $geographyData.features
+                    console.log('features', features)
+                    for(let i=0;i<features.length;i++){
+                        //console.log('eachf', features[i])
+                        let distretti = features[i].properties.distretti
+                        console.log('distretF', distretti)
+                        switch (feature.distretti){
                         case 'DISTRETTO APPENNINO CENTRALE':
                             return {
                         color: 'blue',
@@ -120,19 +126,9 @@
                         fillColor: 'red'
                         }
                     }
+                    }
 
-				/*
-
-                style: (feature) => {
-					return {
-						color: 'blue',
-						weight: 2,
-						opacity: 0.5,
-						fillOpacity: 0.3,
-						fillColor: 'green'
-					};
-                    */
-			}});
+        }});
 			test_layer = Leaflet.layerGroup([center_italy, millan, rome]);
 
 			test_layer.on('click', function (a) {
