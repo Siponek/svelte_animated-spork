@@ -37,12 +37,123 @@
 				maxClusterRadius: 40
 			});
 
+/* LOGIN*/
+
+const login = async () =>{
+    const userLogin = {
+             "email": "mario@ets.it",
+             "password": "lazypasssword" }
+    const settings = {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Cookie':'a39e72ee-ce1c-11ed-978e-0242ac130003'
+        },
+        body: JSON.stringify(userLogin)
+    }
+        const login = await fetch('http://135.181.209.141:8000/app_ets/auth/api/login', settings)
+        if(login.ok){
+            return login.json()
+        }
+        console.log('there is an error')
+}
+login()
+//-end of LOGIN -//
+
+    //function to retrieve api data ( coord, and data for popup)
+    //which i'll insert properly
+       let coord = []
+        let popupNames = []
+        let descriptions = []
+
+    const showBasinShapeFileData = async (coord, popupNames, descriptions)=>{
+
+
+            const data = await fetch('http://135.181.209.141:8000/app_ets/survey/as/point', {
+            method:'GET',
+            headers:{
+                'Content-Type':'application/json'
+            }
+        })
+        if(data.ok){
+            const jsondata = await data.json()
+            //console.log('coordJsondata', jsondata)
+        const features = jsondata.result.features
+        console.log('features', features)
+        features.map(data =>{
+            console.log('data', data)
+            let coordinates = data.geometry.coordinates
+            //--retrieving coordinates data - and stored 'em into a variable
+            //console.log('coordinates', coordinates)
+            coord.push(coordinates)
+            //--retrieving data for markers popup - and stored 'em into a variable
+            let names = data.properties.name
+            //console.log('name', names)
+            popupNames.push(names)
+            // adding descriptions data
+            let des = data.properties.description
+            console.log('desc', des)
+            descriptions.push(des)
+        })
+
+}}
+
+
+showBasinShapeFileData(coord, popupNames, descriptions)
+console.log('markersData','coord', coord, 'popupnames', popupNames, 'desc',descriptions)
+let coordinates = coord
+let names = popupNames
+let descriptionsF = descriptions
+console.log('coordtest', coordinates, 'namestest', names, 'descriptionstest', descriptionsF)
+
+
+//--creating the cluster group and all of the markers
+        let firstLevelMarkersCluster = new LeafletMC.MarkerClusterGroup();
+                let test1 = Leaflet.marker([8.19934, 44.026175]).bindPopup('ciao').openPopup()
+                let mark1 = Leaflet.marker(coordinates[0]).bindPopup(names[0], descriptionsF[0]).openPopup();
+                let mark2 = Leaflet.marker(coordinates[1]).bindPopup(names[1], descriptionsF[1]).openPopup();
+                let mark3 = Leaflet.marker(coordinates[2]).bindPopup(names[2], descriptionsF[2]).openPopup();
+                let mark4 = Leaflet.marker(coordinates[3]).bindPopup(names[3], descriptionsF[3]).openPopup();
+                let mark5 = Leaflet.marker(coordinates[4]).bindPopup(names[4], descriptionsF[4]).openPopup();
+                let mark6 = Leaflet.marker(coordinates[5]).bindPopup(names[5], descriptionsF[5]).openPopup();
+                let mark7 = Leaflet.marker(coordinates[6]).bindPopup(names[6], descriptionsF[6]).openPopup();
+                let mark8 = Leaflet.marker(coordinates[7]).bindPopup(names[7], descriptionsF[7]).openPopup();
+                let mark9 = Leaflet.marker(coordinates[8]).bindPopup(names[8], descriptionsF[8]).openPopup();
+                let mark10 = Leaflet.marker(coordinates[9]).bindPopup(names[9], descriptionsF[9]).openPopup();
+                let mark11 = Leaflet.marker(coordinates[10]).bindPopup(names[10], descriptionsF[10]).openPopup();
+                let mark12 = Leaflet.marker(coordinates[11]).bindPopup(names[11], descriptionsF[11]).openPopup();
+                let mark13 = Leaflet.marker(coordinates[12]).bindPopup(names[12], descriptionsF[12]).openPopup();
+
+
+                //--adding the markers layer into my cluster
+               //   web_layer.addLayer(test1)
+    //firstLevelMarkersCluster.addLayer(mark1)
+    firstLevelMarkersCluster.addLayer(mark2)
+    firstLevelMarkersCluster.addLayer(mark3)
+    firstLevelMarkersCluster.addLayer(mark4)
+    firstLevelMarkersCluster.addLayer(mark5)
+    firstLevelMarkersCluster.addLayer(mark6)
+    firstLevelMarkersCluster.addLayer(mark7)
+    firstLevelMarkersCluster.addLayer(mark8)
+    firstLevelMarkersCluster.addLayer(mark9)
+    firstLevelMarkersCluster.addLayer(mark10)
+    firstLevelMarkersCluster.addLayer(mark11)
+    firstLevelMarkersCluster.addLayer(mark12)
+    firstLevelMarkersCluster.addLayer(mark13)
+
+
+
+
+///
+            web_layer.addLayer(test1)
 			web_layer.addLayer(genova_1);
 			web_layer.addLayer(genova_2);
 			web_layer.addLayer(liguria_region_marker);
 
 
 			// Adding street map
+
 			Leaflet.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 				attribution:
 					'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -128,109 +239,6 @@
 				console.log('LeafletMap: region_borders.on: ', e);
 			});
 		}
-/* LOGIN*/
-
-const login = async () =>{
-    const userLogin = {
-             "email": "mario@ets.it",
-             "password": "lazypasssword" }
-    const settings = {
-        method: 'POST',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            'Cookie':'a39e72ee-ce1c-11ed-978e-0242ac130003'
-        },
-        body: JSON.stringify(userLogin)
-    }
-        const login = await fetch('http://135.181.209.141:8000/app_ets/auth/api/login', settings)
-        if(login.ok){
-            return login.json()
-        }
-        console.log('there is an error')
-}
-login()
-//-end of LOGIN -//
-
-
-    //function to retrieve api data ( coord, and data for popup)
-    //which i'll insert properly
-        let coord = []
-        let popupNames = []
-        let descriptions = []
-    const showBasinShapeFileData = async (coord, popupNames, descriptions)=>{
-
-
-            const data = await fetch('http://135.181.209.141:8000/app_ets/survey/as/point', {
-            method:'GET',
-            headers:{
-                'Content-Type':'application/json'
-            }
-        })
-        if(data.ok){
-            const jsondata = await data.json()
-            //console.log('coordJsondata', jsondata)
-        const features = jsondata.result.features
-        console.log('features', features)
-        features.map(data =>{
-            console.log('data', data)
-            let coordinates = data.geometry.coordinates
-            //--retrieving coordinates data - and stored 'em into a variable
-            //console.log('coordinates', coordinates)
-            coord.push(coordinates)
-            //--retrieving data for markers popup - and stored 'em into a variable
-            let names = data.properties.name
-            //console.log('name', names)
-            popupNames.push(names)
-            // adding descriptions data
-            let des = data.properties.description
-            console.log('desc', des)
-            descriptions.push(des)
-        })
-
-}}
-
-showBasinShapeFileData(coord, popupNames, descriptions)
-console.log('markersData','coord', coord, 'popupnames', popupNames, 'desc',descriptions)
-let coordinates = coord
-let names = popupNames
-let descriptionsF = descriptions
-console.log('coordtest', coordinates, 'namestest', names, 'descriptionstest', descriptionsF)
-
-
-//--creating the cluster group and all of the markers
-        let firstLevelMarkersCluster = new LeafletMC.MarkerClusterGroup();
-               // let test1 = Leaflet.marker([8.19934, 44.026175]).bindPopup('ciao').openPopup()
-                let mark1 = Leaflet.marker(coordinates[0]).bindPopup(names[0], descriptionsF[0]).openPopup();
-                let mark2 = Leaflet.marker(coordinates[1]).bindPopup(names[1], descriptionsF[1]).openPopup();
-                let mark3 = Leaflet.marker(coordinates[2]).bindPopup(names[2], descriptionsF[2]).openPopup();
-                let mark4 = Leaflet.marker(coordinates[3]).bindPopup(names[3], descriptionsF[3]).openPopup();
-                let mark5 = Leaflet.marker(coordinates[4]).bindPopup(names[4], descriptionsF[4]).openPopup();
-                let mark6 = Leaflet.marker(coordinates[5]).bindPopup(names[5], descriptionsF[5]).openPopup();
-                let mark7 = Leaflet.marker(coordinates[6]).bindPopup(names[6], descriptionsF[6]).openPopup();
-                let mark8 = Leaflet.marker(coordinates[7]).bindPopup(names[7], descriptionsF[7]).openPopup();
-                let mark9 = Leaflet.marker(coordinates[8]).bindPopup(names[8], descriptionsF[8]).openPopup();
-                let mark10 = Leaflet.marker(coordinates[9]).bindPopup(names[9], descriptionsF[9]).openPopup();
-                let mark11 = Leaflet.marker(coordinates[10]).bindPopup(names[10], descriptionsF[10]).openPopup();
-                let mark12 = Leaflet.marker(coordinates[11]).bindPopup(names[11], descriptionsF[11]).openPopup();
-                let mark13 = Leaflet.marker(coordinates[12]).bindPopup(names[12], descriptionsF[12]).openPopup();
-
-
-                //--adding the markers layer into my cluster
-                  //web_layer.addLayer(test1)
-    firstLevelMarkersCluster.addLayer(mark1)
-    firstLevelMarkersCluster.addLayer(mark2)
-    firstLevelMarkersCluster.addLayer(mark3)
-    firstLevelMarkersCluster.addLayer(mark4)
-    firstLevelMarkersCluster.addLayer(mark5)
-    firstLevelMarkersCluster.addLayer(mark6)
-    firstLevelMarkersCluster.addLayer(mark7)
-    firstLevelMarkersCluster.addLayer(mark8)
-    firstLevelMarkersCluster.addLayer(mark9)
-    firstLevelMarkersCluster.addLayer(mark10)
-    firstLevelMarkersCluster.addLayer(mark11)
-    firstLevelMarkersCluster.addLayer(mark12)
-    firstLevelMarkersCluster.addLayer(mark13)
 
 		return () => {
 			if (leaflet_map) {
