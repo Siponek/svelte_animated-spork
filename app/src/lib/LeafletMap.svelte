@@ -33,10 +33,6 @@
 			const genova_1 = Leaflet.marker([44.0, 8.5]).bindPopup('Genoa test1').openPopup();
 			const genova_2 = Leaflet.marker([44.3, 8]).bindPopup('Genoa test2').openPopup();
 
-			web_layer = new LeafletMC.MarkerClusterGroup({
-				maxClusterRadius: 40
-			});
-
 /* LOGIN*/
 
 const login = async () =>{
@@ -126,9 +122,18 @@ console.log('coordtest', coordinates, 'namestest', names, 'descriptionstest', de
                 let mark13 = Leaflet.marker(coordinates[12]).bindPopup(names[12], descriptionsF[12]).openPopup();
 
 
+
+             web_layer = new LeafletMC.MarkerClusterGroup({
+				maxClusterRadius: 40
+			});
                 //--adding the markers layer into my cluster
-               //   web_layer.addLayer(test1)
-    //firstLevelMarkersCluster.addLayer(mark1)
+                web_layer.addLayer(test1)
+                web_layer.addLayer(genova_1);
+			    web_layer.addLayer(genova_2);
+			    web_layer.addLayer(liguria_region_marker);
+
+
+    firstLevelMarkersCluster.addLayer(mark1)
     firstLevelMarkersCluster.addLayer(mark2)
     firstLevelMarkersCluster.addLayer(mark3)
     firstLevelMarkersCluster.addLayer(mark4)
@@ -142,15 +147,7 @@ console.log('coordtest', coordinates, 'namestest', names, 'descriptionstest', de
     firstLevelMarkersCluster.addLayer(mark12)
     firstLevelMarkersCluster.addLayer(mark13)
 
-
-
-
 ///
-            web_layer.addLayer(test1)
-			web_layer.addLayer(genova_1);
-			web_layer.addLayer(genova_2);
-			web_layer.addLayer(liguria_region_marker);
-
 
 			// Adding street map
 
@@ -249,12 +246,12 @@ console.log('coordtest', coordinates, 'namestest', names, 'descriptionstest', de
 	});
 	$: if (test_layer && leaflet_map) {
 		if ($icon_layer_status) {
-			//test_layer.addTo(leaflet_map);
+			test_layer.addTo(leaflet_map);
 			web_layer.addTo(leaflet_map);
             //firstLevelMarkersCluster.addTo(leaflet_map)
 			//leaflet_map.addLayer(web_layer);
 		} else {
-			//test_layer.remove();
+			test_layer.remove();
 			web_layer.remove();
             //firstLevelMarkersCluster.remove()
 			// leaflet_map.addLayer(web_layer);
