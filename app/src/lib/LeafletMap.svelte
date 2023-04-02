@@ -123,7 +123,7 @@ console.log('copycord', coordinates, 'copynames', names, 'copydescriptions', des
              web_layer = new LeafletMC.MarkerClusterGroup({
 				maxClusterRadius: 40
 			});
-           // let mark1test = Leaflet.marker([8.19934, 44.026175]).bindPopup('hi').openPopup()
+           //let mark1test = Leaflet.marker([8.940193, 44.408429]).bindPopup('hi').openPopup()
                 //--adding the markers layer into my cluster
                 web_layer.addLayer(alatest)
                 web_layer.addLayer(genova_1);
