@@ -24,14 +24,6 @@
 			const rome = Leaflet.marker([41.9028, 12.4964]).bindPopup('Rome').openPopup();
 			leaflet_map = Leaflet.map(mapElement).setView([42.0, 12.194958], 6);
 			leaflet_map.setMinZoom(6).setMaxZoom(9).setZoom(6);
-			const liguria_region_marker = Leaflet.marker([44.5, 8.8333], {
-				draggable: true,
-				title: 'title'
-			})
-				.bindPopup('Liguria, 3 readings available')
-				.openPopup();
-			const genova_1 = Leaflet.marker([44.0, 8.5]).bindPopup('Genoa test1').openPopup();
-			const genova_2 = Leaflet.marker([44.3, 8]).bindPopup('Genoa test2').openPopup();
 
 /* LOGIN*/
 
@@ -123,6 +115,15 @@ console.log('copycord', coordinates, 'copynames', names, 'copydescriptions', des
              web_layer = new LeafletMC.MarkerClusterGroup({
 				maxClusterRadius: 40
 			});
+            const liguria_region_marker = Leaflet.marker([44.5, 8.8333], {
+				draggable: true,
+				title: 'title'
+			})
+				.bindPopup('Liguria, 3 readings available')
+				.openPopup();
+			const genova_1 = Leaflet.marker([44.0, 8.5]).bindPopup('Genoa test1').openPopup();
+			const genova_2 = Leaflet.marker([44.3, 8]).bindPopup('Genoa test2').openPopup();
+
            //let mark1test = Leaflet.marker([8.940193, 44.408429]).bindPopup('hi').openPopup()
                 //--adding the markers layer into my cluster
                 web_layer.addLayer(alatest)
@@ -155,6 +156,14 @@ Leaflet.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 					'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 			}).addTo(leaflet_map);
 
+
+/*
+Leaflet.tileLayer('https://maptiles.p.rapidapi.com/en/map/v1/{z}/{x}/{y}.png?rapidapi-key={apikey}', {
+	attribution: '&copy; <a href="http://www.maptilesapi.com/">MapTiles API</a>, &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+	apikey: '<your apikey>',
+	maxZoom: 19
+}).addTo(leaflet_map);
+*/
 			region_borders = Leaflet.geoJSON($geographyData, {
                 style: function (feature) {
                     switch(feature.properties.distretti){
