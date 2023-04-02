@@ -59,11 +59,11 @@ login()
 
     //function to retrieve api data ( coord, and data for popup)
     //which i'll insert properly
-       let coord = []
+        let coord = []
         let popupNames = []
         let descriptions = []
 
-    const showBasinShapeFileData = async (coord, popupNames, descriptions)=>{
+    const showBasinShapeFileData = async (coord, popupNames,descriptions)=>{
 
 
             const data = await fetch('http://135.181.209.141:8000/app_ets/survey/as/point', {
@@ -97,22 +97,20 @@ login()
 
 
 showBasinShapeFileData(coord, popupNames, descriptions)
-console.log('markersData','coord', coord, 'popupnames', popupNames, 'desc',descriptions)
+console.log('coord', coord, 'popupnames', popupNames, 'description', descriptions)
 let coordinates = coord
 let names = popupNames
 let descriptionsF = descriptions
-console.log('coordtest', coordinates, 'namestest', names, 'descriptionstest', descriptionsF)
+console.log('copycord', coordinates, 'copynames', names, 'copydescriptions', descriptionsF)
+// //--creating the cluster group and all of the markers
 
-
-//--creating the cluster group and all of the markers
         let firstLevelMarkersCluster = new LeafletMC.MarkerClusterGroup();
-                let test1 = Leaflet.marker([8.19934, 44.026175]).bindPopup('ciao').openPopup()
+                let alatest = Leaflet.marker([45.76072, 11.00458]).bindPopup('ciao').openPopup()
                 let mark1 = Leaflet.marker(coordinates[0]).bindPopup(names[0], descriptionsF[0]).openPopup();
                 let mark2 = Leaflet.marker(coordinates[1]).bindPopup(names[1], descriptionsF[1]).openPopup();
                 let mark3 = Leaflet.marker(coordinates[2]).bindPopup(names[2], descriptionsF[2]).openPopup();
                 let mark4 = Leaflet.marker(coordinates[3]).bindPopup(names[3], descriptionsF[3]).openPopup();
-                let mark5 = Leaflet.marker(coordinates[4]).bindPopup(names[4], descriptionsF[4]).openPopup();
-                let mark6 = Leaflet.marker(coordinates[5]).bindPopup(names[5], descriptionsF[5]).openPopup();
+                let mark5 = Leaflet.marker(coordinates[4]).bindPopup(names[4], descriptionsF[4]).openPopup();               let mark6 = Leaflet.marker(coordinates[5]).bindPopup(names[5], descriptionsF[5]).openPopup();
                 let mark7 = Leaflet.marker(coordinates[6]).bindPopup(names[6], descriptionsF[6]).openPopup();
                 let mark8 = Leaflet.marker(coordinates[7]).bindPopup(names[7], descriptionsF[7]).openPopup();
                 let mark9 = Leaflet.marker(coordinates[8]).bindPopup(names[8], descriptionsF[8]).openPopup();
@@ -122,16 +120,16 @@ console.log('coordtest', coordinates, 'namestest', names, 'descriptionstest', de
                 let mark13 = Leaflet.marker(coordinates[12]).bindPopup(names[12], descriptionsF[12]).openPopup();
 
 
-
              web_layer = new LeafletMC.MarkerClusterGroup({
 				maxClusterRadius: 40
 			});
                 //--adding the markers layer into my cluster
-                web_layer.addLayer(test1)
-                web_layer.addLayer(genova_1);
+                web_layer.addLayer(alatest)
+                web_layer.addLayer(genova_1_test);
 			    web_layer.addLayer(genova_2);
 			    web_layer.addLayer(liguria_region_marker);
 
+/*
 
     firstLevelMarkersCluster.addLayer(mark1)
     firstLevelMarkersCluster.addLayer(mark2)
@@ -146,12 +144,12 @@ console.log('coordtest', coordinates, 'namestest', names, 'descriptionstest', de
     firstLevelMarkersCluster.addLayer(mark11)
     firstLevelMarkersCluster.addLayer(mark12)
     firstLevelMarkersCluster.addLayer(mark13)
-
+*/
 ///
 
-			// Adding street map
+// Adding street map
 
-			Leaflet.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+Leaflet.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 				attribution:
 					'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 			}).addTo(leaflet_map);
@@ -265,6 +263,7 @@ console.log('coordtest', coordinates, 'namestest', names, 'descriptionstest', de
 			region_borders.remove();
 		}
 	}
+
 	// Might be redundant
 	onDestroy(() => {
 		unsub_icon_layer();
