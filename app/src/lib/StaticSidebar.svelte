@@ -29,7 +29,7 @@
             btn_status[1] = !btn_status[1];
         }
         }  />
-        <UserButton class ="p-1 icon user-icon text-green-600  {btn_status[2] ? 'selected' : ''}" on:click={() => {
+        <!-- <UserButton class ="p-1 icon user-icon text-green-600  {btn_status[2] ? 'selected' : ''}" on:click={() => {
         toggle_store_layer(user_status)
         btn_status[2] = !btn_status[2];
     }
@@ -37,7 +37,7 @@
     <UserRegisterIcon class ="p-1 icon user-register-icon text-green-600  {btn_status[3] ? 'selected' : ''}" on:click={() => {
         toggle_store_layer(user_register_status)
         btn_status[3] = !btn_status[3];
-    } }/>
+    } }/> -->
 
 <!--
 <aside class=" rounded-r-lg content-center relative object-none ">
