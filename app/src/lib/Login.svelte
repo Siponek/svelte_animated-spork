@@ -7,10 +7,12 @@
     let password;
     const handleLogin =  async (e)=>{
         e.preventDefault()
-        email = e.target.elements.email.value;
-        password = e.target.elements.password.value;
+
+        const formData = new FormData(e.target);
+        const email = formData.get('email');
+        const password = formData.get('password');
         const response = await api.post('auth/api/login', email, password);
-        const { headers, body } = response;
+        const { headers, body } = await response;
         if (body.errors) {
 			throw new Error('problem in retrieving the data')
 		}
