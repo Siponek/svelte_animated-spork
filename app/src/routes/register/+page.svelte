@@ -37,7 +37,6 @@
 							type="text"
 							required
 							placeholder="Your First Name"
-                            value="asdf_test1"
 						/>
 					</fieldset>
 					<fieldset class="form-group py-1">
@@ -47,10 +46,9 @@
 							type="text"
 							required
 							placeholder="Your Last Name"
-							value="asdf_test1"
 						/>
 					</fieldset>
-					<fieldset class="form-group py-1">
+					<!-- <fieldset class="form-group py-1">
 						<input
 							class="form-control form-control-lg  py-1"
 							name="username"
@@ -59,7 +57,7 @@
 							placeholder="Your User Name"
 							value="asdf_test1"
 						/>
-					</fieldset>
+					</fieldset> -->
 					<fieldset class="form-group py-1">
 						<input
 							class="form-control form-control-lg  py-1"
@@ -67,7 +65,6 @@
 							type="email"
 							required
 							placeholder="Email"
-							value="asdf_test1@wololo.com"
 						/>
 					</fieldset>
 					<fieldset class="form-group ">
@@ -77,7 +74,6 @@
 							type="password"
 							required
 							placeholder="Password"
-							value="asdf_test1"
 						/>
 					</fieldset>
 					<button class="btn btn-lg btn-primary pull-xs-right  py-1" type="submit"
