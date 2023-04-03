@@ -75,8 +75,6 @@ login()
             //--retrieving coordinates data - and stored 'em into a variable
             //console.log('coordinates', coordinates)
              let revCord = coordinates.reverse()
-            let revCord1 = revCord[0]
-            let revCord2 = revCord[1]
              //console.log('coord1test', revCord1, revCord2)
             coord.push(revCord)
             //--retrieving data for markers popup - and stored 'em into a variable
@@ -101,21 +99,6 @@ function generateMarkers(){
 
 showBasinShapeFileData(coord, popupNames, descriptions).then(generateMarkers)
 
-            const liguria_region_marker = Leaflet.marker([44.5, 8.8333], {
-				draggable: true,
-				title: 'title'
-			})
-				.bindPopup('Liguria, 3 readings available')
-				.openPopup();
-			const genova_1 = Leaflet.marker([44.0, 8.5]).bindPopup('Genoa test1').openPopup();
-			const genova_2 = Leaflet.marker([44.3, 8]).bindPopup('Genoa test2').openPopup();
-
-         // let markTest1 = Leaflet.marker([44.026175, 8.19934]).bindPopup("Alassio 1").openPopup()
-                //--adding the markers layer into my cluster
-            //web_layer.addLayer(markTest1)
-               // web_layer.addLayer(genova_1);
-			   // web_layer.addLayer(genova_2);
-			  //  web_layer.addLayer(liguria_region_marker);
 
 // Adding street map
 
