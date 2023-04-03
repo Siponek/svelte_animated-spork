@@ -9,17 +9,21 @@
         e.preventDefault()
 
         const formData = new FormData(e.target);
-        const email = formData.get('email');
-        const password = formData.get('password');
-        const response = await api.post('auth/api/login', email, password);
+         email = formData.get('email');
+         password = formData.get('password');
+         const data = {
+            email:email,
+            password:password,
+         }
+        console.log('userdata', data)
+        const response = await api.post('auth/api/login', data);
         const { headers, body } = await response;
         if (body.errors) {
 			throw new Error('problem in retrieving the data')
 		}
 		console.log('User', body.user);
-		cookies.set(headers.get('Set-Cookie'));
+        cookies.set(headers.get('Set-Cookie'));
         throw redirect(303, '/map_page');
-
     }
 </script>
 <style>
@@ -28,29 +32,48 @@
         flex-flow:column;
         justify-content: center;
         align-content: center;
+        text-align: center;
         border:2px solid red;
         gap:15px;
-        margin:5px;
+        margin:15px;
         height:100vh;
         width:100%;
     }
     form{
         display:flex;
         flex-flow:column;
-        gap:10px;
+        margin:35px;
+        gap:35px;
     }
     input{
+        height:50px;
         border-radius:15px;
         border:1px solid green;
         color:black;
     }
+    h1, a{
+        font-weight:700;
+        color:black;
+    }
+    button{
+        font-weight:700;
+        background-color:white;
+        color:black;
+        height:50px;
+        width:50%;
+        border-radius:15px;
+        border:2px solid black;
+    }
 </style>
 <div class="loginForm">
-    <h3>Non hai ancora un'account, puoi registrarti da qua</h3>
+    <h1>Non hai ancora un'account, puoi registrarti da qua</h1>
     <a href="/register">Registrati da qua</a>
     <form on:submit|preventDefault={handleLogin}>
         <input type="email" bind:value={email} placeholder="email"/>
         <input type="password" bind:value={password} placeholder="password"/>
-        <button type="submit">Login</button>
+        <div class="btn">
+            <button type="submit">Login</button>
+        </div>
+
      </form>
 </div>
