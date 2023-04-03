@@ -7,14 +7,10 @@
     let password;
     const handleLogin =  async (e)=>{
         e.preventDefault()
-        const formData = new FormData(e.target);
-         email = formData.get('email');
-         password = formData.get('password');
-         const data = {
+         let data = {
             email:email,
             password:password,
          }
-
         console.log('userdata', data)
         const response = await api.post('auth/api/login', data);
         const { headers, body } = await response;
