@@ -95,7 +95,7 @@ function generateMarkers(){
         for (let i=0;i<coord.length;i++){
         let markers = Leaflet.marker(coord[i]).bindPopup(popupNames[i], descriptions[i]).openPopup()
         web_layer.addLayer(markers)
-       leaflet_map.fitBounds(coord)
+        //leaflet_map.fitBounds(coord)
     }
     }
 
