@@ -2,7 +2,7 @@
 	import { enhance } from '$app/forms';
 	import ListErrors from '$lib/ListErrors.svelte';
 	// /** @type {import('./$types').ActionData} */
-	export let form: any;
+    export let form:any;
 </script>
 
 <svelte:head>
