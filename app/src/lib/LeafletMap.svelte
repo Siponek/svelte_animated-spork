@@ -54,6 +54,7 @@ login()
         let coord = []
         let popupNames = []
         let descriptions = []
+
     const showBasinShapeFileData = async (coord, popupNames,descriptions)=>{
 
 
@@ -86,35 +87,20 @@ login()
             let des = data.properties.description
             console.log('desc', des)
             descriptions.push(des)
-
         })
 
 }}
+web_layer = new LeafletMC.MarkerClusterGroup();
+function generateMarkers(){
+        for (let i=0;i<coord.length;i++){
+        let markers = Leaflet.marker(coord[i]).bindPopup(popupNames[i], descriptions[i]).openPopup()
+        web_layer.addLayer(markers)
+       leaflet_map.fitBounds(coord)
+    }
+    }
 
+showBasinShapeFileData(coord, popupNames, descriptions).then(generateMarkers)
 
-showBasinShapeFileData(coord, popupNames, descriptions)
-console.log('coord', coord, 'popupnames', popupNames, 'description', descriptions)
-
-// //--creating the markers to add at the web_layer cluster, activated at the click of region icon
-                let alatest = Leaflet.marker([45.76072, 11.00458]).bindPopup('ALA - TN').openPopup()
-                let mark1 = Leaflet.marker(coord[0]).bindPopup(popupNames[0], descriptions[0]).openPopup();
-                let mark2 = Leaflet.marker(coord[1]).bindPopup(popupNames[1], descriptions[1]).openPopup();
-                let mark3 = Leaflet.marker(coord[2]).bindPopup(popupNames[2], descriptions[2]).openPopup();
-                let mark4 = Leaflet.marker(coord[3]).bindPopup(popupNames[3], descriptions[3]).openPopup();
-                let mark5 = Leaflet.marker(coord[4]).bindPopup(popupNames[4], descriptions[4]).openPopup();
-                let mark6 = Leaflet.marker(coord[5]).bindPopup(popupNames[5], descriptions[5]).openPopup();
-                let mark7 = Leaflet.marker(coord[6]).bindPopup(popupNames[6], descriptions[6]).openPopup();
-                let mark8 = Leaflet.marker(coord[7]).bindPopup(popupNames[7], descriptions[7]).openPopup();
-                let mark9 = Leaflet.marker(coord[8]).bindPopup(popupNames[8], descriptions[8]).openPopup();
-                let mark10 = Leaflet.marker(coord[9]).bindPopup(popupNames[9], descriptions[9]).openPopup();
-                let mark11 = Leaflet.marker(coord[10]).bindPopup(popupNames[10], descriptions[10]).openPopup();
-                let mark12 = Leaflet.marker(coord[11]).bindPopup(popupNames[11], descriptions[11]).openPopup();
-                let mark13 = Leaflet.marker(coord[12]).bindPopup(popupNames[12], descriptions[12]).openPopup();
-
-
-             web_layer = new LeafletMC.MarkerClusterGroup({
-				maxClusterRadius: 40
-			});
             const liguria_region_marker = Leaflet.marker([44.5, 8.8333], {
 				draggable: true,
 				title: 'title'
@@ -124,12 +110,12 @@ console.log('coord', coord, 'popupnames', popupNames, 'description', description
 			const genova_1 = Leaflet.marker([44.0, 8.5]).bindPopup('Genoa test1').openPopup();
 			const genova_2 = Leaflet.marker([44.3, 8]).bindPopup('Genoa test2').openPopup();
 
-          let markTest1 = Leaflet.marker([44.026175, 8.19934]).bindPopup("Alassio 1").openPopup()
+         // let markTest1 = Leaflet.marker([44.026175, 8.19934]).bindPopup("Alassio 1").openPopup()
                 //--adding the markers layer into my cluster
-                //web_layer.addLayer(markTest1)
-                web_layer.addLayer(genova_1);
-			    web_layer.addLayer(genova_2);
-			    web_layer.addLayer(liguria_region_marker);
+            //web_layer.addLayer(markTest1)
+               // web_layer.addLayer(genova_1);
+			   // web_layer.addLayer(genova_2);
+			  //  web_layer.addLayer(liguria_region_marker);
 
 // Adding street map
 
@@ -138,13 +124,6 @@ Leaflet.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 					'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 			}).addTo(leaflet_map);
 
-/*
- Leaflet.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
-	maxZoom: 19,
-	attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Tiles style by <a href="https://www.hotosm.org/" target="_blank">Humanitarian OpenStreetMap Team</a> hosted by <a href="https://openstreetmap.fr/" target="_blank">OpenStreetMap France</a>'
-}).addTo(leaflet_map);
-
-*/
 			region_borders = Leaflet.geoJSON($geographyData, {
                 style: function (feature) {
                     switch(feature.properties.distretti){
@@ -236,11 +215,11 @@ Leaflet.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
 	$: if (test_layer && leaflet_map) {
 		if ($icon_layer_status) {
-			test_layer.addTo(leaflet_map);
+			//test_layer.addTo(leaflet_map);
 			web_layer.addTo(leaflet_map);
 			//leaflet_map.addLayer(web_layer);
 		} else {
-			test_layer.remove();
+			//test_layer.remove();
 			web_layer.remove();
 			// leaflet_map.addLayer(web_layer);
 		}
