@@ -1,11 +1,14 @@
 <script>
+	import { goto } from '$app/navigation';
     import * as api from '$lib/Api.js';
+
     export async function load({ locals }) {
 	if (locals.user) throw redirect(302, '/map_page');
     }
+
     let email;
     let password;
-    const handleLogin =  async (e)=>{
+    const handleLogin =  async (e, cookies)=>{
         e.preventDefault()
          let data = {
             email:email,
@@ -17,9 +20,14 @@
         if (body.errors) {
 			throw new Error('problem in retrieving the data')
 		}
-		console.log('User', body.user);
-        cookies.set(headers.get('Set-Cookie'));
-        throw redirect(303, '/map_page');
+        if (cookies) {
+			// cookies.set('app_ets_session', body.token);
+			cookies.set(headers.get('Set-Cookie'));
+		}
+		// console.log('User', body.user);
+        //throw redirect(303, '/map_page');
+       // window.location.href= '/map_page';
+       goto('/map_page')
     }
 </script>
 <style>
