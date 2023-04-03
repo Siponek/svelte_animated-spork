@@ -47,7 +47,7 @@
     <h3>Non hai ancora un'account, puoi registrarti da qua</h3>
     <a href="/register">Registrati da qua</a>
     <form on:submit|preventDefault={handleLogin}>
-        <input type="text" bind:value={email} placeholder="email"/>
+        <input type="email" bind:value={email} placeholder="email"/>
         <input type="password" bind:value={password} placeholder="password"/>
         <button type="submit">Login</button>
      </form>
