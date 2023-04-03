@@ -26,7 +26,7 @@
 			leaflet_map.setMinZoom(6).setMaxZoom(9).setZoom(6);
 
 /* LOGIN*/
-
+/*
 const login = async () =>{
     const userLogin = {
              "email": "mario@ets.it",
@@ -47,6 +47,7 @@ const login = async () =>{
         console.log('there is an error')
 }
 login()
+*/
 //-end of LOGIN -//
 
     //function to retrieve api data ( coord, and data for popup)
