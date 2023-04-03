@@ -3,11 +3,22 @@
 # Define a funtion that will either run the production or development server
 run_server () {
     if [[ $DOCKER_PRODUCTION == true ]]; then
-        echo "Running production server"
-        npx pnpm pm2 start ./node_build/index.js --name svelte-compose --watch --no-daemon
+        echo "Running PRODUCTION server on port $OUTER_PORT_FRONTEND"
+        cp ./package.json ./build/package.json
+        cp ./pnpm-lock.yaml ./build/pnpm-lock.yaml
+        # dirty fix for vite
+        cp -r ./node_modules/vite/dist ./build/
+        # from sveltekit docs: https://kit.svelte.dev/docs/adapter-node
+        # npm ci --prefix ./build
+
+        # node ./build
+        # pm2 start ./build/index.js --name svelte-compose --watch --no-daemon
+        # npx pm2 start ./build/index.js --name svelte-compose --watch --no-daemon
+        pnpm pm2 start ./build/index.js --name svelte-compose --watch --no-daemon
+        # npx pnpm pm2 start ./build/index.js --name svelte-compose --watch --no-daemon
     else
-        echo "Running development server"
-        npx pnpm dev
+        echo "Running DEVELOPMENT server"
+        pnpm dev
     fi
 }
 # Check if this is
