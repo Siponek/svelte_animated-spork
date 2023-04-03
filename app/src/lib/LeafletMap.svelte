@@ -54,7 +54,6 @@ login()
         let coord = []
         let popupNames = []
         let descriptions = []
-
     const showBasinShapeFileData = async (coord, popupNames,descriptions)=>{
 
 
@@ -74,7 +73,11 @@ login()
             let coordinates = data.geometry.coordinates
             //--retrieving coordinates data - and stored 'em into a variable
             //console.log('coordinates', coordinates)
-            coord.push(coordinates)
+             let revCord = coordinates.reverse()
+            let revCord1 = revCord[0]
+            let revCord2 = revCord[1]
+             //console.log('coord1test', revCord1, revCord2)
+            coord.push(revCord)
             //--retrieving data for markers popup - and stored 'em into a variable
             let names = data.properties.name
             //console.log('name', names)
@@ -83,6 +86,7 @@ login()
             let des = data.properties.description
             console.log('desc', des)
             descriptions.push(des)
+
         })
 
 }}
@@ -90,26 +94,22 @@ login()
 
 showBasinShapeFileData(coord, popupNames, descriptions)
 console.log('coord', coord, 'popupnames', popupNames, 'description', descriptions)
-let coordinates = coord
-let names = popupNames
-let descriptionsF = descriptions
-console.log('copycord', coordinates, 'copynames', names, 'copydescriptions', descriptionsF)
-// //--creating the cluster group and all of the markers
 
-        let firstLevelMarkersCluster = new LeafletMC.MarkerClusterGroup();
-                let alatest = Leaflet.marker([45.76072, 11.00458]).bindPopup('ciao').openPopup()
-                let mark1 = Leaflet.marker(coordinates[0]).bindPopup(names[0], descriptionsF[0]).openPopup();
-                let mark2 = Leaflet.marker(coordinates[1]).bindPopup(names[1], descriptionsF[1]).openPopup();
-                let mark3 = Leaflet.marker(coordinates[2]).bindPopup(names[2], descriptionsF[2]).openPopup();
-                let mark4 = Leaflet.marker(coordinates[3]).bindPopup(names[3], descriptionsF[3]).openPopup();
-                let mark5 = Leaflet.marker(coordinates[4]).bindPopup(names[4], descriptionsF[4]).openPopup();               let mark6 = Leaflet.marker(coordinates[5]).bindPopup(names[5], descriptionsF[5]).openPopup();
-                let mark7 = Leaflet.marker(coordinates[6]).bindPopup(names[6], descriptionsF[6]).openPopup();
-                let mark8 = Leaflet.marker(coordinates[7]).bindPopup(names[7], descriptionsF[7]).openPopup();
-                let mark9 = Leaflet.marker(coordinates[8]).bindPopup(names[8], descriptionsF[8]).openPopup();
-                let mark10 = Leaflet.marker(coordinates[9]).bindPopup(names[9], descriptionsF[9]).openPopup();
-                let mark11 = Leaflet.marker(coordinates[10]).bindPopup(names[10], descriptionsF[10]).openPopup();
-                let mark12 = Leaflet.marker(coordinates[11]).bindPopup(names[11], descriptionsF[11]).openPopup();
-                let mark13 = Leaflet.marker(coordinates[12]).bindPopup(names[12], descriptionsF[12]).openPopup();
+// //--creating the markers to add at the web_layer cluster, activated at the click of region icon
+                let alatest = Leaflet.marker([45.76072, 11.00458]).bindPopup('ALA - TN').openPopup()
+                let mark1 = Leaflet.marker(coord[0]).bindPopup(popupNames[0], descriptions[0]).openPopup();
+                let mark2 = Leaflet.marker(coord[1]).bindPopup(popupNames[1], descriptions[1]).openPopup();
+                let mark3 = Leaflet.marker(coord[2]).bindPopup(popupNames[2], descriptions[2]).openPopup();
+                let mark4 = Leaflet.marker(coord[3]).bindPopup(popupNames[3], descriptions[3]).openPopup();
+                let mark5 = Leaflet.marker(coord[4]).bindPopup(popupNames[4], descriptions[4]).openPopup();
+                let mark6 = Leaflet.marker(coord[5]).bindPopup(popupNames[5], descriptions[5]).openPopup();
+                let mark7 = Leaflet.marker(coord[6]).bindPopup(popupNames[6], descriptions[6]).openPopup();
+                let mark8 = Leaflet.marker(coord[7]).bindPopup(popupNames[7], descriptions[7]).openPopup();
+                let mark9 = Leaflet.marker(coord[8]).bindPopup(popupNames[8], descriptions[8]).openPopup();
+                let mark10 = Leaflet.marker(coord[9]).bindPopup(popupNames[9], descriptions[9]).openPopup();
+                let mark11 = Leaflet.marker(coord[10]).bindPopup(popupNames[10], descriptions[10]).openPopup();
+                let mark12 = Leaflet.marker(coord[11]).bindPopup(popupNames[11], descriptions[11]).openPopup();
+                let mark13 = Leaflet.marker(coord[12]).bindPopup(popupNames[12], descriptions[12]).openPopup();
 
 
              web_layer = new LeafletMC.MarkerClusterGroup({
@@ -124,30 +124,12 @@ console.log('copycord', coordinates, 'copynames', names, 'copydescriptions', des
 			const genova_1 = Leaflet.marker([44.0, 8.5]).bindPopup('Genoa test1').openPopup();
 			const genova_2 = Leaflet.marker([44.3, 8]).bindPopup('Genoa test2').openPopup();
 
-           //let mark1test = Leaflet.marker([8.940193, 44.408429]).bindPopup('hi').openPopup()
+          let markTest1 = Leaflet.marker([44.026175, 8.19934]).bindPopup("Alassio 1").openPopup()
                 //--adding the markers layer into my cluster
-                web_layer.addLayer(alatest)
+                //web_layer.addLayer(markTest1)
                 web_layer.addLayer(genova_1);
 			    web_layer.addLayer(genova_2);
 			    web_layer.addLayer(liguria_region_marker);
-
-/*
-
-    firstLevelMarkersCluster.addLayer(mark1)
-    firstLevelMarkersCluster.addLayer(mark2)
-    firstLevelMarkersCluster.addLayer(mark3)
-    firstLevelMarkersCluster.addLayer(mark4)
-    firstLevelMarkersCluster.addLayer(mark5)
-    firstLevelMarkersCluster.addLayer(mark6)
-    firstLevelMarkersCluster.addLayer(mark7)
-    firstLevelMarkersCluster.addLayer(mark8)
-    firstLevelMarkersCluster.addLayer(mark9)
-    firstLevelMarkersCluster.addLayer(mark10)
-    firstLevelMarkersCluster.addLayer(mark11)
-    firstLevelMarkersCluster.addLayer(mark12)
-    firstLevelMarkersCluster.addLayer(mark13)
-*/
-///
 
 // Adding street map
 
@@ -156,13 +138,12 @@ Leaflet.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 					'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 			}).addTo(leaflet_map);
 
-
 /*
-Leaflet.tileLayer('https://maptiles.p.rapidapi.com/en/map/v1/{z}/{x}/{y}.png?rapidapi-key={apikey}', {
-	attribution: '&copy; <a href="http://www.maptilesapi.com/">MapTiles API</a>, &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-	apikey: '<your apikey>',
-	maxZoom: 19
+ Leaflet.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
+	maxZoom: 19,
+	attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Tiles style by <a href="https://www.hotosm.org/" target="_blank">Humanitarian OpenStreetMap Team</a> hosted by <a href="https://openstreetmap.fr/" target="_blank">OpenStreetMap France</a>'
 }).addTo(leaflet_map);
+
 */
 			region_borders = Leaflet.geoJSON($geographyData, {
                 style: function (feature) {
@@ -252,16 +233,15 @@ Leaflet.tileLayer('https://maptiles.p.rapidapi.com/en/map/v1/{z}/{x}/{y}.png?rap
 			}
 		};
 	});
+
 	$: if (test_layer && leaflet_map) {
 		if ($icon_layer_status) {
 			test_layer.addTo(leaflet_map);
 			web_layer.addTo(leaflet_map);
-            //firstLevelMarkersCluster.addTo(leaflet_map)
 			//leaflet_map.addLayer(web_layer);
 		} else {
 			test_layer.remove();
 			web_layer.remove();
-            //firstLevelMarkersCluster.remove()
 			// leaflet_map.addLayer(web_layer);
 		}
 	}
