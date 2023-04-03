@@ -25,6 +25,7 @@ if (process.env.LOCAL_DEV) {
         server: {
             port: +INNER_PORT,
         },
+        // @ts-ignore
 		test: {
 			include: ['src/**/*.{test,spec}.{js,ts}']
 		},
@@ -34,6 +35,7 @@ if (process.env.LOCAL_DEV) {
     console.log(`You propably want to connect via http://localhost:${OUTER_PORT}/`);
 	config = {
 		plugins: [sveltekit()],
+        // @ts-ignore
 		test: {
 			include: ['src/**/*.{test,spec}.{js,ts}']
 		},
