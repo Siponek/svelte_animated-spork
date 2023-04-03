@@ -1,5 +1,8 @@
 <script>
     import * as api from '$lib/Api.js';
+    export async function load({ locals }) {
+	if (locals.user) throw redirect(302, '/map_page');
+    }
     let email;
     let password;
     const handleLogin =  async (e)=>{
