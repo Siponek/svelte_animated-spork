@@ -28,25 +28,4 @@ export const actions = {
 
 		throw redirect(303, '/map_page');
 	}
-
-	/*
-export const actions = {
-	login: async ({ cookies, request }) => {
-		const loginData = await request.formData();
-		const email = loginData.get('email');
-		const password = loginData.get('password');
-		if (!email || !password) {
-			return customResponse(400, false, 'Email and Password are required');
-		}
-		if (typeof email !== 'string' || typeof password !== 'string') {
-			return customResponse(400, false, 'Enter a valid email and password.');
-		}
-		cookies.set('jwt', {
-			path: '/',
-			httpOnly: true,
-			sameSite: 'strict'
-		});
-		throw redirect(307, '/map_page');
-	}
-    */
 };
