@@ -15,7 +15,6 @@
 			throw new Error('problem in retrieving the data')
 		}
 		console.log('User', body.user);
-        if(getCook)
 		cookies.set(headers.get('Set-Cookie'));
         throw redirect(303, '/map_page');
 
