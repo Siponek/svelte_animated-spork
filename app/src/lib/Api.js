@@ -1,6 +1,6 @@
 import { error } from '@sveltejs/kit';
 import { apiConfig } from '../apiConfig';
-import { loadEnv } from 'vite';
+// import fetch from 'node-fetch'; // Import the node-fetch library
 
 //const base = 'http://127.0.0.1:8000/app_ets';
 const baseD = 'http://135.181.209.141:8000/app_ets';
