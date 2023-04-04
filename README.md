@@ -15,7 +15,7 @@ https://www.youtube.com/watch?v=EQy-AYhZIlE
 - [Docker][docker_link]
 - docker-compose (that should be included in the docker installation)
 - Make
-  - You can install [Make][make_link] with [Chocolatey][chocolatey_link] package mangaer on Windows.
+  - You can install [Make][make_link] with [Chocolatey][chocolatey_link] package manager on Windows.
 - [NodeJS][nodejs_link] version 19.0.0 or higher
 - [NPM][npm_link] version 7.0.0 or higher
 - (optional) [NVM][nvm_link] for managing NodeJS versions
