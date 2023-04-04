@@ -2,90 +2,101 @@
 	import { enhance } from '$app/forms';
 	import ListErrors from '$lib/ListErrors.svelte';
 	/** @type {import('./$types').ActionData} */
-	// import { Styles, Container, Col, Row } from 'sveltestrap';
 	export let data;
 	export let form;
 </script>
 
 {#if form?.success}
-	<!-- this message is ephemeral; it exists because the page was rendered in
-         response to a form submission. it will vanish if the user reloads -->
 	<p>Successfully registered in! Welcome back, {data.user.name}</p>
 {/if}
+
 <svelte:head>
 	<title>Sign up • Conduit</title>
-	<!-- <Styles /> -->
 </svelte:head>
-<div class="auth-page container mx-auto place-items-center bg-slate-500">
-	<div class="p-10 flex justify-center  h-screen">
-		<div class="row">
-			<div class="">
-				<h1 class="text-lg">Sign up</h1>
-				<p
-					class="text-xs-center  hover:bg-sky-700 hover:rounded hover:text-blue-100 duration-150"
-				>
-					<a href="/login">Have an account?</a>
-				</p>
-				<ListErrors errors={form?.errors} />
-				<!-- <form use:enhance method="POST"> -->
 
-				<form use:enhance method="POST" action="?/register" class="text-slate-900">
-					<fieldset class="form-group py-1">
-						<input
-							class="form-control form-control-lg  "
-							name="first_name"
-							type="text"
-							required
-							placeholder="Your First Name"
-						/>
-					</fieldset>
-					<fieldset class="form-group py-1">
-						<input
-							class="form-control form-control-lg  "
-							name="last_name"
-							type="text"
-							required
-							placeholder="Your Last Name"
-						/>
-					</fieldset>
-					<!-- <fieldset class="form-group py-1">
-						<input
-							class="form-control form-control-lg  py-1"
-							name="username"
-							type="text"
-							required
-							placeholder="Your User Name"
-							value="asdf_test1"
-						/>
-					</fieldset> -->
-					<fieldset class="form-group py-1">
-						<input
-							class="form-control form-control-lg  py-1"
-							name="email"
-							type="email"
-							required
-							placeholder="Email"
-						/>
-					</fieldset>
-					<fieldset class="form-group ">
-						<input
-							class="form-control form-control-lg  "
-							name="password"
-							type="password"
-							required
-							placeholder="Password"
-						/>
-					</fieldset>
-					<button class="btn btn-lg btn-primary pull-xs-right  py-1" type="submit"
-						>Sign up</button
-					>
-				</form>
-			</div>
+<div class="registrationForm bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-gray-500 via-ets-grey to-ets-blue">
+	<h1>Sign up</h1>
+	<p> <a href="/login">Have an account?</a> </p>
+	<ListErrors errors={form?.errors} />
+
+	<form use:enhance method="POST" action="?/register" class="Form">
+
+		<div class="inputs">
+			<label for="first_name"> First name </label>
+			<input name="first_name" type="text" placeholder="Your First Name" required/>
+
+			<label for="last_name"> Last name </label>
+			<input name="last_name" type="text" placeholder="Your Last Name" required/>
+
+			<label for="email"> Email </label>
+			<input name="email"type="email" placeholder="Email" required />
+			
+			<label for="password"> Password </label>
+			<input name="password" type="password" placeholder="Password" rquired />
 		</div>
-	</div>
+
+			<div class="submit">
+				<button type="submit"> Sign up</button>
+			</div>
+	</form>
 </div>
 
 <style>
+    .registrationForm{
+        display:flex;
+        flex-flow:column;
+        justify-content: center;
+        align-content: center;
+        text-align: center;
+		height: 100vh;
+		color: white;
+    }
 
+    form {
+		position: relative;
+        display:flex;
+        flex-flow:column;
+        margin-inline:auto;
+		gap: 4px;
+    }
+
+    h1, a{
+        font-weight:700;
+        color:white;
+    }
+
+	p {
+		margin-bottom: 2rem;
+	}
+
+    button {
+        font-weight:700;
+        background-color:rgba(0, 0, 0, 0.5);
+        color:white;
+        height:50px;
+        width: 20rem;
+        border-radius:15px;
+    }
+
+    .inputs {
+        display: flex;
+        flex-flow: column;
+    }
+
+    input {
+        width: 30rem;
+        height: 3rem;
+
+        margin-bottom: 1.5rem;
+        border-radius: 0.3rem;
+
+        background-color: rgba(15, 15, 15, 0.35);
+        border:0;
+    }
+
+	.submit button {
+		display: block;
+		margin-inline: auto;
+	}
 
 </style>

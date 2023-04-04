@@ -2,6 +2,7 @@
 	import { enhance } from '$app/forms';
 	import ListErrors from '$lib/ListErrors.svelte';
 	// /** @type {import('./$types').ActionData} */
+	import logo from "$lib/images/bshape.png";
     export let form:any;
 </script>
 
@@ -10,6 +11,9 @@
 </svelte:head>
 
 <div class="auth-page container mx-auto place-items-center bg-slate-500">
+
+	<img src={logo} class="justify-center w-14 display: block" alt="ETS logo"  />
+
 	<div class=" p-10 flex justify-center  h-screen ">
 		<div class="row">
 			<div class="">

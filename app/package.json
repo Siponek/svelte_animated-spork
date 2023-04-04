@@ -2,7 +2,7 @@
 	"name": "vite-project",
 	"version": "0.0.1",
 	"scripts": {
-		"dev": "vite dev",
+		"dev": "cross-env NODE_OPTIONS=--max-old-space-size=8192 vite",
 		"build": "vite build",
 		"preview": "vite preview",
 		"test": "playwright test",
@@ -50,6 +50,6 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"pnpm": "^7.27.0"
+		"pnpm": "^7.31.0"
 	}
 }
