@@ -88,6 +88,7 @@
 	.userPopupStatus {
 		left: 0;
 	}
+
 	/* Popup container */
 	.popup {
 		/* position: relative; */

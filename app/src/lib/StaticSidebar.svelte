@@ -40,6 +40,7 @@
 		<UserButton
 			class="p-1 icon user-icon  {btn_status[2] ? 'selected' : ''}"
 			on:click={() => {
+                toggle_store_layer(userPopupStatus);
 				btn_status[2] = !btn_status[2];
 			}}
 			bind:popupVisible={userPopupStatus}
