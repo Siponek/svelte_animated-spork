@@ -6,7 +6,7 @@
     import Menu from '$lib/Menu.svelte'
 	import { icon_layer_status, region_layer_status, user_status, user_register_status } from '$lib/store.js';
 	import UserRegisterIcon from './UserRegisterIcon.svelte';
-    import UserPopup from '$lib/userNotifications/userPopup.svelte';
+    //import UserPopup from '$lib/userNotifications/userPopup.svelte';
 
 	function toggle_store_layer(store_boolean) {
 		console.log('Sidebad button: toggling store layer');
@@ -35,7 +35,7 @@
 		}}
 	/>
 
-<div>
+<!-- <div>
 
 		<UserButton
 			class="p-1 icon user-icon  {btn_status[2] ? 'selected' : ''}"
@@ -46,7 +46,7 @@
 			bind:popupVisible={userPopupStatus}
 		/>
 		<UserPopup bind:userPopupStatus />
-	</div>
+	</div> -->
 </aside>
 
 <style>

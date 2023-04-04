@@ -47,6 +47,7 @@ const login = async () =>{
         console.log('there is an error')
 }
 login()
+
 //-end of LOGIN -//
 
     //function to retrieve api data ( coord, and data for popup)
