@@ -1,4 +1,5 @@
 <script>
+    import { onMount } from 'svelte';
 	import Navbar from '$lib/Navbar.svelte';
 	import Main from '$lib/Main.svelte';
 	import Sidebar from '$lib/Sidebar.svelte';
@@ -7,6 +8,7 @@
     import {  user_status, user_register_status } from '$lib/store.js';
     import UserLogin from '$lib/UserLogin.svelte';
 	import UserRegister from '$lib/UserRegister.svelte';
+
     let user = false
     let userRegister = false
 	let open = false;
@@ -22,6 +24,28 @@
     }else{
         userRegister = false
     }
+
+    onMount(() => {
+        
+        function getCookie(name) {
+            const cookies = document.cookie.split(';');
+            const cookie = cookies.find(cookie => cookie.trim().startsWith(name + '='));
+            if (!cookie) {
+                return null;
+            }
+            
+            return cookie.split('=')[1];
+        }
+
+        const loginCookie = getCookie('login_cookie');
+            if (loginCookie) {
+                console.log(`Current login_cookie is ${loginCookie}`);
+            } else {
+                console.log('No login_cookie found');
+                window.location.replace("/login");
+            }
+        });
+
 </script>
 
 <!-- ICONS TI IMPORT FROM

@@ -55,6 +55,8 @@
 	};
 
 	onMount(() => {
+
+
 		const map = new gl.Map(map_options);
 		map.addControl(new gl.NavigationControl(), 'top-right');
 		// const popup = new gl.Popup({ closeButton: false, closeOnClick: false });

@@ -19,10 +19,18 @@ export const actions = {
 		if (body.errors) {
 			return fail(401, body);
 		}
-		console.log('User', body.user);
-		// user_store_server.set(body.user);
-		// cookies_store_server.set(headers.get('Set-Cookie'));
-		cookies.set(headers.get('Set-Cookie'));
+
+		const setCookieHeader = headers.get('Set-Cookie');
+		if (setCookieHeader) {
+		  const cookieParts = setCookieHeader.split(';');
+		  const cookieValue = cookieParts.shift();
+	
+		  cookies.set('login_cookie', cookieValue, {
+			httpOnly: false, // cookie is inaccessible to JavaScript
+			sameSite: 'strict', // disallows cross-site usage of cookies
+			path: '/', // cookies is accessible to all pages of your application
+		  });
+		}
 
 		throw redirect(303, '/map_page');
 	}

@@ -1,6 +1,8 @@
 <script lang="js">
 	import { enhance } from '$app/forms';
 	import ListErrors from '$lib/ListErrors.svelte';
+    import logo from '$lib/images/bshape.png';
+
 	/** @type {import('./$types').ActionData} */
 	export let data;
 	export let form;
@@ -15,8 +17,10 @@
 </svelte:head>
 
 <div class="registrationForm bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-gray-500 via-ets-grey to-ets-blue">
-	<h1>Sign up</h1>
-	<p> <a href="/login">Have an account?</a> </p>
+	
+    <img src={logo} alt="bshape logo" class="logo">
+
+    <h1> Sign Up </h1>
 	<ListErrors errors={form?.errors} />
 
 	<form use:enhance method="POST" action="?/register" class="Form">
@@ -57,7 +61,6 @@
         display:flex;
         flex-flow:column;
         margin-inline:auto;
-		gap: 4px;
     }
 
     h1, a{
@@ -87,7 +90,7 @@
         width: 30rem;
         height: 3rem;
 
-        margin-bottom: 1.5rem;
+        margin-bottom: 0.5rem;
         border-radius: 0.3rem;
 
         background-color: rgba(15, 15, 15, 0.35);
@@ -99,4 +102,11 @@
 		margin-inline: auto;
 	}
 
+    .logo {
+        margin-top: 2rem;
+        display: block;
+        width: 8rem;
+        margin-inline: auto;
+        margin-bottom: 1rem;
+    }
 </style>

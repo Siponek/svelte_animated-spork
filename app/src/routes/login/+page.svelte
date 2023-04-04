@@ -1,58 +1,92 @@
 <script lang="ts">
-	import { enhance } from '$app/forms';
-	import ListErrors from '$lib/ListErrors.svelte';
-	// /** @type {import('./$types').ActionData} */
-	import logo from "$lib/images/bshape.png";
+    import logo from '$lib/images/bshape.png';
+    import ListErrors from '$lib/ListErrors.svelte';
+
+    import { enhance } from '$app/forms';
+
+    // /** @type {import('./$types').ActionData} */
     export let form:any;
 </script>
 
-<svelte:head>
-	<title>ETS - Login</title>
-</svelte:head>
+<style>
+    .loginForm{
+        display:flex;
+        flex-flow:column;
+        justify-content: center;
+        align-content: center;
+        text-align: center;
+        height: 100vh;
+    }
 
-<div class="auth-page container mx-auto place-items-center bg-slate-500">
+    form{
+        display:flex;
+        flex-flow:column;
+        margin:35px;
+        gap:35px;
+        margin-inline:auto;
+    }
 
-	<img src={logo} class="justify-center w-14 display: block" alt="ETS logo"  />
+    h1, a{
+        font-weight:700;
+        color:white;
+    }
 
-	<div class=" p-10 flex justify-center  h-screen ">
-		<div class="row">
-			<div class="">
-				<h1 class="text-lg">Sign In form</h1>
-				<p
-					class="text-xs-center  hover:bg-sky-700 hover:rounded hover:text-blue-100 duration-150"
-				>
-					<a href="/register">Need an account?</a>
-				</p>
-				<ListErrors errors={form?.errors} />
-				<form use:enhance method="POST" action="?/login" class="text-slate-900">
-					<fieldset class="form-group py-1">
-						<input
-							class="form-control form-control-lg"
-							name="email"
-							type="email"
-							required
-							placeholder="Email"
-							value="test@mercedes.it"
-						/>
-					</fieldset>
-					<fieldset class="form-group py-1">
-						<input
-							class="form-control form-control-lg"
-							name="password"
-							type="password"
-							required
-							placeholder="Password"
-							value="lazypasssword"
-						/>
-					</fieldset>
-					<button
-						class="w-full max-w-xs bg-slate-800  hover:bg-sky-700 hover:ease-in-out hover:duration-300 hover:text-blue-100  text-white font-bold py-2 px-4 rounded"
-						type="submit"
-						>Sign in
-					</button>
-					<!-- <a class="btn" href="/signup">Sign Up</a> -->
-				</form>
-			</div>
-		</div>
-	</div>
+    .login button {
+        font-weight:700;
+        background-color:rgba(0, 0, 0, 0.5);
+        color:white;
+        height:50px;
+        width: 20rem;
+        border-radius:15px;
+    }
+
+    .inputs{
+        display: flex;
+        flex-flow: column;
+        color: white;
+    }
+
+    .inputs input {
+        width: 30rem;
+        height: 3rem;
+
+        margin-bottom: 1.5rem;
+        border-radius: 0.3rem;
+
+        background-color: rgba(15, 15, 15, 0.35);
+        border:0;
+    }
+
+    .logo {
+        display: block;
+        width: 8rem;
+        margin-inline: auto;
+        margin-bottom: 1rem;
+    }
+
+</style>
+
+
+<div class="loginForm bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-gray-500 via-ets-grey to-ets-blue">
+
+    <img src={logo} alt="bshape logo" class="logo">
+    <h1> Login </h1>
+
+    <ListErrors errors={form?.errors} />
+    <form use:enhance method="POST" action="?/login" class="text-slate-900">
+        <div class="inputs">
+
+            <label for="email"> Email </label>
+            <fieldset> <input name="email" type="email" placeholder="email" value="test@mercedes.it" required/> </fieldset>
+
+            <label for="password"> Password </label>
+            <fieldset> <input name="password" type="password" placeholder="password" value="lazypasssword" required/> </fieldset>
+
+        </div>
+
+        <div class="login">
+            <button type="submit">Login</button>
+        </div>
+
+    </form>
 </div>

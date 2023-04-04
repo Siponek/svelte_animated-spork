@@ -9,27 +9,34 @@
 
     let email;
     let password;
-    const handleLogin =  async (e, cookies)=>{
-        e.preventDefault()
-         let data = {
-            email:email,
-            password:password,
-         }
-        console.log('userdata', data)
-        const response = await api.post('auth/api/login', data);
+    const handleLogin = async (e) => {
+
+        e.preventDefault();
+        let data = {
+            email: email,
+            password: password,
+        };
+
+        console.log("userdata", data);
+        const response = await api.post("auth/api/login", data);
         const { headers, body } = await response;
         if (body.errors) {
-			throw new Error('problem in retrieving the data')
-		}
-        if (cookies) {
-			// cookies.set('app_ets_session', body.token);
-			cookies.set(headers.get('Set-Cookie'));
-		}
-		// console.log('User', body.user);
-        //throw redirect(303, '/map_page');
-       // window.location.href= '/map_page';
-       goto('/map_page')
-    }
+            throw new Error("problem in retrieving the data");
+        }
+
+        const cookieHeader = headers.get("Set-Cookie");
+        console.log("cookieheader", cookieHeader);
+
+        if (cookieHeader) {
+            const cookieParts = cookieHeader.split(";");
+            const cookieValue = cookieParts[0].split("=")[1];
+            document.cookie = `app_ets_session=${cookieValue}; path=/`;
+        }
+
+
+        goto("/map_page");
+
+    };
 </script>
 
 <style>

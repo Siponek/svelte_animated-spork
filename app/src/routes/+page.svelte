@@ -1,5 +1,4 @@
 <script>
-	import Login from "$lib/Login.svelte";
 </script>
 <svelte:head>
 	<title>ETS - Index</title>
@@ -9,9 +8,8 @@
     <!--<UserLogin /> -->
      <div class="p-5 h-screen items-center">
 		<div class=" text-gray-100">
-            <Login/>
-             <!--
-			   <h1 class="text-3xl">Hello, welcome to ETS index</h1>
+    
+			<h1 class="text-3xl">Hello, welcome to ETS index</h1>
 			<p class="">You propably want to go to
             </p>
 
@@ -26,7 +24,7 @@
 
             <p class=" px-5 py-2 hover:text-indigo-300 underline hover:ease-in-out duration-300" >
                 <a href="register"> register</a>
-            </p> -->
+            </p>
 		</div>
 	</div>
 </div>

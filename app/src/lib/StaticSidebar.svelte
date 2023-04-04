@@ -15,6 +15,12 @@
 
 	const btn_status = new Array(2).fill(false);
 	let userPopupStatus = false;
+
+	function delete_cookie() {
+		document.cookie = "login_cookie= value=0; domain=localhost; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;";
+		window.location.replace("/login")
+	}
+	
 </script>
 
  <aside class=" rounded-r-lg content-center relative object-none staticSidebar">
@@ -35,6 +41,10 @@
 		}}
 	/>
 
+	<button on:click={delete_cookie}> logout </button>
+
+
+
 <!-- <div>
 
 		<UserButton
@@ -48,6 +58,8 @@
 		<UserPopup bind:userPopupStatus />
 	</div> -->
 </aside>
+
+
 
 <style>
 
